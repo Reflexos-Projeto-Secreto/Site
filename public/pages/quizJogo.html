@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflexos | Quiz</title>
+    <link rel="stylesheet" type="text/css" href="../css/quizJogo.css">
+    <link rel="stylesheet" type="text/js" href="../js/quizJogo.js">
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-iniciar" style="display: flex;">
+        <h2>Opiniões impopulares</h2>
+        <img src="" alt="">
+        <button onclick="iniciar()">Iniciar Quiz</button>
+        <button onclick="avaliarRespostas()">Avaliar Respostas</button>
+        <button onclick="verPontuacao()">Ver sua pontuação</button>
+      </div>
+      <div class="container-andamento" style="display: none;" id>
+        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+            <div id="perguntaDaQuestaoAtual" class="padding-8">
+                  <span id="spanQuestaoExibida" class="text-bold"></span>
+            </div>
+            
+            <div id="infoQuestao" class="padding-8">
+                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>questões.</span>
+            </div>
+
+            <div id="assuntoAtual" class="box-assunto">
+            </div>
+
+            <div class="box-pensamentos" id="pensamentos">
+                <h2>O que você pensa sobre isso?</h2>
+                <textarea id="pensamentoVocê"></textarea>
+                <h2>O que ela pensa sobre isso</h2>
+                <textarea id="pensamentoEla"></textarea>
+                <button onclick="enviar()">Enviar</button>
+            </div>
+
+            <div id="botoes" class="flex-colunar padding-8">
+                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+            </div>
+        </div>
+      </div>
+      <div class="container-fim" style="display: none;">
+        <h2>Parabens você finalizou essa rodada</h2>
+        <button onclick="verPontuacao()">Aperte aqui para saber sua pontuação</button>
+      </div>
+      <div class="container-avaliar-respostas" style="display: none;">
+        <div class="box-respostas">
+            <div class="card-respostas">
+            </div> <!-- Aqui creio que precisse ser no js, porque se for criar, vai ficar com o mesmo id-->
+        </div>
+      </div>
+      <div class="container-pontuacao">
+        <h4>Pontos: <span id="quantidadePontos"></span></h4>
+        <div class="ranking">
+            <h2 id="primeiroLugar">Pessoa 1</h2>
+            <h2 id="segundoLugar">Pessoa 2</h2>
+        </div>
+        <button onclick="voltarIniciar()">Voltar</button>
+      </div>
+  </body>
+</html>

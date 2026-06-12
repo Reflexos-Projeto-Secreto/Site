@@ -8,6 +8,83 @@
     <link rel="stylesheet" type="text/js" href="../js/dashboard.js">
   </head>
   <body>
-
+    <div class="container">
+      <div id="container_kpis">
+        <div class="div_kpi kpi1 kpi_com_tooltip">
+          <div class="info_kpi">
+              <div class="containerTitulo">
+                  <h3>Quantidade de eventos com o mes que foi mais marcado</h3>
+              </div>
+              <div class="div_situacao">
+                  <h1 id="eventoQuant">47</h1>
+              </div>
+              <div class="status">
+                  <h4>Temos uma maior quantidade de eventos no mes <span id="mesEvento"></span></h4>
+              </div>
+          </div>
+        </div>
+        <div class="div_kpi kpi2 kpi_com_tooltip">
+          <div class="info_kpi">
+              <div class="containerTitulo">
+                  <h3>Qual e o proximo evento marcado</h3>
+              </div>
+              <div class="div_situacao">
+                  <h1 id="proxEvento">Empresas</h1>
+              </div>
+              <div class="status">
+                  <h4>Teremos um evento no dia <span id="diaEvento"></span></h4>
+              </div>
+          </div>
+        </div>
+        <div class="div_kpi kpi3 kpi_com_tooltip">
+          <div class="info_kpi">
+              <div class="containerTitulo">
+                  <h3>Quem esta em primeiro no ranking de pontos</h3>
+              </div>
+              <div class="div_situacao">
+                  <h1 id="primeiroLugar">Julia Araripe</h1>
+              </div>
+              <div class="status">
+                  <h4>a <span id="primeiroLugarStatus">Julia Araripe</span> esta em primeiro lugar com <span id="pontosRankingStatus">15</span> pontos</h4>
+              </div>
+          </div>
+        </div>
+        <div class="div_kpi kpi4 kpi_com_tooltip">
+          <div class="info_kpi">
+              <div class="containerTitulo">
+                  <h3>Nas conversas do chat quem teve maior quantidade de mensagens enviadas</h3>
+              </div>
+              <div class="div_situacao">
+                  <h1 id="chatPrimeiroLugar">Julia Araripe</h1>
+              </div>
+              <div class="status">
+                  <h4>a <span id="chatPrimeiroLugarStatus">Julia Araripe</span> esta em primeiro lugar com <span id="quantMensagensStatus">23</span> mensagens no chat</h4>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="parte1" id="p1">
+          <div class="grafico-qtd-quiz-respondido">
+              <div id="expandirQtdQuizRespondido">
+                  <canvas id="chartQtdQuizRespondido"></canvas>
+              </div>
+          </div>
+          <div class="grafico-quiz-conhecimento">
+              <div id="expandirQuizConhecimento">
+                  <canvas id="chartQuizConhecimento"></canvas>
+              </div>
+          </div>
+      </div>
+      <div class="parte2" id="p2">
+          <div class="grafico-qtd-eventos">
+              <div id="expandirQuantidadeEventos">
+                  <canvas id="chartQuantidadeEventos"></canvas>
+              </div>
+          </div>
+          <div class="box-fliperama">
+            <button onclick="quizJogo()">Iniciar</button>
+          </div>
+      </div>
+    </div>
   </body>
 </html>
