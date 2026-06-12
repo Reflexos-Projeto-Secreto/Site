@@ -1,46 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reflexos | Config</title>
-    <link rel="stylesheet" type="text/css" href="../css/config.css">
-    <link rel="stylesheet" type="text/js" href="../js/config.js">
-  </head>
-  <body>
-    <div class="container">
-      <div class="container-config">
-        <div class="box-config">
-          <div class="geral-config">
-            <h1>Configuração</h1>
-            <div class="container-imagem">
-              <img src="../assets/imgs/geral/usuario.png" id="imgPerfil" onclick="mudarImagemPerfil()" onerror="this.src='../assets/imgs/geral/usuario.png'">
-              <input type="file" id="inpImagem" onchange="salvarImagemPerfil()" hidden>
-            </div>
-            <div class="input-config">
-              <div class="input-filho">
-                <h4>Nome</h4>
-                <input type="text" id="nome" />
-              </div>
-              <div class="input-filho">
-                <h4>Username</h4>
-                <input type="text" id="username" />
-              </div>
-            </div>
-            <div class="input-config">
-              <div class="input-filho">
-                <h4>Email</h4>
-                <input type="email" id="email" />
-              </div>
-              <div class="input-filho">
-                <h4>Senha</h4>
-                <input type="password" id="senha" />
-              </div>
-            </div>
-            <button onclick="salvar()">Salvar</button>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reflexos | Config</title>
+  <link rel="stylesheet" type="text/css" href="../css/config.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="container-config">
+      <div class="box-config">
+        <div class="geral-config">
+          <h1>Configuração</h1>
+          <div class="container-imagem">
+            <img src="../assets/imgs/geral/usuario.png" id="imgPerfil" onclick="mudarImagemPerfil()"
+              onerror="this.src='../assets/imgs/geral/usuario.png'">
+            <input type="file" id="inpImagem" onchange="salvarImagemPerfil()" hidden>
           </div>
+          <div class="input-config">
+            <div class="input-filho">
+              <h4>Nome</h4>
+              <input type="text" id="nome" />
+            </div>
+            <div class="input-filho">
+              <h4>Username</h4>
+              <input type="text" id="username" />
+            </div>
+          </div>
+          <div class="input-config">
+            <div class="input-filho">
+              <h4>Email</h4>
+              <input type="email" id="email" />
+            </div>
+            <div class="input-filho">
+              <h4>Senha</h4>
+              <input type="password" id="senha" />
+            </div>
+          </div>
+          <button onclick="salvar()">Salvar</button>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+  <script>
+    const idUsuario = sessionStorage.getItem("ID_USUARIO");
+    const emailUsuario = sessionStorage.getItem("EMAIL_USUARIO");
+    const nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
+    const usernameUsuario = sessionStorage.getItem("USERNAME_USUARIO");
+
+    function sumirMensagem() {
+      cardErro.style.display = "none";
+    }
+
+    function salvar() {
+      console.log("AAAAAAAAAAAA")
+      var nomeNovo = nome.value;
+      var usernameNovo = username.value;
+      var emailNovo = email.value;
+      var senhaNovo = senha.value;
+
+      if (nomeNovo == "" || usernameNovo == "" || emailNovo == "" || senhaNovo == "") {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "Os campos não podem estar em branco!";
+        return false;
+      } else if (nomeNovo == nomeUsuario || usernameNovo == usernameUsuario || emailNovo == emailUsuario) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "As modificações não podem ser iguais as informações atuais!";
+        return false;
+      }
+
+      fetch("/config/mudarInfo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nomeServerNovo: nomeNovo,
+          usernameServerNovo: usernameNovo,
+          emailServerNovo: emailNovo,
+          senhaServerNovo: senhaNovo,
+          idUsuario: idUsuario
+        })
+      }).then(function (resposta) {
+        console.log("STATUS:", resposta.status);
+        console.log("ESTOU NO THEN DO config()!")
+        if (resposta.ok) {
+          console.log(resposta);
+          setInterval(sumirMensagem, 5000);
+        }
+      }).catch(function (erro) {
+        console.log(erro);
+      });
+    }
+  </script>
+</body>
+
 </html>
