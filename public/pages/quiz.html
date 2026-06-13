@@ -126,6 +126,7 @@
       <div class="boxResultado">
         <h2 id="tituloResultadoPersonalidade">Titulo</h2>
         <p id="explicaoResultadoPersonalidade">Explicação</p>
+        <div id="guia"></div>
         <button onclick="refazerPersonalidade()">Refazer</button>
       </div>
     </div>
@@ -178,6 +179,10 @@
 </html>
 
 <script>
+
+  var resultado = ""
+
+
   const listaDeQuestoes = [
     {
       pergunta: "Qual mês tem 30 dias?",
@@ -590,7 +595,6 @@
 
     var email = sessionStorage.getItem("EMAIL_USUARIO")
     var nome = sessionStorage.getItem("NOME_USUARIO")
-    var resultado = ""
 
     if (pontuacaoJulia > pontuacaoDebora) {
       document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você se parece mais com Julia!"
@@ -607,18 +611,36 @@
     }
 
     fetch("/quiz/enviarEmail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            email: email,
-            nome: nome,
-            resultado: resultado
-        })
-    }).then(function(resposta) {
-        if (resposta.ok) {
-            alert("Playlist enviada para seu email!")
-        }
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        nome: nome,
+        resultado: resultado
+      })
+    }).then(function (resposta) {
+      if (resposta.ok) {
+        alert("Playlist enviada para seu email!")
+      }
     })
+
+    gerarGuia()
+  }
+
+  // guia 
+
+  async function gerarGuia() {
+    console.log("perfil enviado:", resultado)
+    const response = await fetch("/guia", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ perfil: resultado })
+    });
+    console.log("status da resposta:", response.status)
+
+    const data = await response.json();
+     console.log("resposta do gemini:", data)
+    document.getElementById("guia").innerText = data.text;
   }
 
   function refazerPersonalidade() {

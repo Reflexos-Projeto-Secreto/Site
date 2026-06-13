@@ -22,8 +22,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 var indexRouter = require("./src/routes/index");
 var quizRouter = require("./src/routes/quizRouter")
+var guiaRouter = require("./src/routes/guiaRouter");
 
 app.use("/quiz", quizRouter);
+app.use("/guia", guiaRouter);
 app.use("/", indexRouter);
 
 app.listen(PORTA_APP, function () {
