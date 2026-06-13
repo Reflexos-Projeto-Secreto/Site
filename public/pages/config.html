@@ -55,23 +55,32 @@
     }
 
     function salvar() {
-      console.log("AAAAAAAAAAAA")
       var nomeNovo = nome.value;
       var usernameNovo = username.value;
       var emailNovo = email.value;
       var senhaNovo = senha.value;
 
       if (nomeNovo == "" || usernameNovo == "" || emailNovo == "" || senhaNovo == "") {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "Os campos não podem estar em branco!";
+        alert("Os campos não podem estar em branco!");
         return false;
       } else if (nomeNovo == nomeUsuario || usernameNovo == usernameUsuario || emailNovo == emailUsuario) {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "As modificações não podem ser iguais as informações atuais!";
+        alert("As modificações não podem ser iguais as informações atuais!");
         return false;
       }
 
-      fetch("/config/mudarInfo", {
+      fetch(`/config/buscarSenha?idUsuario=${idUsuario}`)
+        .then(function (resposta) {
+          return resposta.json();
+        })
+        .then(function (json) {
+          console.log(json.senhaUsuario);
+          var senhaAtual = json.senhaUsuario;
+
+          if (senhaNovo == senhaAtual) {
+            alert("A nova senha não pode ser igual à senha atual!");
+            return false;
+        } else {
+          fetch("/config/mudarInfo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -91,6 +100,11 @@
       }).catch(function (erro) {
         console.log(erro);
       });
+        }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+        });
     }
   </script>
 </body>

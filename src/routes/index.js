@@ -9,7 +9,7 @@ router.use("/usuarios", usuariosRouter);
 router.use("/config", configRouter)
 
 router.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../../public/pages/cadastro.html"));
+    res.sendFile(path.join(__dirname, "../../public/pages/login.html"));
 });
 
 router.get("/elevador", function (req, res) {

@@ -34,6 +34,17 @@ function mudarInfo(req, res){
         )
 }
 
+function buscarSenha(req, res){
+    var id = req.query.idUsuario;
+    configModel.buscarSenha(id)
+        .then(function (resultado) {
+            res.json(resultado[0]);
+        }).catch(function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
-    mudarInfo
+    mudarInfo,
+    buscarSenha
 }

@@ -6,4 +6,8 @@ router.post("/mudarInfo", function (req, res) {
     configController.mudarInfo(req, res);
 });
 
+router.get("/buscarSenha", function (req, res) {
+    configController.buscarSenha(req, res);
+});
+
 module.exports = router;
