@@ -1,124 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reflexos | Quiz</title>
-    <link rel="stylesheet" type="text/css" href="../css/quiz.css">
-    <link rel="stylesheet" type="text/js" href="../js/quiz.js">
-  </head>
-  <body>
-    <div class="container-conhecimento">
-      <div class="container-iniciar" style="display: flex;">
-        <h2>Você realmente conhece <span id="pessoaLogin">Julia Araripe</span></h2>
-        <img src="" alt="">
-        <button onclick="iniciar()">Iniciar Quiz</button>
-      </div>
-      <div class="container-andamento" style="display: none;">
-        <div id="conhecimento" class="width-fit-content flex-colunar border-secondary">
-                           
-          <div id="perguntaDaQuestaoAtualConhecimento" class="padding-8">
-              <span id="spanQuestaoExibidaConhecimento" class="text-bold"></span>
-          </div>
-            
-          <div id="infoQuestaoConhecimento" class="padding-8">
-              <span>Questão atual: <span id="spanNumeroDaQuestaoAtualConhecimento"></span> de <span id="qtdQuestoesConhecimento"></span>questões.</span>
-          </div>
 
-          <div id="infoAlternativasConhecimento" class="padding-8">
-              <span><em>Escolha uma opção dentre as abaixo:</em></span>
-          </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reflexos | Quiz</title>
+  <link rel="stylesheet" type="text/css" href="../css/quiz.css">
+  <link rel="stylesheet" type="text/js" href="../js/quiz.js">
+</head>
 
-          <div id="opcoesConhecimento" class="flex-colunar padding-8">
-              <span>
-                  <input type="radio" id="primeiraOpcaoConhecimento" name="option" class="radio" value="alternativaA" />
-                  <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-              </span>
-              <span>
-                  <input type="radio" id="segundaOpcaoConhecimento" name="option" class="radio" value="alternativaB" />
-                  <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-              </span>
-              <span>
-                  <input type="radio" id="terceiraOpcaoConhecimento" name="option" class="radio" value="alternativaC" />
-                  <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-              </span>
-              <span>
-                  <input type="radio" id="quartaOpcaoConhecimento" name="option" class="radio" value="alternativaD" />
-                  <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-              </span>
-          </div>
+<body>
+  // quiz conhecimento uma sobre a outra
+  <div class="container-conhecimento">
+    <div class="container-iniciar" style="display: flex;">
+      <h2>Você realmente conhece <span id="pessoaLogin">Julia Araripe</span></h2>
+      <img src="" alt="">
+      <button id="btnIniciarQuiz" onclick="iniciarConhecimento()">Iniciar Quiz</button>
+    </div>
+    <div class="container-andamento" style="display: none;">
+      <div id="conhecimento" class="width-fit-content flex-colunar border-secondary">
 
-          <div id="botoesConhecimento" class="flex-colunar padding-8">
-              <button onclick="avancar()" id="btnProxConhecimento" disabled>Avançar para próxima questão</button>
-              <button onclick="tentarNovamente()" id="btnTentarNovamenteConhecimento" disabled>Tentar novamente</button>
-              <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-          </div>
+        <div id="perguntaDaQuestaoAtualConhecimento" class="padding-8">
+          <span id="spanQuestaoExibidaConhecimento" class="text-bold"></span>
         </div>
-      </div>
-      <div class="container-fim" style="display: none;">
-        <h2 id="resultadoConhecimento">Resultado</h2>
-        <img src="" alt="">
-        <div class="boxResultado">
-          <h2 id="tituloResultadoConhecimento">Titulo</h2>
-          <p id="explicaoResultadoConhecimento">Explicação</p>
-          <button onclick="refazerConhecimento()">Refazer</button>
+
+        <div id="infoQuestaoConhecimento" class="padding-8">
+          <span>Questão atual: <span id="spanNumeroDaQuestaoAtualConhecimento"></span> de <span
+              id="qtdQuestoesConhecimento"></span>questões.</span>
+        </div>
+
+        <div id="infoAlternativasConhecimento" class="padding-8">
+          <span><em>Escolha uma opção dentre as abaixo:</em></span>
+        </div>
+
+        <div id="opcoesConhecimento" class="flex-colunar padding-8">
+          <span>
+            <input type="radio" id="primeiraOpcaoConhecimento" name="option" value="alternativaA" />
+            <label for="primeiraOpcaoConhecimento" id="labelOpcaoUm"></label>
+          </span>
+          <span>
+            <input type="radio" id="segundaOpcaoConhecimento" name="option" value="alternativaB" />
+            <label for="segundaOpcaoConhecimento" id="labelOpcaoDois"></label>
+          </span>
+          <span>
+            <input type="radio" id="terceiraOpcaoConhecimento" name="option" value="alternativaC" />
+            <label for="terceiraOpcaoConhecimento" id="labelOpcaoTres"></label>
+          </span>
+          <span>
+            <input type="radio" id="quartaOpcaoConhecimento" name="option" value="alternativaD" />
+            <label for="quartaOpcaoConhecimento" id="labelOpcaoQuatro"></label>
+          </span>
+        </div>
+
+        <div id="botoesConhecimento" class="flex-colunar padding-8">
+          <button onclick="checarResposta()" id="btnProxConhecimento">Avançar para próxima questão</button>
+          <button onclick="tentarNovamente()" id="btnTentarNovamenteConhecimento" disabled>Tentar novamente</button>
+          <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
         </div>
       </div>
     </div>
-    <div class="container-jogo">
-      <div class="container-iniciar" style="display: flex;">
-        <h2>Opiniões impopulares</h2>
-        <img src="" alt="">
-        <button onclick="iniciar()">Iniciar Quiz</button>
-        <button onclick="avaliarRespostas()">Avaliar Respostas</button>
-        <button onclick="verPontuacao()">Ver sua pontuação</button>
-      </div>
-      <div class="container-andamento" style="display: none;">
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
-            <div id="perguntaDaQuestaoAtualJogo" class="padding-8">
-                  <span id="spanQuestaoExibidaJogo" class="text-bold"></span>
-            </div>
-            
-            <div id="infoQuestaoJogo" class="padding-8">
-                <span>Questão atual: <span id="spanNumeroDaQuestaoAtualJogo"></span> de <span id="qtdQuestoesJogo"></span>questões.</span>
-            </div>
-
-            <div id="assuntoAtual" class="box-assunto">
-            </div>
-
-            <div class="box-pensamentos" id="pensamentos">
-                <h2>O que você pensa sobre isso?</h2>
-                <textarea id="pensamentoVoce"></textarea>
-                <h2>O que ela pensa sobre isso</h2>
-                <textarea id="pensamentoEla"></textarea>
-                <button onclick="enviar()">Enviar</button>
-            </div>
-
-            <div id="botoesJogo" class="flex-colunar padding-8">
-                <button onclick="avancar()" id="btnProxJogo" disabled>Avançar para próxima questão</button>
-                <button onclick="tentarNovamente()" id="btnTentarNovamenteJogo" disabled>Tentar novamente</button>
-                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-            </div>
-        </div>
-      </div>
-      <div class="container-fim" style="display: none;">
-        <h2>Parabens você finalizou essa rodada</h2>
-        <button onclick="verPontuacao()">Aperte aqui para saber sua pontuação</button>
-      </div>
-      <div class="container-avaliar-respostas" style="display: none;">
-        <div class="box-respostas">
-            <div class="card-respostas">
-            </div> <!-- Aqui creio que precisse ser no js, porque se for criar, vai ficar com o mesmo id-->
-        </div>
-      </div>
-      <div class="container-pontuacao" style="display: none;">
-        <h4>Pontos: <span id="quantidadePontos"></span></h4>
-        <div class="ranking">
-            <h2 id="primeiroLugar">Pessoa 1</h2>
-            <h2 id="segundoLugar">Pessoa 2</h2>
-        </div>
-        <button onclick="voltarIniciar()">Voltar</button>
+    <div class="container-fim" style="display: none;">
+      <h2 id="resultadoConhecimento">Resultado</h2>
+      <img src="" alt="">
+      <div class="boxResultado">
+        <h2 id="tituloResultadoConhecimento">Titulo</h2>
+        <p id="explicaoResultadoConhecimento">Explicação</p>
+        <button onclick="refazerConhecimento()">Refazer</button>
       </div>
     </div>
-  </body>
+  </div>
+
+  // quiz quem é voce
+  <div class="container-Personalidade">
+    <div class="container-iniciar" style="display: flex;">
+      <h2>Com qual das duas voce mais se parece?</h2>
+      <img src="" alt="">
+      <button id="btnIniciarQuiz" onclick="iniciarPersonalidade()">Iniciar Quiz</button>
+    </div>
+    <div class="container-andamento" style="display: none;">
+      <div id="Personalidade" class="width-fit-content flex-colunar border-secondary">
+
+        <div id="perguntaDaQuestaoAtualPersonalidade" class="padding-8">
+          <span id="spanQuestaoExibidaPersonalidade" class="text-bold"></span>
+        </div>
+
+        <div id="infoQuestaoPersonalidade" class="padding-8">
+          <span>Questão atual: <span id="spanNumeroDaQuestaoAtualPersonalidade"></span> de <span
+              id="qtdQuestoesPersonalidade"></span>questões.</span>
+        </div>
+
+        <div id="infoAlternativasPersonalidade" class="padding-8">
+          <span><em>Escolha uma opção dentre as abaixo:</em></span>
+        </div>
+
+        <div id="opcoesPersonalidade" class="flex-colunar padding-8">
+          <span>
+            <input type="radio" id="primeiraOpcaoPersonalidade" name="option" value="alternativaA" />
+            <label for="primeiraOpcaoPersonalidade" id="labelOpcaoUmP"></label>
+          </span>
+          <span>
+            <input type="radio" id="segundaOpcaoPersonalidade" name="option" value="alternativaB" />
+            <label for="segundaOpcaoPersonalidade" id="labelOpcaoDoisP"></label>
+          </span>
+          <span>
+            <input type="radio" id="terceiraOpcaoPersonalidade" name="option" value="alternativaC" />
+            <label for="terceiraOpcaoPersonalidade" id="labelOpcaoTresP"></label>
+          </span>
+          <span>
+            <input type="radio" id="quartaOpcaoPersonalidade" name="option" value="alternativaD" />
+            <label for="quartaOpcaoPersonalidade" id="labelOpcaoQuatroP"></label>
+          </span>
+        </div>
+
+        <div id="botoesPersonalidade" class="flex-colunar padding-8">
+          <button onclick="checarRespostaPersonalidade()" id="btnProxPersonalidade">Avançar para próxima
+            questão</button>
+          <button onclick="tentarNovamente()" id="btnTentarNovamentePersonalidade" disabled>Tentar novamente</button>
+          <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+        </div>
+      </div>
+    </div>
+    <div class="container-fim" style="display: none;">
+      <h2 id="resultadoPersonalidade">Resultado</h2>
+      <img src="" alt="">
+      <div class="boxResultado">
+        <h2 id="tituloResultadoPersonalidade">Titulo</h2>
+        <p id="explicaoResultadoPersonalidade">Explicação</p>
+        <button onclick="refazerPersonalidade()">Refazer</button>
+      </div>
+    </div>
+  </div>
+
+
+  // jogo opnioes
+  <div class="container-jogo">
+    <div class="container-iniciar" style="display: flex;">
+      <h2>Opiniões Impopulares</h2>
+      <input type="text" id="inputNomeJogador1" placeholder="Nome do Jogador 1" />
+      <input type="text" id="inputNomeJogador2" placeholder="Nome do Jogador 2" />
+      <button onclick="iniciarJogo()">Iniciar</button>
+    </div>
+
+    <div class="container-andamento" style="display: none;">
+      <span>Rodada: <span id="spanNumeroDaQuestaoAtualJogo"></span> de <span id="qtdQuestoesJogo"></span></span>
+      <div id="assuntoAtual"></div>
+      <p id="instrucaoJogo"></p>
+
+      <div id="pensamentos">
+        <textarea id="pensamentoVoce" placeholder="Escreva aqui..."></textarea>
+        <button onclick="enviar()">Enviar</button>
+      </div>
+
+      <div id="revelarRespostas" style="display: none;">
+        <div>
+          <h3 id="nomeRespostaJ1"></h3>
+          <p id="textoRespostaJ1"></p>
+          <button id="btnPontuarJ1" onclick="pontuarJogador1()"></button>
+        </div>
+        <div>
+          <h3 id="nomeRespostaJ2"></h3>
+          <p id="textoRespostaJ2"></p>
+          <button id="btnPontuarJ2" onclick="pontuarJogador2()"></button>
+        </div>
+        <button onclick="proximaRodada()">Próxima Rodada</button>
+      </div>
+    </div>
+
+    <div class="container-fim" style="display: none;">
+      <h2 id="vencedor"></h2>
+      <h3 id="rankingJ1"></h3>
+      <h3 id="rankingJ2"></h3>
+      <button onclick="window.location.reload()">Jogar novamente</button>
+    </div>
+  </div>
+</body>
+
 </html>
+
+<script>
+  const listaDeQuestoes = [
+    {
+      pergunta: "Qual mês tem 30 dias?",
+      alternativaA: "Janeiro",
+      alternativaB: "Dezembro",
+      alternativaC: "Junho",
+      alternativaD: "Agosto",
+      alternativaCorreta: "alternativaC"
+    },
+    {
+      pergunta: "Quantas horas tem em um dia?",
+      alternativaA: "30 horas",
+      alternativaB: "38 horas",
+      alternativaC: "48 horas",
+      alternativaD: "24 horas",
+      alternativaCorreta: "alternativaD"
+    },
+    {
+      pergunta: "Qual destes números é ímpar?",
+      alternativaA: "Dez",
+      alternativaB: "Doze",
+      alternativaC: "Oito",
+      alternativaD: "Onze",
+      alternativaCorreta: "alternativaD"
+    }
+  ]
+
+  const listaDeQuestoesPersonalidade = [
+    {
+      pergunta: "Qual país você sonha em conhecer?",
+      alternativaA: "Suiça",
+      alternativaB: "Japão",
+      alternativaC: "Alemanha",
+      alternativaD: "França"
+    },
+    {
+      pergunta: "Qual país você sonha em conhecer?",
+      alternativaA: "Suiça",
+      alternativaB: "Japão",
+      alternativaC: "Alemanha",
+      alternativaD: "França"
+    },
+    {
+      pergunta: "Qual país você sonha em conhecer?",
+      alternativaA: "Suiça",
+      alternativaB: "Japão",
+      alternativaC: "Alemanha",
+      alternativaD: "França"
+    }
+  ]
+
+  let numeroDaQuestaoAtual = 0
+  let pontuacaoFinal = 0
+  let certas = 0
+  let erradas = 0
+  let quantidadeDeQuestoes = listaDeQuestoes.length
+  let numeroDaQuestaoAtualPersonalidade = 0
+  let pontuacaoJulia = 0
+  let pontuacaoDebora = 0
+  let quantidadeDeQuestoesPersonalidade = listaDeQuestoesPersonalidade.length
+
+  function iniciarConhecimento() {
+    document.querySelector(".container-conhecimento .container-iniciar").style.display = "none"
+    document.querySelector(".container-conhecimento .container-andamento").style.display = "flex"
+
+    document.getElementById("qtdQuestoesConhecimento").innerHTML = quantidadeDeQuestoes
+
+    preencherHTMLcomQuestaoAtual(0)
+
+    document.getElementById("btnProxConhecimento").disabled = false
+    document.getElementById("btnTentarNovamenteConhecimento").disabled = true
+  }
+
+  function iniciarPersonalidade() {
+    document.querySelector(".container-Personalidade .container-iniciar").style.display = "none"
+    document.querySelector(".container-Personalidade .container-andamento").style.display = "flex"
+
+    document.getElementById("qtdQuestoesPersonalidade").innerHTML = listaDeQuestoesPersonalidade.length
+
+    preencherHTMLPersonalidade(0)
+  }
+
+  function preencherHTMLcomQuestaoAtual(index) {
+    habilitarAlternativas(true)
+    const questaoAtual = listaDeQuestoes[index]
+    numeroDaQuestaoAtual = index
+
+    document.getElementById("spanNumeroDaQuestaoAtualConhecimento").innerHTML = Number(index) + 1
+    document.getElementById("spanQuestaoExibidaConhecimento").innerHTML = questaoAtual.pergunta
+    document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA
+    document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB
+    document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC
+    document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD
+  }
+
+  function habilitarAlternativas(trueOrFalse) {
+    let desabilitar = !trueOrFalse
+
+    document.getElementById("primeiraOpcaoConhecimento").disabled = desabilitar
+    document.getElementById("segundaOpcaoConhecimento").disabled = desabilitar
+    document.getElementById("terceiraOpcaoConhecimento").disabled = desabilitar
+    document.getElementById("quartaOpcaoConhecimento").disabled = desabilitar
+  }
+
+  function avancar() {
+
+    desmarcarRadioButtons()
+    limparCoresBackgroundOpcoes()
+
+    if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+      preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+    } else {
+      finalizarJogo()
+    }
+  }
+
+  function checarResposta() {
+    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
+    const respostaQuestaoAtual = questaoAtual.alternativaCorreta
+    const options = document.getElementsByName("option")
+
+    let Check = false
+    options.forEach((option) => { if (option.checked) Check = true })
+
+    if (!Check) {
+      alert("Escolha uma opção!")
+      return
+    }
+
+    habilitarAlternativas(false)
+
+    let alternativaCorreta = null
+    options.forEach((option) => {
+      if (option.value == respostaQuestaoAtual) {
+        alternativaCorreta = option.labels[0].id
+      }
+    })
+
+    options.forEach((option) => {
+      if (option.checked && option.value == respostaQuestaoAtual) {
+        document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+        pontuacaoFinal++
+        certas++
+        numeroDaQuestaoAtual++
+      } else if (option.checked && option.value !== respostaQuestaoAtual) {
+        document.getElementById(option.labels[0].id).classList.add("text-danger-with-bg")
+        document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+        erradas++
+        numeroDaQuestaoAtual++
+      }
+    })
+
+    setTimeout(function () {
+      avancar()
+    }, 1000)
+  }
+
+  function tentarNovamente() {
+    window.location.reload()
+  }
+
+  function limparCoresBackgroundOpcoes() {
+    const options = document.getElementsByName("option")
+    options.forEach((option) => {
+      document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+      document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+    })
+  }
+
+  function desmarcarRadioButtons() {
+    const options = document.getElementsByName("option")
+    for (let i = 0; i < options.length; i++) {
+      options[i].checked = false
+    }
+  }
+
+  function finalizarJogo() {
+    document.querySelector(".container-conhecimento .container-andamento").style.display = "none"
+    document.querySelector(".container-conhecimento .container-fim").style.display = "flex"
+
+    const porcentagem = pontuacaoFinal / quantidadeDeQuestoes
+
+    let titulo = ""
+    let explicacao = ""
+
+    if (porcentagem <= 0.3) {
+      titulo = "Parece que você não estudou..."
+      explicacao = "Tente novamente e estude mais!"
+    } else if (porcentagem < 0.9) {
+      titulo = "Pode melhorar na próxima!"
+      explicacao = "Você está no caminho certo!"
+    } else {
+      titulo = "Uau, parabéns!"
+      explicacao = "Você conhece muito bem!"
+    }
+
+    document.getElementById("tituloResultadoConhecimento").innerHTML = titulo + " Você acertou " + Math.round(porcentagem * 100) + "%"
+    document.getElementById("explicaoResultadoConhecimento").innerHTML = explicacao
+  }
+
+  function refazerConhecimento() {
+    window.location.reload()
+  }
+
+  // script do quiz de opnioes 
+
+  const assuntos = [
+    "Qual a opinião sobre política?",
+    "Qual a opinião sobre religião?",
+    "Qual a opinião sobre dinheiro?",
+    "Qual a opinião sobre relacionamentos?",
+    "Qual a opinião sobre redes sociais?",
+    "Qual a opinião sobre o futuro?",
+    "Qual a opinião sobre família?",
+    "Qual a opinião sobre trabalho?"
+  ]
+
+  let nomeJogador1 = ""
+  let nomeJogador2 = ""
+  let pontuacaoJogador1 = 0
+  let pontuacaoJogador2 = 0
+  let rodadaAtual = 0
+  let totalRodadas = 3
+  let assuntosRodada = []
+  let respostaJogador1 = ""
+  let respostaJogador2 = ""
+  let faseAtual = ""
+
+  function iniciarJogo() {
+    nomeJogador1 = document.getElementById("inputNomeJogador1").value
+    nomeJogador2 = document.getElementById("inputNomeJogador2").value
+
+    if (nomeJogador1 == "" || nomeJogador2 == "") {
+      alert("Preencha o nome dos dois jogadores!")
+      return
+    }
+    let embaralhados = assuntos.sort(() => Math.random() - 0.5)
+    assuntosRodada = embaralhados.slice(0, totalRodadas)
+
+    document.querySelector(".container-jogo .container-iniciar").style.display = "none"
+    document.querySelector(".container-jogo .container-andamento").style.display = "flex"
+
+    iniciarRodada()
+  }
+
+  function iniciarRodada() {
+    respostaJogador1 = ""
+    respostaJogador2 = ""
+    faseAtual = "jogador1"
+
+    document.getElementById("spanNumeroDaQuestaoAtualJogo").innerHTML = rodadaAtual + 1
+    document.getElementById("qtdQuestoesJogo").innerHTML = totalRodadas
+    document.getElementById("assuntoAtual").innerHTML = assuntosRodada[rodadaAtual]
+
+    document.getElementById("pensamentos").style.display = "flex"
+    document.getElementById("revelarRespostas").style.display = "none"
+
+    document.getElementById("instrucaoJogo").innerHTML = `${nomeJogador1}, o que você acha que ${nomeJogador2} pensa sobre isso?`
+    document.getElementById("pensamentoVoce").value = ""
+
+    document.getElementById("btnPontuarJ1").disabled = false
+    document.getElementById("btnPontuarJ2").disabled = false
+  }
+
+  function enviar() {
+    var texto = document.getElementById("pensamentoVoce").value
+
+    if (texto == "") {
+      alert("Escreva algo antes de enviar!")
+      return
+    }
+
+    if (faseAtual == "jogador1") {
+      respostaJogador1 = texto
+      faseAtual = "jogador2"
+      document.getElementById("instrucaoJogo").innerHTML = `${nomeJogador2}, o que você acha que ${nomeJogador1} pensa sobre isso?`
+      document.getElementById("pensamentoVoce").value = ""
+
+    } else if (faseAtual == "jogador2") {
+      respostaJogador2 = texto
+      faseAtual = "revelar"
+      revelar()
+    }
+  }
+
+  function revelar() {
+    document.getElementById("pensamentos").style.display = "none"
+    document.getElementById("revelarRespostas").style.display = "flex"
+
+    document.getElementById("nomeRespostaJ1").innerHTML = `${nomeJogador1} acha que ${nomeJogador2} pensa:`
+    document.getElementById("textoRespostaJ1").innerHTML = respostaJogador1
+
+    document.getElementById("nomeRespostaJ2").innerHTML = `${nomeJogador2} acha que ${nomeJogador1} pensa:`
+    document.getElementById("textoRespostaJ2").innerHTML = respostaJogador2
+
+    document.getElementById("btnPontuarJ1").innerHTML = `${nomeJogador2} concorda? (+1 ponto para ${nomeJogador1})`
+    document.getElementById("btnPontuarJ2").innerHTML = `${nomeJogador1} concorda? (+1 ponto para ${nomeJogador2})`
+  }
+
+  function pontuarJogador1() {
+    pontuacaoJogador1++
+    document.getElementById("btnPontuarJ1").disabled = true
+    document.getElementById("btnPontuarJ1").innerHTML = "Pontuado!"
+  }
+
+  function pontuarJogador2() {
+    pontuacaoJogador2++
+    document.getElementById("btnPontuarJ2").disabled = true
+    document.getElementById("btnPontuarJ2").innerHTML = "Pontuado!"
+  }
+
+  function proximaRodada() {
+    rodadaAtual++
+
+    if (rodadaAtual < totalRodadas) {
+      iniciarRodada()
+    } else {
+      finalizarJogo()
+    }
+  }
+
+  function finalizarJogo() {
+    document.querySelector(".container-jogo .container-andamento").style.display = "none"
+    document.querySelector(".container-jogo .container-fim").style.display = "flex"
+
+    document.getElementById("rankingJ1").innerHTML = `${nomeJogador1}: ${pontuacaoJogador1} pontos`
+    document.getElementById("rankingJ2").innerHTML = `${nomeJogador2}: ${pontuacaoJogador2} pontos`
+
+    if (pontuacaoJogador1 > pontuacaoJogador2) {
+      document.getElementById("vencedor").innerHTML = `${nomeJogador1} venceu!`
+    } else if (pontuacaoJogador2 > pontuacaoJogador1) {
+      document.getElementById("vencedor").innerHTML = `${nomeJogador2} venceu!`
+    } else {
+      document.getElementById("vencedor").innerHTML = `Empate!`
+    }
+  }
+
+  function preencherHTMLPersonalidade(index) {
+    const questaoAtual = listaDeQuestoesPersonalidade[index]
+    numeroDaQuestaoAtualPersonalidade = index
+
+    document.getElementById("spanNumeroDaQuestaoAtualPersonalidade").innerHTML = Number(index) + 1
+    document.getElementById("spanQuestaoExibidaPersonalidade").innerHTML = questaoAtual.pergunta
+    document.getElementById("labelOpcaoUmP").innerHTML = questaoAtual.alternativaA
+    document.getElementById("labelOpcaoDoisP").innerHTML = questaoAtual.alternativaB
+    document.getElementById("labelOpcaoTresP").innerHTML = questaoAtual.alternativaC
+    document.getElementById("labelOpcaoQuatroP").innerHTML = questaoAtual.alternativaD
+
+    habilitarAlternativasPersonalidade(true)
+  }
+
+  function habilitarAlternativasPersonalidade(trueOrFalse) {
+    let desabilitar = !trueOrFalse
+    document.getElementById("primeiraOpcaoPersonalidade").disabled = desabilitar
+    document.getElementById("segundaOpcaoPersonalidade").disabled = desabilitar
+    document.getElementById("terceiraOpcaoPersonalidade").disabled = desabilitar
+    document.getElementById("quartaOpcaoPersonalidade").disabled = desabilitar
+  }
+
+  function checarRespostaPersonalidade() {
+    const questaoAtual = listaDeQuestoesPersonalidade[numeroDaQuestaoAtualPersonalidade]
+    const options = document.querySelectorAll("#opcoesPersonalidade input[type='radio']")
+
+    let Check = false
+    let opcaoEscolhida = null
+    options.forEach((option) => {
+      if (option.checked) {
+        Check = true
+        opcaoEscolhida = option.value
+      }
+    })
+
+    if (!Check) {
+      alert("Escolha uma opção!")
+      return
+    }
+
+    if (opcaoEscolhida == "alternativaA" || opcaoEscolhida == "alternativaC") {
+      pontuacaoJulia++
+    } else {
+      pontuacaoDebora++
+    }
+
+    habilitarAlternativasPersonalidade(false)
+    numeroDaQuestaoAtualPersonalidade++
+
+    setTimeout(function () {
+      avancarPersonalidade()
+    }, 1000)
+  }
+
+  function avancarPersonalidade() {
+    desmarcarRadioButtonsPersonalidade()
+
+    if (numeroDaQuestaoAtualPersonalidade < quantidadeDeQuestoesPersonalidade) {
+      preencherHTMLPersonalidade(numeroDaQuestaoAtualPersonalidade)
+    } else {
+      finalizarPersonalidade()
+    }
+  }
+
+  function desmarcarRadioButtonsPersonalidade() {
+    const options = document.querySelectorAll("#opcoesPersonalidade input[type='radio']")
+    options.forEach((option) => { option.checked = false })
+  }
+
+  function finalizarPersonalidade() {
+    document.querySelector(".container-Personalidade .container-andamento").style.display = "none"
+    document.querySelector(".container-Personalidade .container-fim").style.display = "flex"
+
+    var email = sessionStorage.getItem("EMAIL_USUARIO")
+    var nome = sessionStorage.getItem("NOME_USUARIO")
+    var resultado = ""
+
+    if (pontuacaoJulia > pontuacaoDebora) {
+      document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você se parece mais com Julia!"
+      document.getElementById("explicaoResultadoPersonalidade").innerHTML = "Sua personalidade combina com a Julia!"
+      resultado = "julia"
+    } else if (pontuacaoDebora > pontuacaoJulia) {
+      document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você se parece mais com Debora!"
+      document.getElementById("explicaoResultadoPersonalidade").innerHTML = "Sua personalidade combina com a Debora!"
+      resultado = "debora"
+    } else {
+      document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você tem um pouco das duas!"
+      document.getElementById("explicaoResultadoPersonalidade").innerHTML = "Sua personalidade é uma mistura das duas!"
+      resultado = "empate"
+    }
+
+    fetch("/quiz/enviarEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: email,
+            nome: nome,
+            resultado: resultado
+        })
+    }).then(function(resposta) {
+        if (resposta.ok) {
+            alert("Playlist enviada para seu email!")
+        }
+    })
+  }
+
+  function refazerPersonalidade() {
+    window.location.reload()
+  }
+</script>
