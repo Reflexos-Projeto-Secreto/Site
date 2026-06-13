@@ -1,7 +1,14 @@
 * {
     margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-image: url("../assets/imgs/andarJulia/background.png");
+    background-position: center;
+    background-position: top;
 }
 
 .container {
-    background-image: url("../assets/imgs/andarJulia/background.png");
+    background-color: #1B2565;
 }

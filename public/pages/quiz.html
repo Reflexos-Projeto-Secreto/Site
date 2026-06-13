@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflexos | Quiz</title>
+    <link rel="stylesheet" type="text/css" href="../css/quiz.css">
+    <link rel="stylesheet" type="text/js" href="../js/quiz.js">
+  </head>
+  <body>
+    <div class="container-conhecimento">
+      <div class="container-iniciar" style="display: flex;">
+        <h2>Você realmente conhece <span id="pessoaLogin">Julia Araripe</span></h2>
+        <img src="" alt="">
+        <button onclick="iniciar()">Iniciar Quiz</button>
+      </div>
+      <div class="container-andamento" style="display: none;">
+        <div id="conhecimento" class="width-fit-content flex-colunar border-secondary">
+                           
+          <div id="perguntaDaQuestaoAtualConhecimento" class="padding-8">
+              <span id="spanQuestaoExibidaConhecimento" class="text-bold"></span>
+          </div>
+            
+          <div id="infoQuestaoConhecimento" class="padding-8">
+              <span>Questão atual: <span id="spanNumeroDaQuestaoAtualConhecimento"></span> de <span id="qtdQuestoesConhecimento"></span>questões.</span>
+          </div>
+
+          <div id="infoAlternativasConhecimento" class="padding-8">
+              <span><em>Escolha uma opção dentre as abaixo:</em></span>
+          </div>
+
+          <div id="opcoesConhecimento" class="flex-colunar padding-8">
+              <span>
+                  <input type="radio" id="primeiraOpcaoConhecimento" name="option" class="radio" value="alternativaA" />
+                  <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+              </span>
+              <span>
+                  <input type="radio" id="segundaOpcaoConhecimento" name="option" class="radio" value="alternativaB" />
+                  <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+              </span>
+              <span>
+                  <input type="radio" id="terceiraOpcaoConhecimento" name="option" class="radio" value="alternativaC" />
+                  <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+              </span>
+              <span>
+                  <input type="radio" id="quartaOpcaoConhecimento" name="option" class="radio" value="alternativaD" />
+                  <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+              </span>
+          </div>
+
+          <div id="botoesConhecimento" class="flex-colunar padding-8">
+              <button onclick="avancar()" id="btnProxConhecimento" disabled>Avançar para próxima questão</button>
+              <button onclick="tentarNovamente()" id="btnTentarNovamenteConhecimento" disabled>Tentar novamente</button>
+              <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+          </div>
+        </div>
+      </div>
+      <div class="container-fim" style="display: none;">
+        <h2 id="resultadoConhecimento">Resultado</h2>
+        <img src="" alt="">
+        <div class="boxResultado">
+          <h2 id="tituloResultadoConhecimento">Titulo</h2>
+          <p id="explicaoResultadoConhecimento">Explicação</p>
+          <button onclick="refazerConhecimento()">Refazer</button>
+        </div>
+      </div>
+    </div>
+    <div class="container-jogo">
+      <div class="container-iniciar" style="display: flex;">
+        <h2>Opiniões impopulares</h2>
+        <img src="" alt="">
+        <button onclick="iniciar()">Iniciar Quiz</button>
+        <button onclick="avaliarRespostas()">Avaliar Respostas</button>
+        <button onclick="verPontuacao()">Ver sua pontuação</button>
+      </div>
+      <div class="container-andamento" style="display: none;">
+        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+            <div id="perguntaDaQuestaoAtualJogo" class="padding-8">
+                  <span id="spanQuestaoExibidaJogo" class="text-bold"></span>
+            </div>
+            
+            <div id="infoQuestaoJogo" class="padding-8">
+                <span>Questão atual: <span id="spanNumeroDaQuestaoAtualJogo"></span> de <span id="qtdQuestoesJogo"></span>questões.</span>
+            </div>
+
+            <div id="assuntoAtual" class="box-assunto">
+            </div>
+
+            <div class="box-pensamentos" id="pensamentos">
+                <h2>O que você pensa sobre isso?</h2>
+                <textarea id="pensamentoVoce"></textarea>
+                <h2>O que ela pensa sobre isso</h2>
+                <textarea id="pensamentoEla"></textarea>
+                <button onclick="enviar()">Enviar</button>
+            </div>
+
+            <div id="botoesJogo" class="flex-colunar padding-8">
+                <button onclick="avancar()" id="btnProxJogo" disabled>Avançar para próxima questão</button>
+                <button onclick="tentarNovamente()" id="btnTentarNovamenteJogo" disabled>Tentar novamente</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+            </div>
+        </div>
+      </div>
+      <div class="container-fim" style="display: none;">
+        <h2>Parabens você finalizou essa rodada</h2>
+        <button onclick="verPontuacao()">Aperte aqui para saber sua pontuação</button>
+      </div>
+      <div class="container-avaliar-respostas" style="display: none;">
+        <div class="box-respostas">
+            <div class="card-respostas">
+            </div> <!-- Aqui creio que precisse ser no js, porque se for criar, vai ficar com o mesmo id-->
+        </div>
+      </div>
+      <div class="container-pontuacao" style="display: none;">
+        <h4>Pontos: <span id="quantidadePontos"></span></h4>
+        <div class="ranking">
+            <h2 id="primeiroLugar">Pessoa 1</h2>
+            <h2 id="segundoLugar">Pessoa 2</h2>
+        </div>
+        <button onclick="voltarIniciar()">Voltar</button>
+      </div>
+    </div>
+  </body>
+</html>
