@@ -140,7 +140,7 @@
     border-top: 4px #835EB1 solid;
     border-bottom: 4px #835EB1 solid;
     position: absolute;
-    height: 400px;
+    height: 450px;
     width: 100%;
     top: -3px;
     z-index: 1;
@@ -151,7 +151,7 @@
     border-left: 4px #835EB1 solid;
     border-right: 4px #835EB1 solid;
     position: absolute;
-    height: 402px;
+    height: 452px;
     width: 100%;
     z-index: 1;
 }
