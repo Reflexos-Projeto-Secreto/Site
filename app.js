@@ -15,14 +15,17 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
-var indexRouter = require("./src/routes/index");
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(cors());
+var indexRouter = require("./src/routes/index");
+var quizRouter = require("./src/routes/quizRouter")
+var guiaRouter = require("./src/routes/guiaRouter");
 
+app.use("/quiz", quizRouter);
+app.use("/guia", guiaRouter);
 app.use("/", indexRouter);
 
 app.listen(PORTA_APP, function () {

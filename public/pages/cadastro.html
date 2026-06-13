@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reflexos | Cadastro</title>
-    <link rel="stylesheet" type="text/css" href="../css/cadastro.css">
-    <link rel="stylesheet" type="text/js" href="../js/cadastro.js">
-  </head>
-  <body>
-    <div class="container">
-      <div class="imagem-lateral"></div>
-      <div class="container-cadastro">
-        <div class="box-cadastro">
-          <div class="geral-cadastro">
-            <h1>Cadastro</h1>
-            <div class="input-cadastro">
-              <div class="input-filho">
-                <h4>Nome</h4>
-                <input type="text" id="nome">
-              </div>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reflexos | Cadastro</title>
+  <link rel="stylesheet" type="text/css" href="../css/cadastro.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="imagem-lateral"></div>
+    <div class="container-cadastro">
+      <div class="box-cadastro">
+        <div class="geral-cadastro">
+          <h1>Cadastro</h1>
+          <div class="input-cadastro">
+            <div class="input-filho">
+              <h4>Nome</h4>
+              <input type="text" id="nome">
             </div>
-            <div class="input-cadastro">
-              <div class="input-filho">
-                <h4>Username</h4>
-                <input type="text" id="username">
-              </div>
+          </div>
+          <div class="input-cadastro">
+            <div class="input-filho">
+              <h4>Username</h4>
+              <input type="text" id="username">
             </div>
-            <div class="input-cadastro">
-              <div class="input-filho">
-                <h4>Email</h4>
-                <input type="email" id="email">
-              </div>
+          </div>
+          <div class="input-cadastro">
+            <div class="input-filho">
+              <h4>Email</h4>
+              <input type="email" id="email">
             </div>
-            <div class="input-cadastro">
-              <div class="input-filho">
-                <h4>Senha</h4>
-                <input type="password" id="senha">
-              </div>
+          </div>
+          <div class="input-cadastro">
+            <div class="input-filho">
+              <h4>Senha</h4>
+              <input oninput="verificarsenha()" type="password" id="senha">
+              <span id="senha_forte"></span>
             </div>
-            <div class="input-cadastro">
-              <div class="input-filho">
-                <h4>Confirmar senha</h4>
-                <input type="password" id="confirmarSenha">
-              </div>
+          </div>
+          <div class="input-cadastro">
+            <div class="input-filho">
+              <h4>Confirmar senha</h4>
+              <input type="password" id="confirmarSenha">
             </div>
-            <button onclick="cadastrar()">Cadastro</button>
-            <div class="cadastrar">
-                <span>Já tem um login</span>
-                <a href="faleConosco.html" class="registrar-cadastro">Clique aqui</a>
-            </div>
+          </div>
+          <button onclick="cadastrar()">Cadastro</button>
+          <div class="cadastrar">
+            <span>Já tem um login</span>
+            <a href="/pages/login.html" class="registrar-cadastro">Clique aqui</a>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 
 <script>
@@ -68,7 +71,24 @@
     var emailVar = email.value;
     var senhaVar = senha.value;
     var confirmacaoSenhaVar = confirmarSenha.value;
+    var especiais = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "/", "?", ".", ",", ":", ";", "<", ">", "^", "~", "`", "'", '"', "|"]
+    var numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    var tem_especial = false
+    var tem_numero = false
+    var senhaMenor = senhaVar.toLowerCase()
+    var senhaMaior = senhaVar.toUpperCase()
 
+    for (let i = 0; i < especiais.length; i++) {
+      if (senhaVar.includes(especiais[i])) {
+        tem_especial = true
+      }
+    }
+    for (let i = 0; i < numeros.length; i++) {
+      if (senhaVar.includes(numeros[i])) {
+        tem_numero = true
+      }
+
+    }
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
@@ -77,11 +97,34 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+      alert("Preencha todos os campos!");
+      return false
 
       finalizarAguardar();
+      return false;
+    } else if (nomeVar.length < 3) {
+      alert("Nome deve ter pelo menos 3 caracteres!");
+      return false;
+    } else if (usernameVar.length < 3) {
+      alert("Username deve ter pelo menos 3 caracteres!");
+      return false;
+    } else if (!emailVar.includes("@") || !emailVar.includes(".com")) {
+      alert("Email inválido!");
+      return false;
+    } else if (senhaVar.length < 8) {
+      alert("Senha deve ter pelo menos 8 caracteres!");
+      return false;
+    } else if (!tem_especial) {
+      alert("Senha deve ter pelo menos um caractere especial!");
+      return false;
+    } else if (!tem_numero) {
+      alert("Senha deve ter pelo menos um numero!");
+      return false;
+    } else if (senhaVar == senhaMaior || senhaVar == senhaMenor) {
+      alert("Senha deve conter maiusculas e minusculas!");
+      return false;
+    } else if (confirmacaoSenhaVar != senhaVar) {
+      alert("As senhas não coincidem!");
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
@@ -131,5 +174,47 @@
 
   function sumirMensagem() {
     cardErro.style.display = "none";
+  }
+
+  function verificarsenha() {
+    var senhaVar = senha.value;
+    var especiais = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "/", "?", ".", ",", ":", ";", "<", ">", "^", "~", "`", "'", '"', "|"]
+    var numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    var tem_especial = false
+    var senhaMenor = senhaVar.toLowerCase()
+    var senhaMaior = senhaVar.toUpperCase()
+
+    for (let i = 0; i < especiais.length; i++) {
+      if (senhaVar.includes(especiais[i])) {
+        tem_especial = true
+      }
+
+    }
+    for (let i = 0; i < numeros.length; i++) {
+      if (senhaVar.includes(numeros[i])) {
+        tem_numero = true
+      }
+
+    }
+
+    if (senhaVar.length < 8 || !tem_especial || !tem_numero || senhaVar == senhaMaior || senhaVar == senhaMenor) {
+      var pontos = 0;
+      if (senhaVar.length >= 8) pontos++;
+      if (tem_especial) pontos++;
+      if (tem_numero) pontos++;
+      if (senhaVar != senhaMaior && senhaVar != senhaMenor) pontos++;
+
+      if (pontos <= 1) {
+        senha_forte.innerHTML = "senha fraca";
+        senha_forte.style.color = "red";
+      } else if (pontos <= 3) {
+        senha_forte.innerHTML = "senha média";
+        senha_forte.style.color = "yellow";
+      }
+    } else {
+      senha_forte.innerHTML = "senha forte";
+      senha_forte.style.color = "green";
+    }
+
   }
 </script>
