@@ -9,6 +9,15 @@ function mudarInfo(nome, username, email, senha, id) {
     return database.executar(instrucaoSql);
 }
 
+function buscarSenha(id){
+     var instrucaoSql = `
+        SELECT senhaUsuario FROM usuario WHERE idUsuario = ${id};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-    mudarInfo
+    mudarInfo,
+    buscarSenha
 }
