@@ -45,6 +45,10 @@
     </div>
   </div>
   <script>
+    var fotoUsuario = sessionStorage.getItem("FOTO_USUARIO");
+    if (fotoUsuario) {
+      imgPerfil.src = fotoUsuario;
+    }
     const idUsuario = sessionStorage.getItem("ID_USUARIO");
     const emailUsuario = sessionStorage.getItem("EMAIL_USUARIO");
     const nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
@@ -52,6 +56,25 @@
 
     function sumirMensagem() {
       cardErro.style.display = "none";
+    }
+
+    function mudarImagemPerfil() {
+      inpImagem.click();
+    }
+
+    function salvarImagemPerfil() {
+      var arquivo = inpImagem.files[0];
+
+      if (arquivo) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          imgPerfil.src = e.target.result;
+          sessionStorage.setItem("FOTO_USUARIO", e.target.result);
+        }
+
+        reader.readAsDataURL(arquivo);
+      }
     }
 
     function salvar() {
@@ -79,28 +102,28 @@
           if (senhaNovo == senhaAtual) {
             alert("A nova senha não pode ser igual à senha atual!");
             return false;
-        } else {
-          fetch("/config/mudarInfo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nomeServerNovo: nomeNovo,
-          usernameServerNovo: usernameNovo,
-          emailServerNovo: emailNovo,
-          senhaServerNovo: senhaNovo,
-          idUsuario: idUsuario
-        })
-      }).then(function (resposta) {
-        console.log("STATUS:", resposta.status);
-        console.log("ESTOU NO THEN DO config()!")
-        if (resposta.ok) {
-          console.log(resposta);
-          setInterval(sumirMensagem, 5000);
-        }
-      }).catch(function (erro) {
-        console.log(erro);
-      });
-        }
+          } else {
+            fetch("/config/mudarInfo", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                nomeServerNovo: nomeNovo,
+                usernameServerNovo: usernameNovo,
+                emailServerNovo: emailNovo,
+                senhaServerNovo: senhaNovo,
+                idUsuario: idUsuario
+              })
+            }).then(function (resposta) {
+              console.log("STATUS:", resposta.status);
+              console.log("ESTOU NO THEN DO config()!")
+              if (resposta.ok) {
+                console.log(resposta);
+                setInterval(sumirMensagem, 5000);
+              }
+            }).catch(function (erro) {
+              console.log(erro);
+            });
+          }
         })
         .catch(function (erro) {
           console.log(erro);
