@@ -1,14 +1,157 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
 }
 
 .header {
     background-image: url("../assets/imgs/andarJulia/background.png");
     background-position: center;
     background-position: top;
+    background-size: contain;
+    height: 70vh;
 }
 
 .container {
-    background-color: #1B2565;
+    background-color: #0d216a;
+    min-height: 30.1vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+}
+
+.lado-esquerdo-nav {
+    position: absolute;
+    left: 40px;
+}
+
+.quadrados-topo-esquerda {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 25px;
+    position: relative;
+    width: 500px;
+}
+
+.quadrado-frente-titulo {
+    background-color: #353163;
+    border-top: 4px #835EB1 solid;
+    border-bottom: 4px #835EB1 solid;
+    position: absolute;
+    height: 120px;
+    width: 400px;
+    top: -3px;
+    left: 5px;
+    z-index: 1;
+}
+
+.quadrado-atras-titulo {
+    background-color: #353163;
+    border-left: 4px #835EB1 solid;
+    border-right: 4px #835EB1 solid;
+    position: absolute;
+    height: 122px;
+    width: 400px;
+    z-index: 1;
+}
+
+.topo-titulo {
+    color: #DCDAF5;
+    display: flex;
+    font-size: 45px;
+    position: absolute;
+    top: 20px;
+    left: 60px;
+    z-index: 2;
+}
+
+.lado-direito-nav {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    top: 20.5px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.quadrados-topo-direita {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+.quadrado-frente-imagem {
+    background-color: #353163;
+    border-top: 4px #835EB1 solid;
+    border-bottom: 4px #835EB1 solid;
+    position: absolute;
+    height: 80px;
+    width: 100px;
+    top: -3px;
+    z-index: 1;
+}
+
+.quadrado-atras-imagem {
+    background-color: #353163;
+    border-left: 4px #835EB1 solid;
+    border-right: 4px #835EB1 solid;
+    position: absolute;
+    height: 82px;
+    width: 100px;
+    z-index: 1;
+}
+
+.topo-imagem {
+    position: absolute;
+    top: 5px;
+    z-index: 2;
+}
+
+.topo-imagem img {
+    height: 70px;
+    width: 70px;
+}
+
+.parte-baixo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    margin-top: 40px;
+}
+
+.container-primeira-parte {
+    position: relative;
+    width: 90%;
+    height: 400px;
+}
+
+.quadrado-primeiro {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.quadrado-atras-primeiro {
+    background-color: #353163;
+    border-top: 4px #835EB1 solid;
+    border-bottom: 4px #835EB1 solid;
+    position: absolute;
+    height: 400px;
+    width: 100%;
+    top: -3px;
+    z-index: 1;
+}
+
+.quadrado-frente-primeiro {
+    background-color: #353163;
+    border-left: 4px #835EB1 solid;
+    border-right: 4px #835EB1 solid;
+    position: absolute;
+    height: 402px;
+    width: 100%;
+    z-index: 1;
 }
