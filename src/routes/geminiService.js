@@ -61,6 +61,8 @@ async function gerarGuiaViagem(perfil) {
             - 3 pontos turísticos recomendados
             - Trilha sonora da viagem (5 músicas que combinam com o lugar e o perfil)
             - 2 dicas personalizadas de experiências
+
+            Crie tambem uma lista de filmes e musicas baseados no gosto do perfil que foi enviado, coloque novas musicas alem das ja existentes que enviei de cada uma
         `;
 
         var response = await ai.models.generateContent({
