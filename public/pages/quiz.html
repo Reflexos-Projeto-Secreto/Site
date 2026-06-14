@@ -236,7 +236,7 @@
 
       function handleAuthClick() {
         tokenClient.callback = async (resp) => {
-          if (resp.error !== undefined) {
+          if (resp.error != undefined) {
             throw (resp);
           }
           document.getElementById('signout_button').style.visibility = 'visible';
@@ -244,7 +244,7 @@
           await listUpcomingEvents();
         };
 
-        if (gapi.client.getToken() === null) {
+        if (gapi.client.getToken() == null) {
     
           tokenClient.requestAccessToken({prompt: 'consent'});
         } else {
@@ -255,7 +255,7 @@
   
       function handleSignoutClick() {
         const token = gapi.client.getToken();
-        if (token !== null) {
+        if (token != null) {
           google.accounts.oauth2.revoke(token.access_token);
           gapi.client.setToken('');
           document.getElementById('content').innerText = '';
