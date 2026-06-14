@@ -1,44 +1,129 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reflexos | Elevador</title>
-    <link rel="stylesheet" type="text/css" href="../css/chat.css" />
-  </head>
-  <body>
-    <div class="comunidade">
-      <div class="chat">
-        <div class="chat-titulo">
-          <h2>Comunidade</h2>
-        </div>
-        <div id="mensagens-geral" class="mensagens-chat">
-          <div class="mensagem-usuario-outro">
-            <span class="nome-usuario" id="nomeOutro">Julia</span>
 
-            <div class="conteudo-mensagem" id="conteudoMensagemOutro">Oi Debora</div>
-            <!-- Acho que aqui vai precisar ser js, mas so pra ser ter a base -->
-            <span class="horario-mensagem" id="horarioMensagemOutro">16:20</span>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reflexos | Elevador</title>
+  <link rel="stylesheet" type="text/css" href="../css/chat.css" />
+</head>
 
-          <div class="mensagem-usuario-atual">
-            <span class="nome-usuario" id="nomeAtual">Debora</span>
+<body>
+  <div id="mensagem"></div>
 
-            <div class="conteudo-mensagem" id="conteudoMensagemAtual">Oi julia</div>
 
-            <span class="horario-mensagem" id="horarioMensagemAtual"> 16:22 </span>
-          </div>
-        </div>
+  <div id="verificacaoImg" style="display:none">
+    <img id="verificacao-Img" />
+    <span>nome-da-foto.jpg</span>
+    <button onclick="limparImagem()">✕</button>
+  </div>
 
-        <form id="formPostagem" class="formulario-chat">
-          <div class="campo-chat">
-            <textarea id="inputMensagem" maxlength="255"></textarea>
-          </div>
-          <button class="botao-enviar" id="botaoEnviar" type="submit">Enviar</button>
-        </form>
-      </div>
-    </div>
-  </body>
+  <div id="barra">
+    <button onclick="abrirSeletor()">Enviar Anexo</button>
+    <input type="file" id="input" accept="image/*" style="display:none" />
+    <input type="text" id="textoInput" />
+    <button onclick="enviar()">Enviar</button>
+  </div>
+</body>
+
 </html>
 
-<script></script>
+<script>
+  var nomeUsuario = sessionStorage.getItem('NOME_USUARIO')
+  document.getElementById('nomeUsuario').textContent = nomeUsuario
+  let imagemSelecionada = null
+
+
+  function criarMensagem(texto, imagem, lado, nomeRemetente) {
+    // Esse createElement cria um elemento no html
+    const balao = document.createElement('div')
+    balao.className = 'mensagem ' + lado
+
+    const nomeSpan = document.createElement('span')
+    nomeSpan.className = 'nome-remetente'
+    nomeSpan.textContent = nomeRemetente || nomeUsuario
+    balao.appendChild(nomeSpan)
+
+    if (texto) {
+      const p = document.createElement('p')
+      p.textContent = texto
+      // ai esse append child coloca o elemento novo dentro do elemento pai que no caso é o div que criamos la em cima :0 (quanta tecnologia meudeus)
+      balao.appendChild(p)
+    }
+
+    if (imagem) {
+      const img = document.createElement('img')
+      img.src = imagem
+      balao.appendChild(img)
+    }
+
+    const lista = document.getElementById('mensagem')
+    lista.appendChild(balao)
+    // rola para baixo 
+    lista.scrollTop = lista.scrollHeight
+  }
+
+  function limparImagem() {
+    imagemSelecionada = null
+    document.getElementById('verificacaoImg').style.display = 'none'
+    document.getElementById('verificacao-Img').src = ''
+  }
+
+  function abrirSeletor() {
+    document.getElementById('input').click()
+  }
+
+  async function enviar() {
+    const idUsuario = sessionStorage.getItem('ID_USUARIO')
+    const texto = document.getElementById('textoInput').value.trim()
+    const arquivo = document.getElementById('input').files[0]
+
+    if (!texto && !arquivo) return
+
+    // FormData é o jeito de mandar texto + arquivo juntos pro servidor
+    const form = new FormData()
+    form.append('conteudoMensagem', texto)
+    form.append('fkUsuario', idUsuario)
+    if (arquivo) form.append('imagem', arquivo)
+
+    const res = await fetch('/mensagem/enviarMensagem', {
+      method: 'POST',
+      body: form
+    })
+
+    const data = await res.json()
+
+    if (data.ok) {
+      criarMensagem(texto, data.urlImagem, 'eu', nomeUsuario)
+    }
+
+    document.getElementById('textoInput').value = ''
+    limparImagem()
+    document.getElementById('input').value = ''
+  }
+
+
+  document.getElementById('input').addEventListener('change', function () {
+    const arquivo = this.files[0]
+    if (!arquivo) return
+
+    const leitor = new FileReader()
+    leitor.onload = function (e) {
+      imagemSelecionada = e.target.result
+      document.getElementById('verificacao-Img').src = imagemSelecionada
+      document.getElementById('verificacaoImg').style.display = 'flex'
+    }
+    leitor.readAsDataURL(arquivo)
+  })
+
+
+  fetch('/mensagem/listarMensagens')
+    .then(function (res) { return res.json() })
+    .then(function (mensagens) {
+      mensagens.forEach(function (m) {
+        // compara o nickname de quem enviou com o usuário logado
+        var lado = m.nickname == nomeUsuario ? 'eu' : 'ela'
+        criarMensagem(m.conteudoMensagem, m.urlImagem, lado, m.nickname)
+      })
+    })
+</script>

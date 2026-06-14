@@ -19,13 +19,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 var indexRouter = require("./src/routes/index");
 var quizRouter = require("./src/routes/quizRouter")
 var guiaRouter = require("./src/routes/guiaRouter");
+var mensagemRouter = require("./src/routes/mensagemRouter");
 
 app.use("/quiz", quizRouter);
 app.use("/guia", guiaRouter);
+app.use("/mensagem", mensagemRouter);
 app.use("/", indexRouter);
 
 app.listen(PORTA_APP, function () {
