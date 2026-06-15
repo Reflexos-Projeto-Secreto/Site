@@ -1,0 +1,478 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+img {
+    display: block;
+    image-rendering: pixelated;
+}
+
+.pixel-frame {
+    position: relative;
+}
+
+.pixel-roxo {
+    --pixel-fundo: #C75F2E;
+    --pixel-borda: #B25226;
+}
+
+.pixel-roxo-imagem {
+    --pixel-fundo: #E67946;
+    --pixel-borda: #973609;
+}
+
+.pixel-escuro-primeiro   {
+    --pixel-fundo: #E67946;
+    --pixel-borda: #973609;
+}
+
+.pixel-escuro {
+    --pixel-fundo: #DF7848;
+    --pixel-borda: #C85D2B;
+}
+
+.pixel-claro {
+    --pixel-fundo: #FAC19E;
+    --pixel-borda: #973609;
+}
+
+.pixel-texto {
+    --pixel-fundo: #CC7B55;
+    --pixel-borda: #C56F54;
+}
+
+.pixel-card {
+    --pixel-fundo: #FAC19E;
+    --pixel-borda: #973609;
+}
+
+.pixel-botao {
+    --pixel-fundo: #E9A17F;
+    --pixel-borda: #B25226;
+}
+
+.pixel-atras,
+.pixel-frente {
+    position: absolute;
+    pointer-events: none;
+}
+
+.pixel-atras {
+    inset: 0;
+    z-index: 0;
+    background-color: var(--pixel-fundo);
+    border-left: 4px solid var(--pixel-borda);
+    border-right: 4px solid var(--pixel-borda);
+}
+
+.pixel-frente {
+    top: -3px;
+    right: 4px;
+    bottom: -3px;
+    left: 4px;
+    z-index: 1;
+    background-color: var(--pixel-fundo);
+    border-top: 4px solid var(--pixel-borda);
+    border-bottom: 4px solid var(--pixel-borda);
+}
+
+.pixel-conteudo {
+    position: relative;
+    z-index: 2;
+}
+
+.header {
+    background-image: url("../assets/imgs/andarDebora/background.jpg");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 520px;
+    padding-bottom: 55px;
+}
+
+.navbar {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: min(95vw, 1120px);
+    margin: auto;
+}
+
+.lado-esquerdo-nav,
+.lado-direito-nav,
+.quadrados-topo-esquerda,
+.quadrados-topo-direita {
+    position: relative;
+    margin-top: 10px;
+}
+
+.topo-titulo {
+    width: 335px;
+    height: 85px;
+}
+
+.topo-titulo-conteudo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 51px;
+}
+
+.topo-titulo h2 {
+    color: #F5D9AD;
+    font-size: 52px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.topo-imagem {
+    width: 125px;
+    height: 85px;
+}
+
+.topo-imagem-conteudo {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.topo-imagem img {
+    width: 55px;
+    height: 55px;
+}
+
+.parte-baixo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 26px;
+    padding: 0 22px;
+}
+
+.container-primeira-parte {
+    position: relative;
+    width: min(88vw, 1035px);
+    min-height: 440px;
+    box-shadow: 20px 23px 17px -4px rgba(0, 0, 0, 0.35);
+}
+
+.quadrado-primeiro {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.conteudo-primeiro-quadrado {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 335px 520px;
+    align-items: center;
+    justify-content: start;
+    gap: 45px;
+    min-height: 440px;
+    padding: 48px 55px 58px;
+}
+
+.imagem-primeiro-quadrado {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+.imagem-primeiro-quadrado img {
+    width: 335px;
+}
+
+.texto-primeiro-quadrado {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.quadrado-primeiro-titulo {
+    width: 225px;
+    min-height: 58px;
+    margin-left: -10px;
+    margin-bottom: -3px;
+    z-index: 3;
+}
+
+.quadrado-primeiro-titulo-conteudo,
+.titulo-segunda-parte-conteudo {
+    display: grid;
+    place-items: center;
+    min-height: 58px;
+    padding: 0 18px;
+    text-align: center;
+}
+
+.quadrado-primeiro-titulo h3,
+.titulo-segunda-parte h2 {
+    color: #F5DBBA;
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.titulo-segunda-parte-conteudo {
+    min-height: 68px;
+}
+
+.titulo-segunda-parte h2 {
+    font-size: 32px;
+}
+
+.caixa-texto-primeiro {
+    width: 510px;
+    min-height: 270px;
+    box-shadow: 13px 15px 17px 0px rgba(0, 0, 0, 0.25);
+}
+
+.caixa-texto-primeiro-conteudo {
+    padding: 45px 36px 30px;
+}
+
+.caixa-texto-primeiro p,
+.card-lista p,
+.card-texto p {
+    color: #F9E5CB;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.correndo {
+    position: absolute;
+    top: 290px;
+    right: 14px;
+    z-index: 3;
+}
+
+.coracao {
+    width: 100px;
+    margin-left: -51px;
+    margin-bottom: -10px;
+}
+
+.personagem-correndo {
+    width: 205px;
+}
+
+.container {
+    background: #F0E0C6;
+    background: linear-gradient(180deg, rgba(240, 224, 198, 1) 0%, rgba(53, 25, 39, 1) 22%, rgba(53, 25, 39, 1) 73%, rgba(13, 13, 13, 1) 100%);
+    min-height: 190vh;
+    position: relative;
+    padding-top: 80px;
+}
+
+.container-segunda-parte {
+    position: relative;
+    width: min(88vw, 1035px);
+    min-height: 478px;
+    margin: 0 auto;
+    padding: 118px 80px 70px;
+}
+
+.quadrado-segundo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.titulo-segunda-parte {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    z-index: 3;
+    width: 330px;
+    min-height: 68px;
+    transform: translateX(-50%);
+}
+
+.conteudo-segunda-parte {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 410px 410px;
+    justify-content: center;
+    align-items: center;
+    gap: 62px;
+}
+
+.card-lista,
+.card-texto {
+    min-height: 288px;
+    box-shadow: 13px 15px 17px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card-lista-conteudo,
+.card-texto-conteudo {
+    padding: 38px 34px;
+}
+
+.card-lista p,
+.card-texto p {
+    color: #A85027;
+    font-size: 16px;
+    line-height: 1.18;
+}
+
+.texto-laranja {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    align-items: center;
+    gap: 17px;
+}
+
+.texto-laranja + .texto-laranja {
+    margin-top: 40px;
+}
+
+.texto-laranja img {
+    width: 61px;
+}
+
+.caixa {
+    position: absolute;
+    top: 48px;
+    left: 16px;
+    width: 110px;
+    z-index: 3;
+}
+
+.livro {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    width: 115px;
+    z-index: 3;
+}
+
+.musicas {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 32px;
+    margin-top: -30px;
+}
+
+.musicas-coracao {
+    width: 94px;
+    margin-right: -12px;
+    margin-bottom: -15px;
+}
+
+.musicas-menu {
+    width: 76px;
+    height: 70px;
+    padding: 0;
+    border: 0;
+    box-shadow: 13px 15px 17px 0px rgba(0, 0, 0, 0.25);
+}
+
+.musicas-menu-conteudo {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.musicas-menu img {
+    max-width: 58px;
+    max-height: 58px;
+}
+
+.container-terceira-parte {
+    position: relative;
+    width: min(88vw, 1035px);
+    min-height: 494px;
+    margin: 92px auto 38px;
+    padding: 112px 52px 80px;
+}
+
+.quadrado-terceiro {
+    position: absolute;
+    inset: 0 0 0 0;
+    z-index: 0;
+}
+
+.titulo-terceira-parte {
+    position: absolute;
+    top: 36px;
+    left: 49px;
+    z-index: 3;
+    width: 258px;
+    min-height: 58px;
+}
+
+.titulo-terceira-parte-conteudo {
+    display: grid;
+    place-items: center;
+    min-height: 58px;
+    padding: 0 18px;
+}
+
+.titulo-terceira-parte h2 {
+    color: #F5DBBA;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.conteudo-terceira-parte {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 390px 390px;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.card-terceiro {
+    min-height: 267px;
+    box-shadow: 13px 15px 17px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card-terceiro-conteudo {
+    padding: 43px 39px;
+}
+
+.card-terceiro p {
+    color: #973609;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.18;
+}
+
+.gatito {
+    position: absolute;
+    bottom: -7px;
+    right: -40px;
+    z-index: 3;
+    width: 122px;
+}
+
+.lula {
+    position: absolute;
+    bottom: -50px;
+    left: -43px;
+    z-index: 3;
+    width: 155px;
+}
+
+.flor {
+    position: absolute;
+    right: 85px;
+    bottom: -10px;
+    z-index: 3;
+    width: 84px;
+}

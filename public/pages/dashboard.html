@@ -6,6 +6,7 @@
     <title>Reflexos | Dashboard</title>
     <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
     <link rel="stylesheet" type="text/js" href="../js/dashboard.js">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="container">
@@ -74,17 +75,127 @@
                   <canvas id="chartQuizConhecimento"></canvas>
               </div>
           </div>
-      </div>
-      <div class="parte2" id="p2">
           <div class="grafico-qtd-eventos">
               <div id="expandirQuantidadeEventos">
                   <canvas id="chartQuantidadeEventos"></canvas>
               </div>
           </div>
-          <div class="box-fliperama">
-            <button onclick="quizJogo()">Iniciar</button>
-          </div>
       </div>
     </div>
   </body>
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        
+        const ctxQuizRespondido = document.getElementById('chartQtdQuizRespondido');
+        const ctxQuizConhecimento = document.getElementById('chartQuizConhecimento');
+        const ctxQtdEventos = document.getElementById('chartQuantidadeEventos');
+
+        const chartQuizRespondido = new Chart(ctxQuizRespondido, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                // labels: ['1° Semana', '2° Semana', '3° Semana', '4° Semana'],
+                // labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'], Deixei assim, porque nao sei qual seria mlr
+                datasets: [{
+                    label: 'Respostas do Quiz',
+                    data: [25, 10, 30, 15, 20, 10, 30, 40, 20, 30, 40, 17],
+                    borderColor: 'rgba(29, 133, 194, 0.7)',
+                    backgroundColor: 'rgba(29, 133, 194, 0.18)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Quantidade de vezes que o quiz foi respondido',
+                        align: 'start',
+                        font: { size: 18 }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Respostas'
+                        }
+                    }
+                }
+            }
+        });
+
+        const chartQuizConhecimento = new Chart(ctxQuizConhecimento, {
+            type: 'bar',
+            data: {
+                labels: ['Acertos', 'Erros'],
+                datasets: [{
+                    label: 'Quantidade',
+                    data: [27, 23],
+                    backgroundColor: [
+                        '#22c55e', 
+                        '#ef4444'
+                    ],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Quantidade de acertos no quiz de conhecimento',
+                        align: 'start',
+                        font: { size: 18 }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Quantidade'
+                        }
+                    }
+                }
+            }
+        });
+
+        const chartQtdEventos = new Chart(ctxQtdEventos, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Quantidade',
+                    data: [22, 23, 16, 19, 21, 17, 13, 27, 33, 19, 23, 26],
+                    backgroundColor: ['#244770'],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Quantidade de eventos de acordo com o mes',
+                        align: 'start',
+                        font: {
+                            size: 18
+                        }
+                    },
+                },
+            }
+        });
+    })
+</script>

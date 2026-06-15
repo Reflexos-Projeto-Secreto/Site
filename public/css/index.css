@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.container {
+    background-image: url("../assets/imgs/index/SPTECH.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 100%;
+    min-height: 48vw;
+    display: flex;
+    justify-content: center;
+}
+
+.container-elevador {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: -20px;
+}
+
+.logo {
+    width: 240px;
+    margin-bottom: -10px;
+    filter: blur(0.7px);
+}
+
+.box-titulo {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 60px;
+    cursor: default;
+}
+
+.titulo {
+    color: white;
+    position: absolute;
+    font-size: 58px;
+    letter-spacing: 6px;
+}
+
+.reflexo-titulo {
+    color: white;
+    font-size: 58px;
+    letter-spacing: 6px;
+    left: -155px;
+    position: absolute;
+    opacity: 0.3;
+}
+
+.botao-continuar {
+    background: none;
+    border: none;
+    color: #dbd9ca;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 27px;
+}
