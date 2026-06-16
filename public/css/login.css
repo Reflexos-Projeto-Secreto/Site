@@ -1,0 +1,116 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.container {
+    background-image: url("../assets/imgs/login/background.jpg");
+    background-size: contain;
+    background-size: 100%;
+    min-height: 48vw;
+    display: flex;
+    justify-content: center;
+}
+
+.container-login {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 500px;
+}
+
+.box-login {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(13px);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 65vh;
+    width: 90%;
+}
+
+.sair {
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sair button {
+    background-color: #F8EBFF;
+    border: none;
+    color: #051D0F;
+    cursor: pointer;
+    height: 50px;
+    font-size: 30px;
+    margin-top: -43px;
+    width: 50px;
+}
+
+.geral-login {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.geral-login h1 {
+    color: #F8EBFF;
+    font-size: 35px;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+
+.input-login {
+    display: flex;
+}
+
+.input-login img {
+    margin-left: -20px;
+    width: 5%;
+}
+
+.input-filho input {
+    border: none;
+    border-bottom: 2px solid #F8EBFF;
+    background: none;
+    color: #F8EBFF;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    font-size: 20px;
+    width: 370px;
+}
+
+.input-filho input::placeholder {
+  color: #F8EBFF;
+  font-size: 20px;
+  opacity: 1;
+}
+
+.input-filho input:focus {
+    outline: none;
+}
+
+.botao-login {
+    background-color: #D9D9D9;
+    border: none;
+    color: #252426;
+    cursor: pointer;
+    font-size: 25px;
+    padding: 12px;
+    margin-top: 15px;
+    width: 370px;
+}
+
+.cadastrar {
+    color: #F8EBFF;
+    font-size: 18px;
+}
+
+.cadastrar a {
+    color: #252426;
+    text-decoration: none;
+}

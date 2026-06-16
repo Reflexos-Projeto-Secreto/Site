@@ -5,31 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reflexos | Login</title>
     <link rel="stylesheet" type="text/css" href="../css/login.css" />
-    <link rel="stylesheet" type="text/js" href="../js/login.js" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
-      <div class="imagem-lateral"></div>
       <div class="container-login">
         <div class="box-login">
+          <div class="sair">
+            <button onclick="sair()">X</button>
+          </div>
           <div class="geral-login">
             <h1>Login</h1>
             <div class="input-login">
               <div class="input-filho">
-                <h4>Email</h4>
-                <input type="email" id="email" />
+                <input placeholder="Email" type="email" id="email" />
               </div>
             </div>
             <div class="input-login">
               <div class="input-filho">
-                <h4>Senha</h4>
-                <input type="password" id="senha" />
+                <input placeholder="Senha" type="password" id="senha" />
               </div>
             </div>
-            <button onclick="entrar()">Login</button>
+            <button onclick="entrar()" class="botao-login">Logar</button>
             <div class="cadastrar">
-                <span>Ainda não tem um login?</span>
-                <a href="faleConosco.html" class="registrar-login">Clique aqui</a>
+                <span>Não possui conta?</span>
+                <a href="faleConosco.html" class="registrar-cadastro"> Cadastra-se</a>
             </div>
           </div>
         </div>
