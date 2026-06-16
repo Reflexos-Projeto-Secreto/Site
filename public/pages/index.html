@@ -12,15 +12,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   </head>
   <body>
-    <div class="container">
+    <div id="carregando" class="loading">
+      <div class="box-loading">
+        <img src="../assets/imgs/elevador/elevador lento.gif" alt="">
+        <div class="animation">Chamando Elevador</div>
+      </div>
+    </div>
+    <div class="container" id="tela" onclick="entrar()">
       <div class="container-elevador">
         <img src="../assets/imgs/index/logo.png" alt="" class="logo">
         <div class="box-titulo">
           <h2 class="titulo">REFLEXOS</h2>
           <h2 class="reflexo-titulo">REFLEXOS</h2>
         </div>
-        <button onclick="entrar()" class="botao-continuar animate__animated animate__bounce">CLIQUE AQUI PARA CONTINUAR</button>
+        <button onclick="entrar()" class="botao-continuar aniate__animated animate__bounce">CLIQUE AQUI PARA CONTINUAR</button>
       </div>
     </div>
   </body>
 </html>
+
+<script>
+  let clicou = false;
+
+  function entrar() {
+    if (clicou) return;
+    clicou = true;
+
+    const tela = document.getElementById("tela");
+    const carregando = document.getElementById("carregando");
+
+    tela.classList.add("subindo");
+
+    setTimeout(() => {
+      carregando.classList.add("ativo");
+    }, 500);
+
+    setTimeout(() => {
+      window.location.href = "elevador.html";
+    }, 4000);
+  }
+
+</script>
