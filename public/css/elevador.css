@@ -59,6 +59,8 @@
     width: 800px;
 }
 
+
+
 .chamando {
     align-items: center;
     display: flex;
@@ -72,6 +74,21 @@
     color: #E8D258;
     cursor: pointer;
     font-size: 40px;
+    animation: flutuar 0.8s ease-in-out infinite alternate;
+}
+
+.chamando button:hover {
+    filter: brightness(1.6);
+    animation: flutuar 10s ease-in-out infinite alternate;
+}
+
+.chamando button:active {
+    transform: translate(2px, 2px);
+}
+
+@keyframes flutuar {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-5px); }
 }
 
 .chamando img {

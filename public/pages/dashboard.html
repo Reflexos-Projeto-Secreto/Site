@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
+    <div id="transicao"></div>
     <div class="header">
       <div class="navbar">
         <div class="lado-esquerdo-nav">
@@ -192,4 +193,12 @@
             }
         });
     })
+
+    window.onload = function () {
+        const transicao = document.getElementById("transicao");
+
+        setTimeout(() => {
+            transicao.classList.add("fade-open");
+        }, 500);
+    }
 </script>

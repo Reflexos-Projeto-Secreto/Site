@@ -10,7 +10,8 @@
 </head>
 
 <body>
-  // quiz conhecimento uma sobre a outra
+    <div id="transicao"></div>
+  <!-- // quiz conhecimento uma sobre a outra -->
   <div class="container-conhecimento">
     <div class="container-iniciar" style="display: flex;">
       <h2>Você realmente conhece <span id="pessoaLogin">Julia Araripe</span></h2>
@@ -70,7 +71,7 @@
     </div>
   </div>
 
-  // quiz quem é voce
+  <!-- // quiz quem é voce -->
   <div class="container-Personalidade">
     <div class="container-iniciar" style="display: flex;">
       <h2>Com qual das duas voce mais se parece?</h2>
@@ -133,7 +134,7 @@
   </div>
 
 
-  // jogo opnioes
+  <!-- // jogo opnioes -->
   <div class="container-jogo">
     <div class="container-iniciar" style="display: flex;">
       <h2>Opiniões Impopulares</h2>
@@ -767,5 +768,13 @@
 
   function refazerPersonalidade() {
     window.location.reload()
+  }
+
+  window.onload = function () {
+      const transicao = document.getElementById("transicao");
+
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
   }
 </script>

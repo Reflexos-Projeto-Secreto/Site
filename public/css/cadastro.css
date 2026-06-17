@@ -5,13 +5,64 @@
     font-family: "Pixelify Sans", sans-serif;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: black;
+}
+
+#transicao {
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 1.5s ease;
+}
+
+#transicao.fade-open {
+    opacity: 0;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.transicao-ativo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.fade-out {
+    opacity: 1 !important;
+}
+
 .container {
+    align-items: center;
     background-image: url("../assets/imgs/cadastro/background.png");
-    background-size: contain;
-    background-size: 100%;
-    min-height: 48vw;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
 }
 
 .container-cadastro {
@@ -22,9 +73,9 @@
 }
 
 .box-cadastro {
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(13px);
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.164);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 255, 255, 0.452);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,9 +84,9 @@
 }
 
 .sair {
-    align-items: flex-end;
-    display: flex;
-    justify-content: flex-end;
+    position: absolute;
+    top: 20px;
+    right: 0px;
 }
 
 .sair button {

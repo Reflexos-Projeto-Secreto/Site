@@ -12,33 +12,33 @@
   <body>
     <div id="transicao"></div>
     <div class="container" id="container">
-      <div class="caixa-login"><button>Login</button></div>
+      <div class="caixa-login"><button onclick="login()">Login</button></div>
       <div class="container-painel">
         <div class="titulo-painel"><h2>Escolha o seu andar</h2></div>
         <div class="painel-botoes">
           <div class="box-botoes">
             <div class="botao-pai">
               <div class="botao-filho">
-                <a href="andarJulia.html" id="julia">Andar Julia</a>
+                <a onclick="julia()" id="julia">Andar Julia</a>
               </div>
               <div class="botao-filho">
-                <a href="andarDebora.html" id="debora">Andar Débora</a>
+                <a onclick="debora()" id="debora">Andar Débora</a>
               </div>
             </div>
             <div class="botao-pai">
               <div class="botao-filho">
-               <a href="quiz.html" id="quiz">Quizzes</a>
+               <a onclick="quiz()" id="quiz">Quizzes</a>
               </div>
               <div class="botao-filho">
-                <a href="dashboard.html" id="dash">Dashboard</a>
+                <a onclick="dashboard()" id="dash">Dashboard</a>
               </div>
             </div>
             <div class="botao-pai botao-baixo">
               <div class="botao-filho">
-                <a href="andarJuntas.html" id="juntas">Andar juntas</a>
+                <a onclick="juntas()" id="juntas">Andar juntas</a>
               </div>
               <div class="botao-filho">
-                <a href="chat.html" id="chat">Chat</a>
+                <a onclick="chat()" id="chat">Chat</a>
               </div>
             </div>
           </div>
@@ -48,18 +48,81 @@
   </body>
 </html>
 
-    <script>
-        window.onload = function () {
-            const transicao = document.getElementById("transicao");
+<script>
+  window.onload = function () {
+      const transicao = document.getElementById("transicao");
 
-            setTimeout(() => {
-                transicao.classList.add("fade-open");
-            }, 500);
-        }
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
+  }
 
-        function aplicarBlur() {
-            document
-                .getElementById("container")
-                .classList.add("container-ativo");
-        }
-    </script>
+  function aplicarBlur() {
+      document
+          .getElementById("container")
+          .classList.add("container-ativo");
+  }
+
+  function login() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "login.html";
+      }, 1500);
+  }
+
+  function julia() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "andarJulia.html";
+      }, 1500);
+  }
+
+  function debora() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "andarDebora.html";
+      }, 1500);
+  }
+
+  function quiz() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "quiz.html";
+      }, 1500);
+  }
+
+  function dashboard() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "dashboard.html";
+      }, 1500);
+  }
+
+  function juntas() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "andarJuntas.html";
+      }, 1500);
+  }
+
+  function chat() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "chat.html";
+      }, 1500);
+  }
+</script>
