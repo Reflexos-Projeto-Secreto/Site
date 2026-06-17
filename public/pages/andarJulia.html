@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div id="transicao"></div>
     <div class="header">
       <div class="navbar">
         <div class="lado-esquerdo-nav">
@@ -225,3 +226,13 @@
     </div>
   </body>
 </html>
+
+<script>
+  window.onload = function () {
+      const transicao = document.getElementById("transicao");
+
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
+  }
+</script>

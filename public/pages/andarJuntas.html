@@ -8,6 +8,16 @@
     <link rel="stylesheet" type="text/js" href="../js/andarJuntas.js">
   </head>
   <body>
-
+    <div id="transicao"></div>
   </body>
 </html>
+
+<script>
+  window.onload = function () {
+      const transicao = document.getElementById("transicao");
+
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
+  }
+</script>

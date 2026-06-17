@@ -172,104 +172,71 @@
                 });
             });
 
-        fetch('/dados/acertos-erros')
-            .then(function (res) { return res.json(); })
-            .then(function (dado) {
-                new Chart(ctxQuizConhecimento, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Acertos', 'Erros'],
-                        datasets: [{
-                            label: 'Quantidade',
-                            data: [dado.acertos, dado.erros],
-                            backgroundColor: [
-                                '#22c55e',
-                                '#ef4444'
-                            ],
-                            borderRadius: 5
-                        }]
+        const chartQuizConhecimento = new Chart(ctxQuizConhecimento, {
+            type: 'bar',
+            data: {
+                labels: ['Acertos', 'Erros'],
+                datasets: [{
+                    label: 'Quantidade',
+                    data: [27, 23],
+                    backgroundColor: [
+                        '#22c55e', 
+                        '#ef4444'
+                    ],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Quantidade de acertos no quiz de conhecimento',
+                        align: 'start',
+                        font: { size: 18 }
                     },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Quantidade de acertos no quiz de conhecimento',
-                                align: 'start',
-                                font: { size: 18 }
-                            },
-                            legend: {
-                                display: false
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: 'Quantidade'
-                                }
-                            }
-                        }
+                    legend: {
+                        display: false
                     }
-                });
-            });
-
-        async function carregarEventosPorMes() {
-            const request = {
-                calendarId: 'primary',
-                timeMin: new Date('2025-01-01').toISOString(),
-                timeMax: new Date('2025-12-31').toISOString(),
-                showDeleted: false,
-                singleEvents: true,
-                maxResults: 500,
-                orderBy: 'startTime',
-            };
-
-            const response = await gapi.client.calendar.events.list(request);
-            const events = response.result.items;
-
-            var totais = Array(12).fill(0);
-
-            events.forEach(function (event) {
-                var data = event.start.dateTime || event.start.date;
-                var mes = new Date(data).getMonth();
-                totais[mes]++;
-            });
-
-            new Chart(ctxQtdEventos, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                    datasets: [{
-                        label: 'Quantidade',
-                        data: totais,
-                        backgroundColor: ['#663C1F'],
-                        borderRadius: 5
-                    }]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Quantidade de eventos de acordo com o mes',
-                            align: 'start',
-                            font: { size: 18 }
+                            text: 'Quantidade'
                         }
                     }
                 }
-            });
-        }
+            }
+        });
 
-        const token = sessionStorage.getItem('googleToken');
-        console.log('token:', token);
-        if (token) {
-            gapi.client.setToken(JSON.parse(token));
-            await carregarEventosPorMes();
-        }
-
-    });
+        const chartQtdEventos = new Chart(ctxQtdEventos, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Quantidade',
+                    data: [22, 23, 16, 19, 21, 17, 13, 27, 33, 19, 23, 26],
+                    backgroundColor: ['#663C1F'],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Quantidade de eventos de acordo com o mes',
+                        align: 'start',
+                        font: {
+                            size: 18
+                        }
+                    },
+                },
+            }
+        });
+    })
 </script>

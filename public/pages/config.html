@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <div id="transicao"></div>
   <div class="container">
     <div class="container-config">
       <div class="imagem-config">
@@ -49,7 +50,11 @@
       </div>
     </div>
   </div>
-  <script>
+</body>
+
+</html>
+
+<script>
     var fotoUsuario = sessionStorage.getItem("FOTO_USUARIO");
     if (fotoUsuario) {
       imgPerfil.src = fotoUsuario;
@@ -134,7 +139,12 @@
           console.log(erro);
         });
     }
-  </script>
-</body>
+  
+    window.onload = function () {
+        const transicao = document.getElementById("transicao");
 
-</html>
+        setTimeout(() => {
+            transicao.classList.add("fade-open");
+        }, 500);
+    }
+</script>

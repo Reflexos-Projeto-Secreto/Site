@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <div id="transicao"></div>
   <div class="container">
     <div class="container-cadastro">
       <div class="box-cadastro">
@@ -49,7 +50,7 @@
           <button onclick="cadastrar()" class="botao-cadastro">Cadastrar</button>
           <div class="login">
             <span>Já tem um login?&nbsp</span>
-            <a href="/pages/login.html" class="registrar-cadastro">Clique aqui</a>
+            <a onclick="login()" class="registrar-cadastro" style="cursor: pointer;">Clique aqui</a>
           </div>
         </div>
       </div>
@@ -217,4 +218,30 @@
     }
 
   }
+
+  window.onload = function () {
+      const transicao = document.getElementById("transicao")
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
+  }
+
+  function sair() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "elevador.html";
+      }, 1500);
+  }
+
+  function login() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "login.html";
+      }, 1500);
+  }
+
 </script>

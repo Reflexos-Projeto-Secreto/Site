@@ -131,7 +131,7 @@
   </div>
 
 
-  // jogo opnioes
+  <!-- // jogo opnioes -->
   <div class="container-jogo">
     <div class="container-iniciar" style="display: flex;">
       <h2>Opiniões Impopulares</h2>
@@ -800,5 +800,13 @@
 
   function refazerPersonalidade() {
     window.location.reload()
+  }
+
+  window.onload = function () {
+      const transicao = document.getElementById("transicao");
+
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
   }
 </script>
