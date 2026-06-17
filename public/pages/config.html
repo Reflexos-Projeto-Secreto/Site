@@ -6,40 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reflexos | Config</title>
   <link rel="stylesheet" type="text/css" href="../css/config.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="container">
     <div class="container-config">
+      <div class="imagem-config">
+        <img src="../assets/imgs/config/menu.png" alt="">
+      </div>
       <div class="box-config">
         <div class="geral-config">
-          <h1>Configuração</h1>
+          <button onclick="elevador()" class="eleva-dor">chamar</button>
           <div class="container-imagem">
-            <img src="../assets/imgs/geral/usuario.png" id="imgPerfil" onclick="mudarImagemPerfil()"
-              onerror="this.src='../assets/imgs/geral/usuario.png'">
+            <img src="" id="imgPerfil" onclick="mudarImagemPerfil()">
+            <button onclick="alterBotao()" id="alterarBtn"></button>
             <input type="file" id="inpImagem" onchange="salvarImagemPerfil()" hidden>
           </div>
           <div class="input-config">
             <div class="input-filho">
-              <h4>Nome</h4>
-              <input type="text" id="nome" />
+              <input placeholder="Nome" type="text" id="nome" />
             </div>
             <div class="input-filho">
-              <h4>Username</h4>
-              <input type="text" id="username" />
+              <input placeholder="Username" type="text" id="username" />
             </div>
           </div>
           <div class="input-config">
             <div class="input-filho">
-              <h4>Email</h4>
-              <input type="email" id="email" />
+              <input placeholder="Email" type="email" id="email" />
             </div>
             <div class="input-filho">
-              <h4>Senha</h4>
-              <input type="password" id="senha" />
+              <input placeholder="Senha" type="password" id="senha" />
             </div>
           </div>
-          <button onclick="salvar()">Salvar</button>
+          <div class="botoes-config">
+            <button onclick="salvar()" id="salvar"></button>
+            <button onclick="sair()" id="sair"></button>
+          </div>
         </div>
       </div>
     </div>

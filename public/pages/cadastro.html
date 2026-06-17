@@ -6,49 +6,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reflexos | Cadastro</title>
   <link rel="stylesheet" type="text/css" href="../css/cadastro.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="container">
-    <div class="imagem-lateral"></div>
     <div class="container-cadastro">
       <div class="box-cadastro">
+        <div class="sair">
+          <button onclick="sair()">X</button>
+        </div>
         <div class="geral-cadastro">
           <h1>Cadastro</h1>
           <div class="input-cadastro">
             <div class="input-filho">
-              <h4>Nome</h4>
-              <input type="text" id="nome">
+              <input placeholder="Nome" type="text" id="nome">
             </div>
           </div>
           <div class="input-cadastro">
             <div class="input-filho">
-              <h4>Username</h4>
-              <input type="text" id="username">
+              <input placeholder="Username" type="text" id="username">
             </div>
           </div>
           <div class="input-cadastro">
             <div class="input-filho">
-              <h4>Email</h4>
-              <input type="email" id="email">
+              <input placeholder="Email" type="email" id="email">
             </div>
           </div>
           <div class="input-cadastro">
             <div class="input-filho">
-              <h4>Senha</h4>
-              <input oninput="verificarsenha()" type="password" id="senha">
+              <input oninput="verificarsenha()" placeholder="Senha" type="password" id="senha">
               <span id="senha_forte"></span>
             </div>
           </div>
           <div class="input-cadastro">
             <div class="input-filho">
-              <h4>Confirmar senha</h4>
-              <input type="password" id="confirmarSenha">
+              <input placeholder="Confirmar Senha" type="password" id="confirmarSenha">
             </div>
           </div>
-          <button onclick="cadastrar()">Cadastro</button>
-          <div class="cadastrar">
-            <span>Já tem um login</span>
+          <button onclick="cadastrar()" class="botao-cadastro">Cadastrar</button>
+          <div class="login">
+            <span>Já tem um login?&nbsp</span>
             <a href="/pages/login.html" class="registrar-cadastro">Clique aqui</a>
           </div>
         </div>

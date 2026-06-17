@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.container {
+    background-image: url("../assets/imgs/config/background.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 100%;
+    min-height: 48vw;
+    display: flex;
+    justify-content: center;
+}
+
+.container-config {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 800px;
+}
+
+.container-config img {
+    width: 100%;
+}
+
+.container-config {
+    position: relative;
+}
+
+.box-config {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 83vh;
+    width: 100%;
+}
+
+.input-config {
+    position: relative;
+    left: 450px;
+}
+
+.input-filho {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-filho input {
+    background: none;
+    border: none;
+    font-size: 20px;
+    height: 36px;
+    padding-left: 5px;
+    width: 244px;
+}
+
+.input-filho input::placeholder {
+  font-size: 20px;
+  opacity: 1;
+}
+
+.input-filho input:focus {
+    outline: none;
+}
+#nome {
+    position: absolute;
+    bottom: 155px;
+}
+
+#username {
+    position: absolute;
+    bottom: 65px;
+}
+
+#email {
+    position: absolute;
+    top: -5px;
+}
+
+#senha {
+    position: absolute;
+    top: 87px;
+}
+
+.container-imagem button {
+    cursor: pointer;
+}
+
+.botoes-config button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#salvar {
+    bottom: 22px;
+    position: absolute;
+    right: 200px;
+    height: 70px;
+    width: 150px;
+}
+
+#sair {
+    bottom: 22px;
+    position: absolute;
+    right: 48px;
+    height: 70px;
+    width: 133px;
+
+}
+
+#alterarBtn {
+    background: none;
+    border: none;
+    position: absolute;
+    width: 200px;
+    left: 40px;
+    height: 35px;
+    bottom: 228px;
+}
+
+#eleva-dor {
+    position: absolute;
+    width: 200px;
+}
