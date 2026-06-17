@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+body {
+    background-color: black;
+    background-image: url(../assets/imgs/Chat/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.container-geral-chat {
+    position: relative;
+    z-index: 1;
+    width: 60%;
+}
+
+.container-mensagem {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 70vh;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: solid #e5e7eb 2px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.container-mensagem img {
+    width: 100px;
+    height: 100px;
+}
+
+.sair_chat img{
+    background-color: white;
+    padding: 2px;
+    opacity: 0.5;
+}
+
+.cabecalho-chat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    color: white;
+    position: sticky;
+}
+
+.cabecalho-chat img {
+    width: 60px;
+    height: 60px;
+}
+
+.cabecalho-chat h3 {
+    font-weight: 100;
+}
+
+#mensagem {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+}
+
+.mensagem {
+  position: relative;
+  padding: 10px 16px;
+  max-width: 70%;
+  word-break: break-word;
+}
+
+.mensagem.eu {
+    background-color: #ffe4cd;
+    color: black;
+    align-self: flex-end;
+}
+.mensagem.ela {
+    background-color: #e8cdff;
+    color: #000;
+    align-self: flex-start;
+}
+
+.barra_mensagem {
+    flex-shrink: 0;
+    /* isso aqui deixa a input de mensagem fixa mesmo com muitas mensagens, antes o input tava indo para baixo junto com as mensagens */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.barra_mensagem input {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.barra_mensagem img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.barra_mensagem button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background: black;
+}
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+}

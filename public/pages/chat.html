@@ -5,43 +5,62 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reflexos | Elevador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../css/chat.css" />
 </head>
 
 <body>
-  <div id="mensagem"></div>
+  <div class="container-geral-chat">
+    <div class="container-mensagem">
+      <div class="cabecalho-chat">
+        <img src="../assets/imgs/Chat/mundo.png" alt="">
+        <div>
+          <h3>Chat Global</h3>
+          <p>Converse através desse chat</p>
+        </div>
+        <div class="sair_chat" style="margin-left: auto;">
+          <a href="painel.html"><img style="cursor: pointer;" src="../assets/imgs/Chat/letra-x.png" alt=""></a>
+        </div>
+      </div>
 
+      <div id="mensagem"></div>
 
-  <div id="verificacaoImg" style="display:none">
-    <img id="verificacao-Img" />
-    <span>nome-da-foto.jpg</span>
-    <button onclick="limparImagem()">✕</button>
-  </div>
+      <div id="verificacaoImg" style="display:none">
+        <img id="verificacao-Img" />
+        <span>nome-da-foto.jpg</span>
+        <button onclick="limparImagem()">✕</button>
+      </div>
 
-  <div id="barra">
-    <button onclick="abrirSeletor()">Enviar Anexo</button>
-    <input type="file" id="input" accept="image/*" style="display:none" />
-    <input type="text" id="textoInput" />
-    <button onclick="enviar()">Enviar</button>
+      <div class="barra_mensagem" id="barra">
+        <img src="../assets/imgs/Chat/clip.png" alt="" onclick="abrirSeletor()" />
+        <input type="file" id="input" style="display:none" />
+        <input type="text" id="textoInput" placeholder="Escreva sua mensagem aqui..." />
+        <img src="../assets/imgs/Chat/seta.png" alt="" onclick="enviar()" />
+      </div>
+    </div>
   </div>
 </body>
 
 </html>
 
 <script>
-  var nomeUsuario = sessionStorage.getItem('NOME_USUARIO')
-  document.getElementById('nomeUsuario').textContent = nomeUsuario
+  var nickUsuario = sessionStorage.getItem('USERNAME_USUARIO')
   let imagemSelecionada = null
 
 
   function criarMensagem(texto, imagem, lado, nomeRemetente) {
     // Esse createElement cria um elemento no html
+    const container = document.createElement('div')
+    container.className = 'container-mensagem ' + lado
+
     const balao = document.createElement('div')
     balao.className = 'mensagem ' + lado
 
     const nomeSpan = document.createElement('span')
     nomeSpan.className = 'nome-remetente'
-    nomeSpan.textContent = nomeRemetente || nomeUsuario
+    nomeSpan.textContent = nomeRemetente || nickUsuario
     balao.appendChild(nomeSpan)
 
     if (texto) {
@@ -94,7 +113,7 @@
     const data = await res.json()
 
     if (data.ok) {
-      criarMensagem(texto, data.urlImagem, 'eu', nomeUsuario)
+      criarMensagem(texto, data.urlImagem, 'eu', nickUsuario)
     }
 
     document.getElementById('textoInput').value = ''
@@ -122,7 +141,7 @@
     .then(function (mensagens) {
       mensagens.forEach(function (m) {
         // compara o nickname de quem enviou com o usuário logado
-        var lado = m.nickname == nomeUsuario ? 'eu' : 'ela'
+        var lado = m.nickname == nickUsuario ? 'eu' : 'ela'
         criarMensagem(m.conteudoMensagem, m.urlImagem, lado, m.nickname)
       })
     })
