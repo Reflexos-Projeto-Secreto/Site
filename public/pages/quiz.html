@@ -10,7 +10,6 @@
 </head>
 
 <body>
-  // quiz conhecimento uma sobre a outra
   <div class="container-conhecimento">
     <div class="container-iniciar" style="display: flex;">
       <h2>Você realmente conhece <span id="pessoaLogin">Julia Araripe</span></h2>
@@ -55,7 +54,6 @@
         <div id="botoesConhecimento" class="flex-colunar padding-8">
           <button onclick="checarResposta()" id="btnProxConhecimento">Avançar para próxima questão</button>
           <button onclick="tentarNovamente()" id="btnTentarNovamenteConhecimento" disabled>Tentar novamente</button>
-          <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
         </div>
       </div>
     </div>
@@ -70,7 +68,7 @@
     </div>
   </div>
 
-  // quiz quem é voce
+
   <div class="container-Personalidade">
     <div class="container-iniciar" style="display: flex;">
       <h2>Com qual das duas voce mais se parece?</h2>
@@ -177,130 +175,130 @@
   <p>Google Calendar API Quickstart</p>
 
 
-    <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
-    <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+  <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+  <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
 
-    <pre id="content" style="white-space: pre-wrap;"></pre>
+  <pre id="content" style="white-space: pre-wrap;"></pre>
 
-    <script type="text/javascript">
- 
+  <script type="text/javascript">
 
-    
-      const CLIENT_ID = '240964510942-r5m082j4gnvrc8ge66ksl2h2pphq28cg.apps.googleusercontent.com';
-      const API_KEY = 'AIzaSyB9IdbdRYoXUazFx489vBbVruFK-U11wv4';
+    const CLIENT_ID = '240964510942-r5m082j4gnvrc8ge66ksl2h2pphq28cg.apps.googleusercontent.com';
+    const API_KEY = 'AIzaSyB9IdbdRYoXUazFx489vBbVruFK-U11wv4';
 
-      const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+    const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 
-      const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
+    const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
 
-      let tokenClient;
-      let gapiInited = false;
-      let gisInited = false;
+    let tokenClient;
+    let gapiInited = false;
+    let gisInited = false;
 
-      document.getElementById('authorize_button').style.visibility = 'hidden';
-      document.getElementById('signout_button').style.visibility = 'hidden';
+    document.getElementById('authorize_button').style.visibility = 'hidden';
+    document.getElementById('signout_button').style.visibility = 'hidden';
 
-  
-      function gapiLoaded() {
-        gapi.load('client', initializeGapiClient);
+
+    function gapiLoaded() {
+      gapi.load('client', initializeGapiClient);
+    }
+
+
+    async function initializeGapiClient() {
+      await gapi.client.init({
+        apiKey: API_KEY,
+        discoveryDocs: [DISCOVERY_DOC],
+      });
+      gapiInited = true;
+      maybeEnableButtons();
+    }
+
+
+    function gisLoaded() {
+      tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: '',
+      });
+      gisInited = true;
+      maybeEnableButtons();
+    }
+
+
+    function maybeEnableButtons() {
+      if (gapiInited && gisInited) {
+        document.getElementById('authorize_button').style.visibility = 'visible';
       }
+    }
 
-   
-      async function initializeGapiClient() {
-        await gapi.client.init({
-          apiKey: API_KEY,
-          discoveryDocs: [DISCOVERY_DOC],
-        });
-        gapiInited = true;
-        maybeEnableButtons();
-      }
 
-   
-      function gisLoaded() {
-        tokenClient = google.accounts.oauth2.initTokenClient({
-          client_id: CLIENT_ID,
-          scope: SCOPES,
-          callback: '',
-        });
-        gisInited = true;
-        maybeEnableButtons();
-      }
-
-     
-      function maybeEnableButtons() {
-        if (gapiInited && gisInited) {
-          document.getElementById('authorize_button').style.visibility = 'visible';
+    function handleAuthClick() {
+      tokenClient.callback = async (resp) => {
+        if (resp.error != undefined) {
+          throw (resp);
         }
+        document.getElementById('signout_button').style.visibility = 'visible';
+        document.getElementById('authorize_button').innerText = 'Refresh';
+        await listUpcomingEvents();
+      };
+
+      if (gapi.client.getToken() == null) {
+
+        tokenClient.requestAccessToken({ prompt: 'consent' });
+      } else {
+        tokenClient.requestAccessToken({ prompt: '' });
       }
+    }
 
 
-      function handleAuthClick() {
-        tokenClient.callback = async (resp) => {
-          if (resp.error != undefined) {
-            throw (resp);
-          }
-          document.getElementById('signout_button').style.visibility = 'visible';
-          document.getElementById('authorize_button').innerText = 'Refresh';
-          await listUpcomingEvents();
+    function handleSignoutClick() {
+      const token = gapi.client.getToken();
+      if (token != null) {
+        google.accounts.oauth2.revoke(token.access_token);
+        gapi.client.setToken('');
+        document.getElementById('content').innerText = '';
+        document.getElementById('authorize_button').innerText = 'Authorize';
+        document.getElementById('signout_button').style.visibility = 'hidden';
+      }
+    }
+
+
+    async function listUpcomingEvents() {
+      let response;
+      try {
+        const request = {
+          'calendarId': 'primary',
+          'timeMin': (new Date()).toISOString(),
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime',
         };
-
-        if (gapi.client.getToken() == null) {
-    
-          tokenClient.requestAccessToken({prompt: 'consent'});
-        } else {
-          tokenClient.requestAccessToken({prompt: ''});
-        }
+        response = await gapi.client.calendar.events.list(request);
+      } catch (err) {
+        document.getElementById('content').innerText = err.message;
+        return;
       }
 
-  
-      function handleSignoutClick() {
-        const token = gapi.client.getToken();
-        if (token != null) {
-          google.accounts.oauth2.revoke(token.access_token);
-          gapi.client.setToken('');
-          document.getElementById('content').innerText = '';
-          document.getElementById('authorize_button').innerText = 'Authorize';
-          document.getElementById('signout_button').style.visibility = 'hidden';
-        }
+      const events = response.result.items;
+      if (!events || events.length == 0) {
+        document.getElementById('content').innerText = 'No events found.';
+        return;
       }
+      const output = events.reduce(
+        (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
+        'Events:\n');
+      document.getElementById('content').innerText = output;
+    }
+  </script>
 
-
-      async function listUpcomingEvents() {
-        let response;
-        try {
-          const request = {
-            'calendarId': 'primary',
-            'timeMin': (new Date()).toISOString(),
-            'showDeleted': false,
-            'singleEvents': true,
-            'maxResults': 10,
-            'orderBy': 'startTime',
-          };
-          response = await gapi.client.calendar.events.list(request);
-        } catch (err) {
-          document.getElementById('content').innerText = err.message;
-          return;
-        }
-
-        const events = response.result.items;
-        if (!events || events.length == 0) {
-          document.getElementById('content').innerText = 'No events found.';
-          return;
-        }
-        // Flatten to string to display
-        const output = events.reduce(
-            (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
-            'Events:\n');
-        document.getElementById('content').innerText = output;
-      }
-    </script>
-
-     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+  <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 </body>
+
 </html>
 
 <script>
+
+  var idUsuario = sessionStorage.getItem("ID_USUARIO")
 
   var resultado = ""
 
@@ -366,6 +364,8 @@
   let pontuacaoDebora = 0
   let quantidadeDeQuestoesPersonalidade = listaDeQuestoesPersonalidade.length
 
+  // quiz conhecimento
+
   function iniciarConhecimento() {
     document.querySelector(".container-conhecimento .container-iniciar").style.display = "none"
     document.querySelector(".container-conhecimento .container-andamento").style.display = "flex"
@@ -417,7 +417,7 @@
     if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
       preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
     } else {
-      finalizarJogo()
+      finalizarConhecimento()
     }
   }
 
@@ -481,7 +481,7 @@
     }
   }
 
-  function finalizarJogo() {
+  function finalizarConhecimento() {
     document.querySelector(".container-conhecimento .container-andamento").style.display = "none"
     document.querySelector(".container-conhecimento .container-fim").style.display = "flex"
 
@@ -503,6 +503,16 @@
 
     document.getElementById("tituloResultadoConhecimento").innerHTML = titulo + " Você acertou " + Math.round(porcentagem * 100) + "%"
     document.getElementById("explicaoResultadoConhecimento").innerHTML = explicacao
+
+    fetch("/quiz/enviarResultadoConhecimento", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fkUsuario: idUsuario,
+        pontuacaoFinal: pontuacaoFinal,
+        fkQuiz: 1
+      })
+    })
   }
 
   function refazerConhecimento() {
@@ -640,6 +650,17 @@
     } else {
       document.getElementById("vencedor").innerHTML = `Empate!`
     }
+
+    fetch("/quiz/enviarResultadoJogo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fkUsuario: idUsuario,
+        pontuacaoJogador1: pontuacaoJogador1,
+        pontuacaoJogador2: pontuacaoJogador2,
+        fkQuiz: 2
+      })
+    })
   }
 
   function preencherHTMLPersonalidade(index) {
@@ -732,6 +753,16 @@
       resultado = "empate"
     }
 
+    fetch("/quiz/enviarResultadoPersonalidade", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fkUsuario: idUsuario,
+        resultado: resultado,
+        fkQuiz: 3
+      })
+    })
+
     fetch("/quiz/enviarEmail", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -761,7 +792,7 @@
     console.log("status da resposta:", response.status)
 
     const data = await response.json();
-     console.log("resposta do gemini:", data)
+    console.log("resposta do gemini:", data)
     document.getElementById("guia").innerText = data.text;
   }
 
