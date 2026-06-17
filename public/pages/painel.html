@@ -11,43 +11,34 @@
   </head>
   <body>
     <div id="transicao"></div>
-    <div class="container">
+    <div class="container" id="container">
+      <div class="caixa-login"><button>Login</button></div>
       <div class="container-painel">
+        <div class="titulo-painel"><h2>Escolha o seu andar</h2></div>
         <div class="painel-botoes">
           <div class="box-botoes">
             <div class="botao-pai">
               <div class="botao-filho">
-                <a href="andarJulia.html">Júlia</a>
+                <a href="andarJulia.html" id="julia">Andar Julia</a>
               </div>
               <div class="botao-filho">
-                <a href="andarDebora.html">Debora</a>
-              </div>
-            </div>
-            <div class="botao-pai">
-              <div class="botao-filho">
-               <a href="andarJulia.html">Andar Juntas</a>
-              </div>
-              <div class="botao-filho">
-                <a href="andarAnna.html">Anna</a>
+                <a href="andarDebora.html" id="debora">Andar Débora</a>
               </div>
             </div>
             <div class="botao-pai">
               <div class="botao-filho">
-                <a href="andarIsa.html">Isa</a>
+               <a href="quiz.html" id="quiz">Quizzes</a>
               </div>
               <div class="botao-filho">
-                <a href="andarSamu.html">Samuel</a>
+                <a href="dashboard.html" id="dash">Dashboard</a>
               </div>
             </div>
-            <div class="botao-pai">
+            <div class="botao-pai botao-baixo">
               <div class="botao-filho">
-                <a href="/pages/quiz.html">Quiz</a>
+                <a href="andarJuntas.html" id="juntas">Andar juntas</a>
               </div>
               <div class="botao-filho">
-               <a href="dashboard.html">Dashboard</a>
-              </div>
-              <div class="botao-filho">
-               <a href="/pages/chat.html">Chat</a>
+                <a href="chat.html" id="chat">Chat</a>
               </div>
             </div>
           </div>
@@ -57,14 +48,18 @@
   </body>
 </html>
 
-<script>
+    <script>
+        window.onload = function () {
+            const transicao = document.getElementById("transicao");
 
-  window.onload = function () {
-      const transicao = document.getElementById("transicao");
+            setTimeout(() => {
+                transicao.classList.add("fade-open");
+            }, 500);
+        }
 
-      setTimeout(() => {
-          transicao.classList.add("fade-open");
-      }, 500);
-  }
-
-</script>
+        function aplicarBlur() {
+            document
+                .getElementById("container")
+                .classList.add("container-ativo");
+        }
+    </script>
