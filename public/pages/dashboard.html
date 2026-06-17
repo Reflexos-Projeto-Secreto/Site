@@ -6,87 +6,83 @@
     <title>Reflexos | Dashboard</title>
     <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
     <link rel="stylesheet" type="text/js" href="../js/dashboard.js">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <div class="container">
-      <div id="container_kpis">
-        <div class="div_kpi kpi1 kpi_com_tooltip">
-          <div class="info_kpi">
-              <div class="containerTitulo">
-                  <h3>Quantidade de eventos com o mes que foi mais marcado</h3>
+    <div class="header">
+      <div class="navbar">
+        <div class="lado-esquerdo-nav">
+          <div class="quadrados-topo-esquerda">
+            <div class="topo-titulo pixel-frame pixel-escuro-primeiro">
+              <div class="quadrado-atras-titulo pixel-atras"></div>
+              <div class="quadrado-frente-titulo pixel-frente"></div>
+              <div class="topo-titulo-conteudo pixel-conteudo">
+                <h2>Reflexos</h2>
               </div>
-              <div class="div_situacao">
-                  <h1 id="eventoQuant">47</h1>
-              </div>
-              <div class="status">
-                  <h4>Temos uma maior quantidade de eventos no mes <span id="mesEvento"></span></h4>
-              </div>
+            </div>
           </div>
         </div>
-        <div class="div_kpi kpi2 kpi_com_tooltip">
-          <div class="info_kpi">
-              <div class="containerTitulo">
-                  <h3>Qual e o proximo evento marcado</h3>
+
+        <div class="lado-direito-nav">
+          <div class="quadrados-topo-direita">
+            <div class="topo-imagem pixel-frame pixel-roxo-imagem">
+              <div class="quadrado-atras-imagem pixel-atras"></div>
+              <div class="quadrado-frente-imagem pixel-frente"></div>
+              <div class="topo-imagem-conteudo pixel-conteudo">
+                <img src="../assets/imgs/geral/usuario.png">
               </div>
-              <div class="div_situacao">
-                  <h1 id="proxEvento">Empresas</h1>
-              </div>
-              <div class="status">
-                  <h4>Teremos um evento no dia <span id="diaEvento"></span></h4>
-              </div>
-          </div>
-        </div>
-        <div class="div_kpi kpi3 kpi_com_tooltip">
-          <div class="info_kpi">
-              <div class="containerTitulo">
-                  <h3>Quem esta em primeiro no ranking de pontos</h3>
-              </div>
-              <div class="div_situacao">
-                  <h1 id="primeiroLugar">Julia Araripe</h1>
-              </div>
-              <div class="status">
-                  <h4>a <span id="primeiroLugarStatus">Julia Araripe</span> esta em primeiro lugar com <span id="pontosRankingStatus">15</span> pontos</h4>
-              </div>
-          </div>
-        </div>
-        <div class="div_kpi kpi4 kpi_com_tooltip">
-          <div class="info_kpi">
-              <div class="containerTitulo">
-                  <h3>Nas conversas do chat quem teve maior quantidade de mensagens enviadas</h3>
-              </div>
-              <div class="div_situacao">
-                  <h1 id="chatPrimeiroLugar">Julia Araripe</h1>
-              </div>
-              <div class="status">
-                  <h4>a <span id="chatPrimeiroLugarStatus">Julia Araripe</span> esta em primeiro lugar com <span id="quantMensagensStatus">23</span> mensagens no chat</h4>
-              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="parte1" id="p1">
-          <div class="grafico-qtd-quiz-respondido">
-              <div id="expandirQtdQuizRespondido">
-                  <canvas id="chartQtdQuizRespondido"></canvas>
-              </div>
-          </div>
-          <div class="grafico-quiz-conhecimento">
-              <div id="expandirQuizConhecimento">
-                  <canvas id="chartQuizConhecimento"></canvas>
-              </div>
-          </div>
-          <div class="grafico-qtd-eventos">
-              <div id="expandirQuantidadeEventos">
-                  <canvas id="chartQuantidadeEventos"></canvas>
-              </div>
-          </div>
-      </div>
-    </div>
+      
+   <div class="container_geral">
+       <div class="container_kpi">
+            <div class="kpi">
+                <h3>Quantidade de eventos com o mes que foi mais marcado</h3>
+                <span>47</span>
+                <p>Temos uma maior quantidade de eventos no mes</p>
+            </div>
+            <div class="kpi">
+                <h3>Qual e o proximo evento marcado</h3>
+                <span>Empresas</span>
+                <p>Teremos um evento no dia</p>
+            </div>
+            <div class="kpi">
+                <h3>Quem esta em primeiro no ranking de pontos</h3>
+                <span>Julia Araripe</span>
+                <p>a Julia Araripe esta em primeiro lugar com 15 pontos</p>
+            </div>
+            <div class="kpi">
+                <h3>Nas conversas do chat quem teve maior quantidade de mensagens enviadas</h3>
+                <span>Julia Araripe</span>
+                <p>a Julia Araripe esta em primeiro lugar com 23 mensagens no chat</p>
+            </div>
+       </div>
+       <div class="container_graficos">
+            <div class="grafico">
+                <canvas id="chartQtdQuizRespondido"></canvas>
+            </div>
+            <div class="grafico">
+                <canvas id="chartQuizConhecimento"></canvas>
+            </div>
+       </div>
+       <div class="container_grafico3">
+           <div class="grafico">
+                <canvas id="chartQuantidadeEventos"></canvas>
+            </div>
+       </div>
+   </div>
   </body>
 </html>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+
+        Chart.defaults.color = 'white';
         
         const ctxQuizRespondido = document.getElementById('chartQtdQuizRespondido');
         const ctxQuizConhecimento = document.getElementById('chartQuizConhecimento');
@@ -96,13 +92,11 @@
             type: 'line',
             data: {
                 labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                // labels: ['1° Semana', '2° Semana', '3° Semana', '4° Semana'],
-                // labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'], Deixei assim, porque nao sei qual seria mlr
                 datasets: [{
                     label: 'Respostas do Quiz',
                     data: [25, 10, 30, 15, 20, 10, 30, 40, 20, 30, 40, 17],
-                    borderColor: 'rgba(29, 133, 194, 0.7)',
-                    backgroundColor: 'rgba(29, 133, 194, 0.18)',
+                    borderColor: '#663C1F',
+                    backgroundColor: 'rgba(150, 75, 0, 0.08)',
                     fill: true,
                     tension: 0.4,
                     pointRadius: 4
@@ -178,7 +172,7 @@
                 datasets: [{
                     label: 'Quantidade',
                     data: [22, 23, 16, 19, 21, 17, 13, 27, 33, 19, 23, 26],
-                    backgroundColor: ['#244770'],
+                    backgroundColor: ['#663C1F'],
                     borderRadius: 5
                 }]
             },
