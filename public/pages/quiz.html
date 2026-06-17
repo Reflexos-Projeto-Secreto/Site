@@ -235,9 +235,11 @@
         if (resp.error != undefined) {
           throw (resp);
         }
+        sessionStorage.setItem('googleToken', JSON.stringify(gapi.client.getToken()));
         document.getElementById('signout_button').style.visibility = 'visible';
         document.getElementById('authorize_button').innerText = 'Refresh';
         await listUpcomingEvents();
+        await carregarEventosPorMes();
       };
 
       if (gapi.client.getToken() == null) {

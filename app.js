@@ -25,10 +25,12 @@ var indexRouter = require("./src/routes/index");
 var quizRouter = require("./src/routes/quizRouter")
 var guiaRouter = require("./src/routes/guiaRouter");
 var mensagemRouter = require("./src/routes/mensagemRouter");
+var dadosRouter = require("./src/routes/dadosRouter");
 
 app.use("/quiz", quizRouter);
 app.use("/guia", guiaRouter);
 app.use("/mensagem", mensagemRouter);
+app.use("/dados", dadosRouter);
 app.use("/", indexRouter);
 
 app.listen(PORTA_APP, function () {
