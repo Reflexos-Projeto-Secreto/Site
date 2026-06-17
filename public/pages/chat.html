@@ -16,10 +16,10 @@
     <div class="container-mensagem">
       <div class="cabecalho-chat">
         <img src="../assets/imgs/Chat/terra.webp" alt="">
-            <div>
-              <h3>Chat Global</h3>
-              <p>Converse através desse chat</p>
-            </div>
+        <div>
+          <h3>Chat Global</h3>
+          <p>Converse através desse chat</p>
+        </div>
         <div style="margin-left: auto;">
           <a href="painel.html"><img style="cursor: pointer;" src="../assets/imgs/Chat/letra-x.png" alt=""></a>
         </div>
@@ -46,18 +46,21 @@
 </html>
 
 <script>
-  var nomeUsuario = sessionStorage.getItem('NOME_USUARIO')
+  var nickUsuario = sessionStorage.getItem('USERNAME_USUARIO')
   let imagemSelecionada = null
 
 
   function criarMensagem(texto, imagem, lado, nomeRemetente) {
     // Esse createElement cria um elemento no html
+    const container = document.createElement('div')
+    container.className = 'container-mensagem ' + lado
+
     const balao = document.createElement('div')
     balao.className = 'mensagem ' + lado
 
     const nomeSpan = document.createElement('span')
     nomeSpan.className = 'nome-remetente'
-    nomeSpan.textContent = nomeRemetente || nomeUsuario
+    nomeSpan.textContent = nomeRemetente || nickUsuario
     balao.appendChild(nomeSpan)
 
     if (texto) {
@@ -110,7 +113,7 @@
     const data = await res.json()
 
     if (data.ok) {
-      criarMensagem(texto, data.urlImagem, 'eu', nomeUsuario)
+      criarMensagem(texto, data.urlImagem, 'eu', nickUsuario)
     }
 
     document.getElementById('textoInput').value = ''
@@ -138,7 +141,7 @@
     .then(function (mensagens) {
       mensagens.forEach(function (m) {
         // compara o nickname de quem enviou com o usuário logado
-        var lado = m.nickname == nomeUsuario ? 'eu' : 'ela'
+        var lado = m.nickname == nickUsuario ? 'eu' : 'ela'
         criarMensagem(m.conteudoMensagem, m.urlImagem, lado, m.nickname)
       })
     })
