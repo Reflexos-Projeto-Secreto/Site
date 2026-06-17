@@ -5,24 +5,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reflexos | Elevador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../css/chat.css" />
 </head>
 
 <body>
-  <div id="mensagem"></div>
+  <div class="container-geral-chat">
+    <div class="container-mensagem">
+      <div class="cabecalho-chat">
+        <img src="../assets/imgs/Chat/terra.webp" alt="">
+        <div>
+          <h3>Chat Global</h3>
+          <p>Converse através desse chat</p>
+        </div>
+      </div>
 
+      <div id="mensagem"></div>
 
-  <div id="verificacaoImg" style="display:none">
-    <img id="verificacao-Img" />
-    <span>nome-da-foto.jpg</span>
-    <button onclick="limparImagem()">✕</button>
-  </div>
+      <div id="verificacaoImg" style="display:none">
+        <img id="verificacao-Img" />
+        <span>nome-da-foto.jpg</span>
+        <button onclick="limparImagem()">✕</button>
+      </div>
 
-  <div id="barra">
-    <button onclick="abrirSeletor()">Enviar Anexo</button>
-    <input type="file" id="input" accept="image/*" style="display:none" />
-    <input type="text" id="textoInput" />
-    <button onclick="enviar()">Enviar</button>
+      <div class="barra_mensagem" id="barra">
+        <img src="../assets/imgs/Chat/clippy-karl-klammer.gif" alt="" onclick="abrirSeletor()" />
+        <input type="file" id="input" style="display:none" />
+        <input type="text" id="textoInput" placeholder="Escreva sua mensagem aqui..." />
+        <img src="../assets/imgs/Chat/2886099.png" alt="" onclick="enviar()" />
+      </div>
+    </div>
   </div>
 </body>
 
@@ -30,7 +44,6 @@
 
 <script>
   var nomeUsuario = sessionStorage.getItem('NOME_USUARIO')
-  document.getElementById('nomeUsuario').textContent = nomeUsuario
   let imagemSelecionada = null
 
 

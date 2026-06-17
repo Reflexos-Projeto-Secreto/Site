@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+body {
+    background-color: black;
+    background-image: url(../assets/imgs/Chat/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.container-geral-chat {
+    position: relative;
+    z-index: 1;
+    width: 60%;
+}
+
+.container-mensagem {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 70vh;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: solid #e5e7eb 2px;
+}
+
+.container-mensagem img {
+    width: 70px;
+    height: 70px;
+}
+
+.cabecalho-chat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.cabecalho-chat img {
+    width: 50px;
+    height: 50px;
+}
+
+.cabecalho-chat h3 {
+    font-weight: 100;
+}
+
+#mensagem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 0;
+}
+
+.barra_mensagem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.barra_mensagem input {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.barra_mensagem img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.barra_mensagem button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
