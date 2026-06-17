@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+#transicao {
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 1.5s ease;
+}
+
+#transicao.fade-open {
+    opacity: 0;
+}
+
+.fade-out {
+    opacity: 1 !important;
+}
+
+.fade-open {
+    opacity: 0 !important;
+}
+
+.sprite-container {
+    flex: 0 0 0px;
+    margin: 0;
+}
+
+.container {
+    background-image: url("../assets/imgs/elevador/background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 48vw;
+    display: flex;
+    justify-content: center;
+    transition: filter 1s ease;
+}
+
+.container-ativo {
+    filter: blur(4px);
+}
+
+.container-elevador {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 800px;
+}
+
+.chamando {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.chamando button {
+    background: none;
+    border: none;
+    color: #E8D258;
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.chamando img {
+    width: 250px;
+}
+
+.depois-gif img{
+    width: 210px;
+}
+
+.imagem-com-gif {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.imagem-com-gif img{
+    margin-left: 6px;
+    width: 292px;
+}

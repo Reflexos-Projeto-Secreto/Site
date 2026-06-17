@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.container {
+    background-image: url("../assets/imgs/painel/background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 48vw;
+    display: flex;
+    justify-content: center;
+    filter: blur(6px);
+}
+
+.container-painel {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 800px;
+}
+
+#transicao {
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 1.5s ease;
+}
+
+#transicao.fade-open {
+    opacity: 0;
+}
