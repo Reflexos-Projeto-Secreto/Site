@@ -49,6 +49,12 @@ body::before {
     height: 100px;
 }
 
+.sair_chat img{
+    background-color: white;
+    padding: 2px;
+    opacity: 0.5;
+}
+
 .cabecalho-chat {
     display: flex;
     align-items: center;
