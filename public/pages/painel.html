@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflexos | Painel</title>
+    <link rel="stylesheet" type="text/css" href="../css/painel.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="transicao"></div>
+    <div class="container" id="container">
+      <div class="caixa-login"><button>Login</button></div>
+      <div class="container-painel">
+        <div class="titulo-painel"><h2>Escolha o seu andar</h2></div>
+        <div class="painel-botoes">
+          <div class="box-botoes">
+            <div class="botao-pai">
+              <div class="botao-filho">
+                <a href="andarJulia.html" id="julia">Andar Julia</a>
+              </div>
+              <div class="botao-filho">
+                <a href="andarDebora.html" id="debora">Andar Débora</a>
+              </div>
+            </div>
+            <div class="botao-pai">
+              <div class="botao-filho">
+               <a href="quiz.html" id="quiz">Quizzes</a>
+              </div>
+              <div class="botao-filho">
+                <a href="dashboard.html" id="dash">Dashboard</a>
+              </div>
+            </div>
+            <div class="botao-pai botao-baixo">
+              <div class="botao-filho">
+                <a href="andarJuntas.html" id="juntas">Andar juntas</a>
+              </div>
+              <div class="botao-filho">
+                <a href="chat.html" id="chat">Chat</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+    <script>
+        window.onload = function () {
+            const transicao = document.getElementById("transicao");
+
+            setTimeout(() => {
+                transicao.classList.add("fade-open");
+            }, 500);
+        }
+
+        function aplicarBlur() {
+            document
+                .getElementById("container")
+                .classList.add("container-ativo");
+        }
+    </script>
