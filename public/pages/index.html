@@ -12,12 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   </head>
   <body>
-    <div id="carregando" class="loading">
-      <div class="box-loading">
-        <img src="../assets/imgs/elevador/elevador lento.gif" alt="">
-        <div class="animation">Chamando Elevador</div>
-      </div>
-    </div>
+    <div id="transicao"></div>
     <div class="container" id="tela" onclick="entrar()">
       <div class="container-elevador">
         <img src="../assets/imgs/index/logo.png" alt="" class="logo">
@@ -32,24 +27,13 @@
 </html>
 
 <script>
-  let clicou = false;
 
   function entrar() {
-    if (clicou) return;
-    clicou = true;
-
-    const tela = document.getElementById("tela");
-    const carregando = document.getElementById("carregando");
-
-    tela.classList.add("subindo");
-
-    setTimeout(() => {
-      carregando.classList.add("ativo");
-    }, 500);
-
-    setTimeout(() => {
-      window.location.href = "elevador.html";
-    }, 4000);
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      setTimeout(() => {
+          window.location.href = "elevador.html";
+      }, 1500);
   }
 
 </script>

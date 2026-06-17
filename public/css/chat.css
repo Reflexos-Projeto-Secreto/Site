@@ -40,6 +40,8 @@ body::before {
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     border: solid #e5e7eb 2px;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .container-mensagem img {
@@ -53,6 +55,7 @@ body::before {
     gap: 10px;
     margin-bottom: 16px;
     color: white;
+    position: sticky;
 }
 
 .cabecalho-chat img {
@@ -66,13 +69,15 @@ body::before {
 
 #mensagem {
     flex: 1;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 10px 0;
+    padding: 20px;
 }
 
 .barra_mensagem {
+    flex-shrink: 0; /* isso aqui deixa a input de mensagem fixa mesmo com muitas mensagens, antes o input tava indo para baixo junto com as mensagens */
     display: flex;
     align-items: center;
     gap: 8px;
@@ -99,4 +104,15 @@ body::before {
     border: none;
     cursor: pointer;
     color: white;
+}
+
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: black;
+}
+::-webkit-scrollbar-thumb {
+    background: grey;
 }

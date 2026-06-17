@@ -5,46 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reflexos | Elevador</title>
     <link rel="stylesheet" type="text/css" href="../css/elevador.css">
-    <link rel="stylesheet" type="text/js" href="../js/elevador.js">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
+    <div id="transicao" onload="abrindo()"></div>
+    <div class="blur"></div>
+    <div class="container" id="blur">
       <div class="container-elevador">
-        <h2>Dentro do elevador</h2>
-        <div class="box-botoes">
-          <div class="botao-pai">
-            <div class="botao-filho">
-              <a href="andarJulia.html">Júlia</a>
-            </div>
-            <div class="botao-filho">
-              <a href="andarDebora.html">Debora</a>
-            </div>
+        <div class="chamando">
+          <div class="imagem-sem-gif">
+            <img src="../assets/imgs/elevador/elevadorSemGif.png" alt=""  id="imgSemGif">
           </div>
-          <div class="botao-pai">
-            <div class="botao-filho">
-             <a href="andarJulia.html">Andar Juntas</a>
-            </div>
-            <div class="botao-filho">
-              <a href="andarAnna.html">Anna</a>
-            </div>
+          <div class="depois-gif">
+            <img src="../assets/imgs/elevador/elevador3.png" alt=""  style="display: none;" id="imgDpsGif">
           </div>
-          <div class="botao-pai">
-            <div class="botao-filho">
-              <a href="andarIsa.html">Isa</a>
-            </div>
-            <div class="botao-filho">
-              <a href="andarSamu.html">Samuel</a>
-            </div>
+          <div class="imagem-com-gif">
+            <img src="../assets/imgs/elevador/elevador2.gif" alt=""  style="display: none;" id="imgGif">
           </div>
-          <div class="botao-pai">
-            <div class="botao-filho">
-              <a href="/pages/quiz.html">Quiz</a>
+          <button onclick="chamar()">Chamar elevador</button>
+        </div>
+        <div class="painel-botoes">
+          <div class="box-botoes" style="display: none;">
+            <div class="botao-pai">
+              <div class="botao-filho">
+                <a href="andarJulia.html">Júlia</a>
+              </div>
+              <div class="botao-filho">
+                <a href="andarDebora.html">Debora</a>
+              </div>
             </div>
-            <div class="botao-filho">
-             <a href="dashboard.html">Dashboard</a>
+            <div class="botao-pai">
+              <div class="botao-filho">
+               <a href="andarJulia.html">Andar Juntas</a>
+              </div>
+              <div class="botao-filho">
+                <a href="andarAnna.html">Anna</a>
+              </div>
             </div>
-            <div class="botao-filho">
-             <a href="/pages/chat.html">Chat</a>
+            <div class="botao-pai">
+              <div class="botao-filho">
+                <a href="andarIsa.html">Isa</a>
+              </div>
+              <div class="botao-filho">
+                <a href="andarSamu.html">Samuel</a>
+              </div>
+            </div>
+            <div class="botao-pai">
+              <div class="botao-filho">
+                <a href="/pages/quiz.html">Quiz</a>
+              </div>
+              <div class="botao-filho">
+               <a href="dashboard.html">Dashboard</a>
+              </div>
+              <div class="botao-filho">
+               <a href="/pages/chat.html">Chat</a>
+              </div>
             </div>
           </div>
         </div>
@@ -54,4 +71,38 @@
 </html>
 
 <script>
+
+  window.onload = function () {
+      const transicao = document.getElementById("transicao");
+
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
+  }
+
+  function fecharTela() {
+      const fechar = document.getElementById("transicao");
+
+      fechar.classList.remove("fade-open");
+
+      setTimeout(() => {
+          window.location.href = "painel.html";
+      }, 1500);
+  }
+
+  function chamar() {
+    const fundoBlur = document.getElementById('blur');
+    const imagemDpsGif = document.getElementById('imgDpsGif');
+    const imagemSemGif = document.getElementById('imgSemGif');
+    const imagemGif = document.getElementById('imgGif');
+
+    fundoBlur.classList.add("container-ativo")
+    imagemSemGif.style.display = "none"
+    imagemGif.style.display = "flex"
+    
+    setTimeout(() => {
+        fecharTela()
+    }, 535);
+  }
+
 </script>

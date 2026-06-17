@@ -62,80 +62,29 @@
     font-size: 27px;
 }
 
-
-#tela {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
-.subindo {
-  animation: subirParaNuvens 1.9s ease-in forwards;
-  
-}
-
-@keyframes subirParaNuvens {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  70% {
-    transform: translateY(-100vh);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(-120vh);
+#transicao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 9999;
+    pointer-events: none;
     opacity: 0;
-  }
+    transition: opacity 1.5s ease;
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
+.fade-out {
+    opacity: 1 !important;
 }
 
-@keyframes blink-caret {
-  50% {
-    border-color: transparent;
-  }
-}
-
-.loading {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: url("../assets/imgs/elevador/background.png") center center / cover no-repeat;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.loading.ativo {
-  display: flex;
-}
-
-.box-loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  gap: 20px;
-}
-
-.box-loading img {
-  width: 120px;
-}
-
-.animation {
-  color: #F8EBFF;
-  font: bold 200% "Pixelify Sans", sans-serif;
-  border-right: .1em solid #F8EBFF;
-  width: 13.2ch;
-  white-space: nowrap;
-  overflow: hidden;
+.sprite-container {
+    flex: 0 0 0px;
+    margin: 0;
 }
