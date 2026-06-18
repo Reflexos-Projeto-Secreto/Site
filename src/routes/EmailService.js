@@ -10,9 +10,9 @@ var transporter = nodemailer.createTransport({
 })
 
 var playlists = {
-    "julia":  "https://open.spotify.com/playlist/7IsneNrnjgPkEc1BLkBwwi?si=44e509a194b54793",
-    "debora": "https://open.spotify.com/playlist/5AWE4eH44IYbdmIqVzCSAi?si=51658fece0164772",
-    "empate":  "https://open.spotify.com/playlist/3HvgaZeBWbr7UjFeicPFRI?si=1213edb0f0fb424a"
+    "julia":  "https://open.spotify.com/playlist/5lYgPthlYg24aBQUtJEdeW?si=adc9b0b2894e416d",
+    "debora": "https://open.spotify.com/playlist/56V8jY6fmWI7D7lKPVgPZU?si=9c4fa2d4763444a0",
+    "empate":  "https://open.spotify.com/playlist/7gjJoBoKrETWUen8YmsxVw?si=45e70bf880e94d5f"
 }
 
 function enviarEmail(emailDestino, nomeUsuario, resultado) {
