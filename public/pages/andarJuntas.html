@@ -1,23 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reflexos | Andar Juntas</title>
     <link rel="stylesheet" type="text/css" href="../css/andarJuntas.css">
-    <link rel="stylesheet" type="text/js" href="../js/andarJuntas.js">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="transicao"></div>
+    <div class="container">
+      <div class="navbar">
+        <div class="topo-titulo pixel-frame quadrado-roxo-escuro">
+          <div class="pixel-atras"></div>
+          <div class="pixel-frente"></div>
+          <div class="topo-titulo-conteudo pixel-conteudo">
+            <h1>Reflexos</h1>
+          </div>
+        </div>
+
+        <div class="topo-imagem pixel-frame quadrado-roxo-imagem">
+          <div class="pixel-atras"></div>
+          <div class="pixel-frente"></div>
+          <div class="topo-imagem-conteudo pixel-conteudo">
+            <img src="../assets/imgs/geral/usuario.png" alt="" onclick="usuario()" style="cursor: pointer;">
+          </div>
+        </div>
+      </div>
+      <div class="box-quadrados">
+        <div class="container-perfil perfil-julia pixel-frame quadrado-roxo-claro">
+          <div class="pixel-atras"></div>
+          <div class="pixel-frente"></div>
+          <div class="box-perfil pixel-conteudo">
+            <div class="imagem-perfil">
+              <img src="../assets/imgs/andarJuntas/peixes.png" alt="">
+            </div>
+  
+            <div class="texto-perfil">
+              <div class="titulo-perfil pixel-frame quadrado-roxo-escuro">
+                <div class="pixel-atras"></div>
+                <div class="pixel-frente"></div>
+                <div class="titulo-perfil-conteudo pixel-conteudo">
+                  <h2>Júlia Araripe</h2>
+                </div>
+              </div>
+  
+              <div class="caixa-perfil pixel-frame quadrado-texto-roxo">
+                <div class="pixel-atras"></div>
+                <div class="pixel-frente"></div>
+                <div class="caixa-perfil-conteudo pixel-conteudo">
+                  <p>Blueblueblue</p>
+                </div>
+              </div>
+  
+              <button class="botao-detalhes botao-roxo" type="button" onclick="julia()">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="container-perfil perfil-debora pixel-frame quadrado-laranja-claro">
+          <div class="pixel-atras"></div>
+          <div class="pixel-frente"></div>
+          <div class="box-perfil pixel-conteudo">
+            <div class="imagem-perfil">
+              <img src="../assets/imgs/andarJuntas/molhos.png" alt="">
+            </div>
+  
+            <div class="texto-perfil">
+              <div class="titulo-perfil pixel-frame quadrado-laranja-escuro">
+                <div class="pixel-atras"></div>
+                <div class="pixel-frente"></div>
+                <div class="titulo-perfil-conteudo pixel-conteudo">
+                  <h2>Débora Flores</h2>
+                </div>
+              </div>
+  
+              <div class="caixa-perfil pixel-frame quadrado-texto-laranja">
+                <div class="pixel-atras"></div>
+                <div class="pixel-frente"></div>
+                <div class="caixa-perfil-conteudo pixel-conteudo">
+                  <p>Blueblueblue</p>
+                </div>
+              </div>
+  
+              <button class="botao-detalhes botao-laranja" type="button" onclick="debora()">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="container-informacoes informacoes-roxo">
+          <div class="fundo-informacoes pixel-frame quadrado-roxo-claro">
+            <div class="pixel-atras"></div>
+            <div class="pixel-frente"></div>
+          </div>
+  
+          <div class="titulo-informacoes pixel-frame quadrado-roxo-escuro">
+            <div class="pixel-atras"></div>
+            <div class="pixel-frente"></div>
+            <div class="titulo-informacoes-conteudo pixel-conteudo">
+              <h2>LOREM IPSUM</h2>
+            </div>
+          </div>
+  
+          <img class="estrela-laranja" src="../assets/imgs/andarJuntas/estrelaLaranja.png" alt="">
+  
+          <div class="box-informacoes pixel-conteudo">
+            <div class="card-informacao pixel-frame card-roxo">
+              <div class="pixel-atras"></div>
+              <div class="pixel-frente"></div>
+              <div class="card-informacao-conteudo pixel-conteudo">
+                <p>
+                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
+                  tipográfica e de impressos, e vem sendo utilizado desde o século
+                  XVI. Lorem Ipsum é simplesmente uma simulação de texto da
+                  indústria tipográfica.
+                </p>
+              </div>
+            </div>
+  
+            <div class="card-informacao pixel-frame card-roxo">
+              <div class="pixel-atras"></div>
+              <div class="pixel-frente"></div>
+              <div class="card-informacao-conteudo pixel-conteudo">
+                <p>
+                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
+                  tipográfica e de impressos, e vem sendo utilizado desde o século
+                  XVI. Lorem Ipsum é simplesmente uma simulação de texto da
+                  indústria tipográfica.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="container-informacoes informacoes-laranja">
+          <div class="fundo-informacoes pixel-frame quadrado-laranja-claro">
+            <div class="pixel-atras"></div>
+            <div class="pixel-frente"></div>
+          </div>
+  
+          <div class="titulo-informacoes titulo-central pixel-frame quadrado-laranja-escuro">
+            <div class="pixel-atras"></div>
+            <div class="pixel-frente"></div>
+            <div class="titulo-informacoes-conteudo pixel-conteudo">
+              <h2>LOREM IPSUM</h2>
+            </div>
+          </div>
+  
+          <img class="estrela-roxa" src="../assets/imgs/andarJuntas/estrelaRoxo.png" alt="">
+  
+          <div class="box-informacoes pixel-conteudo">
+            <div class="card-informacao pixel-frame card-laranja">
+              <div class="pixel-atras"></div>
+              <div class="pixel-frente"></div>
+              <div class="card-informacao-conteudo pixel-conteudo">
+                <p>
+                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
+                  tipográfica e de impressos, e vem sendo utilizado desde o século
+                  XVI. Lorem Ipsum é simplesmente uma simulação de texto.
+                </p>
+              </div>
+            </div>
+  
+            <div class="card-informacao pixel-frame card-laranja">
+              <div class="pixel-atras"></div>
+              <div class="pixel-frente"></div>
+              <div class="card-informacao-conteudo pixel-conteudo">
+                <p>
+                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
+                  tipográfica e de impressos, e vem sendo utilizado desde o século
+                  XVI. Lorem Ipsum é simplesmente uma simulação de texto.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
 
 <script>
   window.onload = function () {
-      const transicao = document.getElementById("transicao");
+    const transicao = document.getElementById("transicao");
 
+    setTimeout(() => {
+      transicao.classList.add("fade-open");
+    }, 500);
+  };
+
+  function julia() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
       setTimeout(() => {
-          transicao.classList.add("fade-open");
-      }, 500);
+          window.location.href = "andarJulia.html";
+      }, 1500);
+  }
+
+  function debora() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "andarDebora.html";
+      }, 1500);
+  }
+
+  function usuario() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "config.html";
+      }, 1500);
+  }
+
+  function sair() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "elevador.html";
+      }, 1500);
   }
 </script>

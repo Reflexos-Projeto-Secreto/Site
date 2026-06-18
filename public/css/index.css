@@ -11,7 +11,6 @@
 
 .container {
     background-image: url("../assets/imgs/index/SPTECH.png");
-    background-repeat: no-repeat;
     background-size: contain;
     background-size: 100%;
     min-height: 48vw;

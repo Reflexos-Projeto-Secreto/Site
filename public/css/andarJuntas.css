@@ -8,12 +8,12 @@
 html,
 body {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
 }
 
 body {
-    background: black;
+    background: #0F172C;
+    background: linear-gradient(180deg, rgba(15, 23, 44, 1) 47%, rgba(0, 0, 0, 1) 100%);
 }
 
 #transicao {
@@ -50,4 +50,359 @@ body {
 
 .fade-out {
     opacity: 1 !important;
+}
+
+img {
+    display: block;
+    image-rendering: pixelated;
+}
+
+.container {
+    background-image: url("../assets/imgs/andarJuntas/background.png");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100% 610px;
+    min-height: 100vh;
+    padding-top: 22px;
+    padding-bottom: 56px;
+}
+
+.pixel-frame {
+    position: relative;
+    filter: drop-shadow(7px 7px 0 rgba(5, 7, 20, 0.45));
+}
+
+.quadrado-roxo-escuro {
+    --pixel-fundo: #353163;
+    --pixel-borda: #272258;
+}
+
+.quadrado-roxo-imagem {
+    --pixel-fundo: #716bab;
+    --pixel-borda: #353163;
+}
+
+.quadrado-roxo-claro {
+    --pixel-fundo: #7974c8;
+    --pixel-borda: #3c366a;
+}
+
+.quadrado-texto-roxo {
+    --pixel-fundo: #6d4bb0;
+    --pixel-borda: #7154b3;
+}
+
+.quadrado-laranja-claro {
+    --pixel-fundo: #ffc29c;
+    --pixel-borda: #bf5e2f;
+}
+
+.quadrado-laranja-escuro {
+    --pixel-fundo: #d77443;
+    --pixel-borda: #b55226;
+}
+
+.quadrado-texto-laranja,
+.card-laranja {
+    --pixel-fundo: #d17c51;
+    --pixel-borda: #d17c51;
+}
+
+.card-roxo {
+    --pixel-fundo: #d5ceff;
+    --pixel-borda: #8d84bd;
+}
+
+.pixel-atras,
+.pixel-frente {
+    position: absolute;
+    pointer-events: none;
+}
+
+.pixel-atras {
+    inset: 0;
+    z-index: 0;
+    background-color: var(--pixel-fundo);
+    border-left: 4px solid var(--pixel-borda);
+    border-right: 4px solid var(--pixel-borda);
+}
+
+.pixel-frente {
+    top: -3px;
+    right: 4px;
+    bottom: -3px;
+    left: 4px;
+    z-index: 1;
+    background-color: var(--pixel-fundo);
+    border-top: 4px solid var(--pixel-borda);
+    border-bottom: 4px solid var(--pixel-borda);
+}
+
+.pixel-conteudo {
+    position: relative;
+    z-index: 2;
+}
+
+.navbar {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: min(95vw, 1120px);
+    margin: 0 auto 26px;
+}
+
+.topo-titulo {
+    width: 335px;
+    height: 85px;
+}
+
+.topo-titulo-conteudo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 51px;
+}
+
+.topo-titulo h1 {
+    color: #dcdaff;
+    font-size: 52px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.topo-imagem {
+    width: 125px;
+    height: 85px;
+}
+
+.topo-imagem-conteudo {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.topo-imagem img {
+    width: 55px;
+    height: 55px;
+}
+
+.container-perfil,
+.container-informacoes {
+    width: min(88vw, 1035px);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-perfil {
+    min-height: 335px;
+}
+
+.perfil-debora {
+    margin-top: 62px;
+}
+
+.box-perfil {
+    display: grid;
+    grid-template-columns: 365px 1fr;
+    align-items: center;
+    min-height: 335px;
+    padding: 46px 60px;
+}
+
+.imagem-perfil {
+    display: flex;
+    justify-content: center;
+}
+
+.imagem-perfil img {
+    max-width: 245px;
+    max-height: 205px;
+}
+
+.perfil-debora .imagem-perfil img {
+    max-width: 205px;
+    max-height: 175px;
+}
+
+.texto-perfil {
+    position: relative;
+    width: 515px;
+}
+
+.titulo-perfil {
+    width: 225px;
+    min-height: 58px;
+    z-index: 1;
+}
+
+.titulo-perfil-conteudo {
+    display: grid;
+    place-items: center;
+    min-height: 58px;
+    padding: 0 18px;
+}
+
+.titulo-perfil h2 {
+    color: #f6efff;
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.caixa-perfil {
+    width: 100%;
+    min-height: 143px;
+    margin-top: -3px;
+}
+
+.caixa-perfil-conteudo {
+    padding: 42px 38px;
+}
+
+.caixa-perfil p {
+    color: #fff0ff;
+    font-size: 17px;
+}
+
+.botao-detalhes {
+    width: 230px;
+    height: 40px;
+    margin-top: 27px;
+    border: none;
+    color: #fff0ff;
+    cursor: pointer;
+    font-size: 23px;
+    transition: filter 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.botao-roxo {
+    background-color: #353163;
+    box-shadow: 4px 4px 0 #272258;
+}
+
+.botao-laranja {
+    background-color: #bf5e2f;
+    box-shadow: 4px 4px 0 #9d451d;
+}
+
+.botao-detalhes:hover {
+    filter: brightness(1.15);
+}
+
+.botao-detalhes:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 transparent;
+}
+
+.container-informacoes {
+    position: relative;
+    min-height: 490px;
+    margin-top: 84px;
+    padding: 112px 50px 115px;
+}
+
+.fundo-informacoes {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.informacoes-roxo .fundo-informacoes .pixel-atras,
+.informacoes-roxo .fundo-informacoes .pixel-frente {
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - 52px),
+        61% calc(100% - 52px),
+        61% 100%,
+        0 100%
+    );
+}
+
+.titulo-informacoes {
+    position: absolute;
+    top: 36px;
+    left: 48px;
+    z-index: 3;
+    width: 258px;
+    min-height: 58px;
+}
+
+.titulo-central {
+    top: -29px;
+    left: 50%;
+    width: 326px;
+    min-height: 70px;
+    transform: translateX(-50%);
+}
+
+.titulo-informacoes-conteudo {
+    display: grid;
+    place-items: center;
+    min-height: 58px;
+    padding: 0 18px;
+}
+
+.titulo-central .titulo-informacoes-conteudo {
+    min-height: 70px;
+}
+
+.titulo-informacoes h2 {
+    color: #f6efff;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.box-informacoes {
+    display: grid;
+    grid-template-columns: 390px 390px;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.card-informacao {
+    min-height: 262px;
+}
+
+.card-informacao-conteudo {
+    padding: 43px 39px;
+}
+
+.card-informacao p {
+    color: #5f568f;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.informacoes-laranja {
+    margin-top: 86px;
+    min-height: 460px;
+    padding: 112px 100px 82px;
+}
+
+.informacoes-laranja .box-informacoes {
+    grid-template-columns: 375px 375px;
+}
+
+.informacoes-laranja .card-informacao p {
+    color: #fff0e8;
+}
+
+.estrela-laranja,
+.estrela-roxa {
+    position: absolute;
+    z-index: 4;
+    width: 82px;
+}
+
+.estrela-laranja {
+    top: 92px;
+    right: 16px;
+}
+
+.estrela-roxa {
+    top: 72px;
+    left: 53px;
 }

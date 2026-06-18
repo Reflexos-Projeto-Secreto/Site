@@ -39,9 +39,8 @@
 
 .container {
     background-image: url("../assets/imgs/elevador/background.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-size: 100%;
     min-height: 48vw;
     display: flex;
     justify-content: center;
