@@ -1,204 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reflexos | Dashboard</title>
     <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
-    <link rel="stylesheet" type="text/js" href="../js/dashboard.js">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body>
-    <div id="transicao"></div>
+</head>
+
+<body>
     <div class="header">
-      <div class="navbar">
-        <div class="lado-esquerdo-nav">
-          <div class="quadrados-topo-esquerda">
-            <div class="topo-titulo pixel-frame pixel-escuro-primeiro">
-              <div class="quadrado-atras-titulo pixel-atras"></div>
-              <div class="quadrado-frente-titulo pixel-frente"></div>
-              <div class="topo-titulo-conteudo pixel-conteudo">
-                <h2>Reflexos</h2>
-              </div>
+        <div class="navbar">
+            <div class="lado-esquerdo-nav">
+                <div class="quadrados-topo-esquerda">
+                    <div class="topo-titulo pixel-frame pixel-escuro-primeiro">
+                        <div class="quadrado-atras-titulo pixel-atras"></div>
+                        <div class="quadrado-frente-titulo pixel-frente"></div>
+                        <div class="topo-titulo-conteudo pixel-conteudo">
+                            <h2>Reflexos</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div class="lado-direito-nav">
+                <div class="quadrados-topo-direita">
+                    <div class="topo-imagem pixel-frame pixel-roxo-imagem">
+                        <div class="quadrado-atras-imagem pixel-atras"></div>
+                        <div class="quadrado-frente-imagem pixel-frente"></div>
+                        <div class="topo-imagem-conteudo pixel-conteudo">
+                            <img src="../assets/imgs/geral/usuario.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="lado-direito-nav">
-          <div class="quadrados-topo-direita">
-            <div class="topo-imagem pixel-frame pixel-roxo-imagem">
-              <div class="quadrado-atras-imagem pixel-atras"></div>
-              <div class="quadrado-frente-imagem pixel-frente"></div>
-              <div class="topo-imagem-conteudo pixel-conteudo">
-                <img src="../assets/imgs/geral/usuario.png">
-              </div>
+        <div class="container_geral">
+            <div class="container_kpi">
+                <div class="kpi">
+                    <h3>Quantidade de eventos com o mes que foi mais marcado</h3>
+                    <span>47</span>
+                    <p>Temos uma maior quantidade de eventos no mes</p>
+                </div>
+                <div class="kpi">
+                    <h3>Qual e o proximo evento marcado</h3>
+                    <span>Empresas</span>
+                    <p>Teremos um evento no dia</p>
+                </div>
+                <div class="kpi">
+                    <h3>Quem esta em primeiro no ranking de pontos</h3>
+                    <span>Julia Araripe</span>
+                    <p>a Julia Araripe esta em primeiro lugar com 15 pontos</p>
+                </div>
+                <div class="kpi">
+                    <h3>Nas conversas do chat quem teve maior quantidade de mensagens enviadas</h3>
+                    <span>Julia Araripe</span>
+                    <p>a Julia Araripe esta em primeiro lugar com 23 mensagens no chat</p>
+                </div>
             </div>
-          </div>
+            <div class="container_graficos">
+                <div class="grafico">
+                    <canvas id="chartQtdQuizRespondido"></canvas>
+                </div>
+                <div class="grafico">
+                    <canvas id="chartQuizConhecimento"></canvas>
+                </div>
+            </div>
+            <div class="container_grafico3">
+                <div class="grafico">
+                    <canvas id="chartQuantidadeEventos"></canvas>
+                </div>
+            </div>
         </div>
-      </div>
-      
-   <div class="container_geral">
-       <div class="container_kpi">
-            <div class="kpi">
-                <h3>Quantidade de eventos com o mes que foi mais marcado</h3>
-                <span>47</span>
-                <p>Temos uma maior quantidade de eventos no mes</p>
-            </div>
-            <div class="kpi">
-                <h3>Qual e o proximo evento marcado</h3>
-                <span>Empresas</span>
-                <p>Teremos um evento no dia</p>
-            </div>
-            <div class="kpi">
-                <h3>Quem esta em primeiro no ranking de pontos</h3>
-                <span>Julia Araripe</span>
-                <p>a Julia Araripe esta em primeiro lugar com 15 pontos</p>
-            </div>
-            <div class="kpi">
-                <h3>Nas conversas do chat quem teve maior quantidade de mensagens enviadas</h3>
-                <span>Julia Araripe</span>
-                <p>a Julia Araripe esta em primeiro lugar com 23 mensagens no chat</p>
-            </div>
-       </div>
-       <div class="container_graficos">
-            <div class="grafico">
-                <canvas id="chartQtdQuizRespondido"></canvas>
-            </div>
-            <div class="grafico">
-                <canvas id="chartQuizConhecimento"></canvas>
-            </div>
-       </div>
-       <div class="container_grafico3">
-           <div class="grafico">
-                <canvas id="chartQuantidadeEventos"></canvas>
-            </div>
-       </div>
-   </div>
-  </body>
+</body>
+
 </html>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
+
+    let gapiInited = false;
+
+    function gapiLoaded() {
+        gapi.load('client', async () => {
+            await gapi.client.init({
+                apiKey: 'AIzaSyB9IdbdRYoXUazFx489vBbVruFK-U11wv4',
+                discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
+            });
+            gapiInited = true;
+        });
+    }
+
+    function gisLoaded() { }
+
+
+    document.addEventListener("DOMContentLoaded", async () => {
 
         Chart.defaults.color = 'white';
-        
+
+        fetch('/dados/primeiro-pontuacao')
+            .then(function (res) { return res.json(); })
+            .then(function (dado) {
+                document.querySelector('.kpi:nth-child(3) span').textContent = dado.nomeUsuario;
+                document.querySelector('.kpi:nth-child(3) p').textContent =
+                    `${dado.nomeUsuario} está em primeiro lugar com ${dado.totalPontos} pontos`;
+            });
+
+        fetch('/dados/quem-mais-mensagens')
+            .then(function (res) { return res.json(); })
+            .then(function (dado) {
+                document.querySelector('.kpi:nth-child(4) span').textContent = dado.nomeUsuario;
+                document.querySelector('.kpi:nth-child(4) p').textContent =
+                    `${dado.nomeUsuario} está em primeiro lugar com ${dado.totalMensagens} mensagens no chat`;
+            });
+
         const ctxQuizRespondido = document.getElementById('chartQtdQuizRespondido');
         const ctxQuizConhecimento = document.getElementById('chartQuizConhecimento');
         const ctxQtdEventos = document.getElementById('chartQuantidadeEventos');
 
-        const chartQuizRespondido = new Chart(ctxQuizRespondido, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                datasets: [{
-                    label: 'Respostas do Quiz',
-                    data: [25, 10, 30, 15, 20, 10, 30, 40, 20, 30, 40, 17],
-                    borderColor: '#663C1F',
-                    backgroundColor: 'rgba(150, 75, 0, 0.08)',
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Quantidade de vezes que o quiz foi respondido',
-                        align: 'start',
-                        font: { size: 18 }
+        fetch('/dados/mensagens-por-mes')
+            .then(function (res) { return res.json(); })
+            .then(function (dados) {
+                var meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+                var totais = Array(12).fill(0);
+
+                dados.forEach(function (item) {
+                    totais[item.mes - 1] = item.total;
+                });
+
+                new Chart(ctxQuizRespondido, {
+                    type: 'line',
+                    data: {
+                        labels: meses,
+                        datasets: [{
+                            label: 'Respostas do Quiz',
+                            data: totais,
+                            borderColor: '#663C1F',
+                            backgroundColor: 'rgba(150, 75, 0, 0.08)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Quantidade de vezes que o quiz foi respondido',
+                                align: 'start',
+                                font: { size: 18 }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Respostas'
+                                }
+                            }
+                        }
                     }
+                });
+            });
+
+        fetch('/dados/acertos-erros')
+            .then(function (res) { return res.json(); })
+            .then(function (dado) {
+                new Chart(ctxQuizConhecimento, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Acertos', 'Erros'],
+                        datasets: [{
+                            label: 'Quantidade',
+                            data: [dado.acertos, dado.erros],
+                            backgroundColor: [
+                                '#22c55e',
+                                '#ef4444'
+                            ],
+                            borderRadius: 5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Quantidade de acertos no quiz de conhecimento',
+                                align: 'start',
+                                font: { size: 18 }
+                            },
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Quantidade'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+        async function carregarEventosPorMes() {
+            const request = {
+                calendarId: 'primary',
+                timeMin: new Date('2025-01-01').toISOString(),
+                timeMax: new Date('2025-12-31').toISOString(),
+                showDeleted: false,
+                singleEvents: true,
+                maxResults: 500,
+                orderBy: 'startTime',
+            };
+
+            const response = await gapi.client.calendar.events.list(request);
+            const events = response.result.items;
+
+            var totais = Array(12).fill(0);
+
+            events.forEach(function (event) {
+                var data = event.start.dateTime || event.start.date;
+                var mes = new Date(data).getMonth();
+                totais[mes]++;
+            });
+
+            new Chart(ctxQtdEventos, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    datasets: [{
+                        label: 'Quantidade',
+                        data: totais,
+                        backgroundColor: ['#663C1F'],
+                        borderRadius: 5
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
                         title: {
                             display: true,
-                            text: 'Respostas'
+                            text: 'Quantidade de eventos de acordo com o mes',
+                            align: 'start',
+                            font: { size: 18 }
                         }
                     }
                 }
-            }
-        });
+            });
+        }
 
-        const chartQuizConhecimento = new Chart(ctxQuizConhecimento, {
-            type: 'bar',
-            data: {
-                labels: ['Acertos', 'Erros'],
-                datasets: [{
-                    label: 'Quantidade',
-                    data: [27, 23],
-                    backgroundColor: [
-                        '#22c55e', 
-                        '#ef4444'
-                    ],
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Quantidade de acertos no quiz de conhecimento',
-                        align: 'start',
-                        font: { size: 18 }
-                    },
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Quantidade'
+        const token = sessionStorage.getItem('googleToken');
+        console.log('token:', token);
+
+        if (token) {
+            function aguardarGapi() {
+                return new Promise((resolve) => {
+                    function checar() {
+                        if (gapiInited) {
+                            resolve();
+                        } else {
+                            setTimeout(checar, 100);
                         }
                     }
+                    checar();
+                });
+            }
+
+            await aguardarGapi();
+            gapi.client.setToken(JSON.parse(token));
+
+            async function carregarMesComMaisEventos() {
+                const response = await gapi.client.calendar.events.list({
+                    calendarId: 'primary',
+                    timeMin: new Date('2025-01-01').toISOString(),
+                    timeMax: new Date('2025-12-31').toISOString(),
+                    showDeleted: false,
+                    singleEvents: true,
+                    maxResults: 500,
+                    orderBy: 'startTime',
+                });
+
+                const events = response.result.items;
+                var totais = Array(12).fill(0);
+                var meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+                events.forEach(function (event) {
+                    var data = event.start.dateTime || event.start.date;
+                    var mes = new Date(data).getMonth();
+                    totais[mes]++;
+                });
+
+                var maiorQtd = Math.max(...totais);
+                var mesMaisEventos = meses[totais.indexOf(maiorQtd)];
+
+                document.querySelector('.kpi:nth-child(1) span').textContent = maiorQtd;
+                document.querySelector('.kpi:nth-child(1) p').textContent =
+                    `Temos uma maior quantidade de eventos em ${mesMaisEventos}`;
+            }
+
+            async function carregarProximoEvento() {
+                const response = await gapi.client.calendar.events.list({
+                    calendarId: 'primary',
+                    timeMin: new Date().toISOString(),
+                    showDeleted: false,
+                    singleEvents: true,
+                    maxResults: 1,
+                    orderBy: 'startTime',
+                });
+
+                const events = response.result.items;
+
+                if (events.length > 0) {
+                    const proximoEvento = events[0];
+                    const data = proximoEvento.start.dateTime || proximoEvento.start.date;
+                    const dataFormatada = new Date(data).toLocaleDateString('pt-BR');
+
+                    document.querySelector('.kpi:nth-child(2) span').textContent = proximoEvento.summary;
+                    document.querySelector('.kpi:nth-child(2) p').textContent =
+                        `Teremos um evento no dia ${dataFormatada}`;
                 }
             }
-        });
 
-        const chartQtdEventos = new Chart(ctxQtdEventos, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                datasets: [{
-                    label: 'Quantidade',
-                    data: [22, 23, 16, 19, 21, 17, 13, 27, 33, 19, 23, 26],
-                    backgroundColor: ['#663C1F'],
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Quantidade de eventos de acordo com o mes',
-                        align: 'start',
-                        font: {
-                            size: 18
-                        }
-                    },
-                },
-            }
-        });
-    })
+            await carregarMesComMaisEventos();
+            await carregarProximoEvento();
+            await carregarEventosPorMes();
+        }
 
-    window.onload = function () {
-        const transicao = document.getElementById("transicao");
-
-        setTimeout(() => {
-            transicao.classList.add("fade-open");
-        }, 500);
-    }
+    });
 </script>
