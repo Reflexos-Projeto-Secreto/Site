@@ -87,17 +87,17 @@
 
     let gapiInited = false;
 
-        function gapiLoaded() {
-            gapi.load('client', async () => {
-                await gapi.client.init({
-                    apiKey: 'AIzaSyB9IdbdRYoXUazFx489vBbVruFK-U11wv4',
-                    discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
-                });
-                gapiInited = true;
+    function gapiLoaded() {
+        gapi.load('client', async () => {
+            await gapi.client.init({
+                apiKey: 'AIzaSyB9IdbdRYoXUazFx489vBbVruFK-U11wv4',
+                discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
             });
-        }
+            gapiInited = true;
+        });
+    }
 
-        function gisLoaded() { }
+    function gisLoaded() { }
 
 
     document.addEventListener("DOMContentLoaded", async () => {
@@ -172,71 +172,175 @@
                 });
             });
 
-        const chartQuizConhecimento = new Chart(ctxQuizConhecimento, {
-            type: 'bar',
-            data: {
-                labels: ['Acertos', 'Erros'],
-                datasets: [{
-                    label: 'Quantidade',
-                    data: [27, 23],
-                    backgroundColor: [
-                        '#22c55e', 
-                        '#ef4444'
-                    ],
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Quantidade de acertos no quiz de conhecimento',
-                        align: 'start',
-                        font: { size: 18 }
+        fetch('/dados/acertos-erros')
+            .then(function (res) { return res.json(); })
+            .then(function (dado) {
+                new Chart(ctxQuizConhecimento, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Acertos', 'Erros'],
+                        datasets: [{
+                            label: 'Quantidade',
+                            data: [dado.acertos, dado.erros],
+                            backgroundColor: [
+                                '#22c55e',
+                                '#ef4444'
+                            ],
+                            borderRadius: 5
+                        }]
                     },
-                    legend: {
-                        display: false
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Quantidade de acertos no quiz de conhecimento',
+                                align: 'start',
+                                font: { size: 18 }
+                            },
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Quantidade'
+                                }
+                            }
+                        }
                     }
+                });
+            });
+
+        async function carregarEventosPorMes() {
+            const request = {
+                calendarId: 'primary',
+                timeMin: new Date('2025-01-01').toISOString(),
+                timeMax: new Date('2025-12-31').toISOString(),
+                showDeleted: false,
+                singleEvents: true,
+                maxResults: 500,
+                orderBy: 'startTime',
+            };
+
+            const response = await gapi.client.calendar.events.list(request);
+            const events = response.result.items;
+
+            var totais = Array(12).fill(0);
+
+            events.forEach(function (event) {
+                var data = event.start.dateTime || event.start.date;
+                var mes = new Date(data).getMonth();
+                totais[mes]++;
+            });
+
+            new Chart(ctxQtdEventos, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    datasets: [{
+                        label: 'Quantidade',
+                        data: totais,
+                        backgroundColor: ['#663C1F'],
+                        borderRadius: 5
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
                         title: {
                             display: true,
-                            text: 'Quantidade'
+                            text: 'Quantidade de eventos de acordo com o mes',
+                            align: 'start',
+                            font: { size: 18 }
                         }
                     }
                 }
-            }
-        });
+            });
+        }
 
-        const chartQtdEventos = new Chart(ctxQtdEventos, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                datasets: [{
-                    label: 'Quantidade',
-                    data: [22, 23, 16, 19, 21, 17, 13, 27, 33, 19, 23, 26],
-                    backgroundColor: ['#663C1F'],
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Quantidade de eventos de acordo com o mes',
-                        align: 'start',
-                        font: {
-                            size: 18
+        const token = sessionStorage.getItem('googleToken');
+        console.log('token:', token);
+
+        if (token) {
+            function aguardarGapi() {
+                return new Promise((resolve) => {
+                    function checar() {
+                        if (gapiInited) {
+                            resolve();
+                        } else {
+                            setTimeout(checar, 100);
                         }
-                    },
-                },
+                    }
+                    checar();
+                });
             }
-        });
-    })
+
+            await aguardarGapi();
+            gapi.client.setToken(JSON.parse(token));
+
+            async function carregarMesComMaisEventos() {
+                const response = await gapi.client.calendar.events.list({
+                    calendarId: 'primary',
+                    timeMin: new Date('2025-01-01').toISOString(),
+                    timeMax: new Date('2025-12-31').toISOString(),
+                    showDeleted: false,
+                    singleEvents: true,
+                    maxResults: 500,
+                    orderBy: 'startTime',
+                });
+
+                const events = response.result.items;
+                var totais = Array(12).fill(0);
+                var meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+                events.forEach(function (event) {
+                    var data = event.start.dateTime || event.start.date;
+                    var mes = new Date(data).getMonth();
+                    totais[mes]++;
+                });
+
+                var maiorQtd = Math.max(...totais);
+                var mesMaisEventos = meses[totais.indexOf(maiorQtd)];
+
+                document.querySelector('.kpi:nth-child(1) span').textContent = maiorQtd;
+                document.querySelector('.kpi:nth-child(1) p').textContent =
+                    `Temos uma maior quantidade de eventos em ${mesMaisEventos}`;
+            }
+
+            async function carregarProximoEvento() {
+                const response = await gapi.client.calendar.events.list({
+                    calendarId: 'primary',
+                    timeMin: new Date().toISOString(),
+                    showDeleted: false,
+                    singleEvents: true,
+                    maxResults: 1,
+                    orderBy: 'startTime',
+                });
+
+                const events = response.result.items;
+
+                if (events.length > 0) {
+                    const proximoEvento = events[0];
+                    const data = proximoEvento.start.dateTime || proximoEvento.start.date;
+                    const dataFormatada = new Date(data).toLocaleDateString('pt-BR');
+
+                    document.querySelector('.kpi:nth-child(2) span').textContent = proximoEvento.summary;
+                    document.querySelector('.kpi:nth-child(2) p').textContent =
+                        `Teremos um evento no dia ${dataFormatada}`;
+                }
+            }
+
+            await carregarMesComMaisEventos();
+            await carregarProximoEvento();
+            await carregarEventosPorMes();
+        }
+
+    });
 </script>
