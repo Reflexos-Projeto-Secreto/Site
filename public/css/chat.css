@@ -25,6 +25,42 @@ body::before {
     z-index: 0;
 }
 
+#transicao {
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 1.5s ease;
+}
+
+#transicao.fade-open {
+    opacity: 0;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.transicao-ativo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.fade-out {
+    opacity: 1 !important;
+}
+
 .container-geral-chat {
     position: relative;
     z-index: 1;

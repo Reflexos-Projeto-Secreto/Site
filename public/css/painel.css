@@ -112,6 +112,7 @@ body {
 .titulo-painel {
     color: #F8EBFF;
     font-size: 30px;
+    margin-bottom: -100px;
 }
 
 .box-botoes {
