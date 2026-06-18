@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reflexos | Elevador</title>
+  <title>Reflexos | Chat</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <div id="transicao"></div>
   <div class="container-geral-chat">
     <div class="container-mensagem">
       <div class="cabecalho-chat">
@@ -21,7 +22,7 @@
           <p>Converse através desse chat</p>
         </div>
         <div class="sair_chat" style="margin-left: auto;">
-          <a href="painel.html"><img style="cursor: pointer;" src="../assets/imgs/Chat/letra-x.png" alt=""></a>
+          <a onclick="sair()"><img style="cursor: pointer;" src="../assets/imgs/Chat/letra-x.png" alt=""></a>
         </div>
       </div>
 
@@ -49,6 +50,22 @@
   var nickUsuario = sessionStorage.getItem('USERNAME_USUARIO')
   let imagemSelecionada = null
 
+  window.onload = function () {
+      const transicao = document.getElementById("transicao");
+
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
+  }
+
+  function sair() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "painel.html";
+      }, 1500);
+  }
 
   function criarMensagem(texto, imagem, lado, nomeRemetente) {
     // Esse createElement cria um elemento no html

@@ -31,7 +31,7 @@
               <div class="quadrado-atras-imagem pixel-atras"></div>
               <div class="quadrado-frente-imagem pixel-frente"></div>
               <div class="topo-imagem-conteudo pixel-conteudo">
-                <img src="../assets/imgs/geral/usuario.png">
+                <img src="../assets/imgs/geral/usuario.png" alt="" onclick="usuario()" style="cursor: pointer;">
               </div>
             </div>
           </div>
@@ -234,5 +234,14 @@
       setTimeout(() => {
           transicao.classList.add("fade-open");
       }, 500);
+  }
+
+  function usuario() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "config.html";
+      }, 1500);
   }
 </script>

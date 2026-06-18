@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reflexos | Jogo</title>
+  <link rel="stylesheet" type="text/css" href="../css/jogo.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="transicao"></div>
+    <div class="container">
+      <div class="container-jogo">
+        <div class="box-jogo">
+            <div class="container-iniciar" style="display: flex;">
+                <div class="box-texto">
+                    <h2>Opiniões Impopulares</h2>
+                    <p>Jogue opiniões impopulares e se arrisque a responder as perguntas.</p>
+                </div>
+              
+                <div class="primeira-pessoa">
+                    <h2>Primeiro Jogador</h2>
+                    <input type="text" id="inputNomeJogador1" placeholder="Nome do Jogador 1" />
+                </div>
+              
+                <div class="segunda-pessoa">
+                    <h2>Segundo Jogador</h2>
+                    <input type="text" id="inputNomeJogador2" placeholder="Nome do Jogador 2" />
+                </div>
+                <button onclick="iniciarJogo()">Iniciar</button>
+            </div>
+    
+            <div class="container-andamento" style="display: none;">
+                <div class="box-rodadas">
+                    <span>Rodada: <span id="spanNumeroDaQuestaoAtualJogo"></span> de <span id="qtdQuestoesJogo"></span></span>
+                    <div id="assuntoAtual"></div>
+                    <p id="instrucaoJogo"></p>
+                </div>
+                <div class="box-pensamentos" id="pensamentos">
+                    <textarea id="pensamentoVoce" placeholder="Escreva aqui..."></textarea>
+                    <button onclick="enviar()">Enviar</button>
+                </div>
+    
+                <div class="box-respostas" id="revelarRespostas" style="display: none;">
+                    <div>
+                    <div class="respostas">
+                        <div class="texto-resposta">
+                            <h3 id="nomeRespostaJ1"></h3>
+                            <p id="textoRespostaJ1"></p>
+                            <button id="btnPontuarJ1" onclick="pontuarJogador1()"></button>
+                        </div>
+                        <div class="texto-resposta">                            
+                            <h3 id="nomeRespostaJ2"></h3>
+                            <p id="textoRespostaJ2"></p>
+                            <button id="btnPontuarJ2" onclick="pontuarJogador2()"></button>
+                        </div>
+                    </div>
+                    </div>
+        
+                    <div>
+                    </div>
+                    <div class="botao-proximo">
+                        <button onclick="proximaRodada()" >Próxima Rodada</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container-fim" style="display: none;">
+                <div class="placar-fim">
+                    <h2 id="vencedor"></h2>
+                    <h3 id="rankingJ1"></h3>
+                    <h3 id="rankingJ2"></h3>
+                </div>
+                <div class="botao-novamente">
+                  <button onclick="window.location.reload()">Jogar novamente</button>
+                </div>
+            </div>
+        </div>
+        <div class="saindo">
+            <button onclick="sair()">Sair</button>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+  window.onload = function () {
+      const transicao = document.getElementById("transicao");
+
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
+  }
+
+  function sair() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "quiz.html";
+      }, 1500);
+  }
+
+  const assuntos = [
+    "Qual a opinião sobre poli­tica?",
+    "Qual a opinião sobre religião?",
+    "Qual a opinião sobre dinheiro?",
+    "Qual a opinião sobre relacionamentos?",
+    "Qual a opinião sobre redes sociais?",
+    "Qual a opinião sobre o futuro?",
+    "Qual a opinião sobre fami­lia?",
+    "Qual a opinião sobre trabalho?"
+  ]
+
+  let nomeJogador1 = ""
+  let nomeJogador2 = ""
+  let pontuacaoJogador1 = 0
+  let pontuacaoJogador2 = 0
+  let rodadaAtual = 0
+  let totalRodadas = 3
+  let assuntosRodada = []
+  let respostaJogador1 = ""
+  let respostaJogador2 = ""
+  let faseAtual = ""
+
+  function iniciarJogo() {
+    nomeJogador1 = document.getElementById("inputNomeJogador1").value
+    nomeJogador2 = document.getElementById("inputNomeJogador2").value
+
+    if (nomeJogador1 == "" || nomeJogador2 == "") {
+      alert("Preencha o nome dos dois jogadores!")
+      return
+    }
+    let embaralhados = assuntos.sort(() => Math.random() - 0.5)
+    assuntosRodada = embaralhados.slice(0, totalRodadas)
+
+    document.querySelector(".container-jogo .container-iniciar").style.display = "none"
+    document.querySelector(".container-jogo .container-andamento").style.display = "flex"
+
+    iniciarRodada()
+  }
+
+  function iniciarRodada() {
+    respostaJogador1 = ""
+    respostaJogador2 = ""
+    faseAtual = "jogador1"
+
+    document.getElementById("spanNumeroDaQuestaoAtualJogo").innerHTML = rodadaAtual + 1
+    document.getElementById("qtdQuestoesJogo").innerHTML = totalRodadas
+    document.getElementById("assuntoAtual").innerHTML = assuntosRodada[rodadaAtual]
+
+    document.getElementById("pensamentos").style.display = "flex"
+    document.getElementById("revelarRespostas").style.display = "none"
+
+    document.getElementById("instrucaoJogo").innerHTML = `${nomeJogador1}, o que você acha que ${nomeJogador2} pensa sobre isso?`
+    document.getElementById("pensamentoVoce").value = ""
+
+    document.getElementById("btnPontuarJ1").disabled = false
+    document.getElementById("btnPontuarJ2").disabled = false
+  }
+
+  function enviar() {
+    var texto = document.getElementById("pensamentoVoce").value
+
+    if (texto == "") {
+      alert("Escreva algo antes de enviar!")
+      return
+    }
+
+    if (faseAtual == "jogador1") {
+      respostaJogador1 = texto
+      faseAtual = "jogador2"
+      document.getElementById("instrucaoJogo").innerHTML = `${nomeJogador2}, o que você acha que ${nomeJogador1} pensa sobre isso?`
+      document.getElementById("pensamentoVoce").value = ""
+
+    } else if (faseAtual == "jogador2") {
+      respostaJogador2 = texto
+      faseAtual = "revelar"
+      revelar()
+    }
+  }
+
+  function revelar() {
+    document.getElementById("pensamentos").style.display = "none"
+    document.getElementById("revelarRespostas").style.display = "flex"
+
+    document.getElementById("nomeRespostaJ1").innerHTML = `${nomeJogador1} acha que ${nomeJogador2} pensa:`
+    document.getElementById("textoRespostaJ1").innerHTML = respostaJogador1
+
+    document.getElementById("nomeRespostaJ2").innerHTML = `${nomeJogador2} acha que ${nomeJogador1} pensa:`
+    document.getElementById("textoRespostaJ2").innerHTML = respostaJogador2
+
+    document.getElementById("btnPontuarJ1").innerHTML = `${nomeJogador2} concorda? (+1 ponto para ${nomeJogador1})`
+    document.getElementById("btnPontuarJ2").innerHTML = `${nomeJogador1} concorda? (+1 ponto para ${nomeJogador2})`
+  }
+
+  function pontuarJogador1() {
+    pontuacaoJogador1++
+    document.getElementById("btnPontuarJ1").disabled = true
+    document.getElementById("btnPontuarJ1").innerHTML = "Pontuado!"
+  }
+
+  function pontuarJogador2() {
+    pontuacaoJogador2++
+    document.getElementById("btnPontuarJ2").disabled = true
+    document.getElementById("btnPontuarJ2").innerHTML = "Pontuado!"
+  }
+
+  function proximaRodada() {
+    rodadaAtual++
+
+    if (rodadaAtual < totalRodadas) {
+      iniciarRodada()
+    } else {
+      finalizarJogo()
+    }
+  }
+
+  function finalizarJogo() {
+    document.querySelector(".container-jogo .container-andamento").style.display = "none"
+    document.querySelector(".container-jogo .container-fim").style.display = "flex"
+
+    document.getElementById("rankingJ1").innerHTML = `${nomeJogador1}: ${pontuacaoJogador1} pontos`
+    document.getElementById("rankingJ2").innerHTML = `${nomeJogador2}: ${pontuacaoJogador2} pontos`
+
+    if (pontuacaoJogador1 > pontuacaoJogador2) {
+      document.getElementById("vencedor").innerHTML = `${nomeJogador1} venceu!`
+    } else if (pontuacaoJogador2 > pontuacaoJogador1) {
+      document.getElementById("vencedor").innerHTML = `${nomeJogador2} venceu!`
+    } else {
+      document.getElementById("vencedor").innerHTML = `Empate!`
+    }
+
+    fetch("/quiz/enviarResultadoJogo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fkUsuario: idUsuario,
+        pontuacaoJogador1: pontuacaoJogador1,
+        pontuacaoJogador2: pontuacaoJogador2,
+        fkQuiz: 2
+      })
+    })
+  }
+</script>
