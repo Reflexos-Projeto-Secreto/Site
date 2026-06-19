@@ -545,3 +545,175 @@ img {
     z-index: 3;
     width: 134px;
 }
+
+.container-quarta-parte {
+    position: relative;
+    width: min(88vw, 1035px);
+    min-height: 420px;
+    margin: 72px auto 38px;
+    padding: 104px 70px 62px;
+}
+
+.quadrado-quarto {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.titulo-quarta-parte {
+    position: absolute;
+    top: 26px;
+    left: 78px;
+    z-index: 3;
+    width: 290px;
+    min-height: 58px;
+}
+
+.titulo-quarta-parte-conteudo {
+    display: grid;
+    place-items: center;
+    min-height: 58px;
+    padding: 0 18px;
+}
+
+.titulo-quarta-parte h2 {
+    color: #f5f1ff;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.conteudo-quarta-parte {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 360px 360px;
+    justify-content: space-between;
+    gap: 64px;
+}
+
+.card-quarto {
+    min-height: 255px;
+    box-shadow: 13px 15px 17px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card-quarto-conteudo {
+    padding: 34px 30px;
+}
+
+.card-quarto p {
+    color: #5f568f;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.18;
+}
+
+.quebra-cabeca {
+    position: absolute;
+    bottom: 25px;
+    left: 22px;
+    z-index: 3;
+    width: 94px;
+}
+
+.livro-quarta-parte {
+    position: absolute;
+    top: 83px;
+    right: 33px;
+    z-index: 3;
+    width: 68px;
+}
+
+.container-quinta-parte {
+    position: relative;
+    width: min(88vw, 1035px);
+    min-height: 420px;
+    margin: 54px auto 46px;
+    padding: 104px 78px 62px;
+}
+
+.quadrado-quinto {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.titulo-quinta-parte {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    z-index: 3;
+    width: 290px;
+    min-height: 58px;
+    transform: translateX(-50%);
+}
+
+.titulo-quinta-parte-conteudo {
+    display: grid;
+    place-items: center;
+    min-height: 58px;
+    padding: 0 18px;
+}
+
+.titulo-quinta-parte h2 {
+    color: #f5f1ff;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.conteudo-quinta-parte {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 360px 360px;
+    justify-content: space-between;
+    gap: 64px;
+}
+
+.card-quinto {
+    min-height: 255px;
+    box-shadow: 13px 15px 17px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card-quinto-conteudo {
+    padding: 28px 24px;
+}
+
+.card-quinto p {
+    color: #5f568f;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.18;
+}
+
+.texto-estrela-quinta {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    align-items: center;
+    gap: 15px;
+}
+
+.texto-estrela-quinta + .texto-estrela-quinta {
+    margin-top: 30px;
+}
+
+.texto-estrela-quinta img {
+    width: 28px;
+}
+
+.jack-quinta-parte {
+    position: absolute;
+    left: -15px;
+    bottom: -20px;
+    z-index: 3;
+    width: 122px;
+}
+
+.pintar-quinta-parte {
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
+    z-index: 3;
+    width: 102px;
+}
