@@ -4,12 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reflexos | Andar Hexatombe</title>
-    <link rel="stylesheet" type="text/css" href="../css/andarJulia.css">
+    <link rel="stylesheet" type="text/css" href="../css/andarHexas.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
   </head>
 <body>
-    
+  <div class="container">
+
+      <div id="areaClicavelRoxo1" class="objeto-interativo-roxo1" onclick="abrirFotografiaRoxo(1)"></div>
+      <div id="areaClicavelRoxo2" class="objeto-interativo-roxo2" onclick="abrirFotografiaRoxo(2)"></div>
+      <div id="areaClicavelRoxo3" class="objeto-interativo-roxo3" onclick="abrirFotografiaRoxo(3)"></div>
+      <div id="areaClicavelRoxo4" class="objeto-interativo-roxo4" onclick="abrirFotografiaRoxo(4)"></div>
+      <div id="areaClicavelRoxo5" class="objeto-interativo-roxo5" onclick="abrirFotografiaRoxo(5)"></div>
+      <div id="areaClicavelRoxo6" class="objeto-interativo-roxo6" onclick="abrirFotografiaRoxo(6)"></div>
+
+      <div id="areaClicavelLaranja1" class="objeto-interativo-laranja1" onclick="abrirFotografiaLaranja(1)"></div>
+      <div id="areaClicavelLaranja2" class="objeto-interativo-laranja2" onclick="abrirFotografiaLaranja(2)"></div>
+      <div id="areaClicavelLaranja3" class="objeto-interativo-laranja3" onclick="abrirFotografiaLaranja(3)"></div>
+      <div id="areaClicavelLaranja4" class="objeto-interativo-laranja4" onclick="abrirFotografiaLaranja(4)"></div>
+      <div id="areaClicavelLaranja5" class="objeto-interativo-laranja5" onclick="abrirFotografiaLaranja(5)"></div>
+      <div id="areaClicavelLaranja6" class="objeto-interativo-laranja6" onclick="abrirFotografiaLaranja(6)"></div>
+
+      <div id="modal-foto-roxo1" class="modal-foto-roxo">
+          <div class="conteudo-modal-roxo">
+              <img src="../assets/imgs/andarHexas/postRoxo.png">
+              <p>Texto do post-it 1</p>
+              <button onclick="fecharEFimRoxo(1)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-roxo2" class="modal-foto-roxo">
+          <div class="conteudo-modal-roxo">
+              <img src="../assets/imgs/andarHexas/postRoxo.png">
+              <p>Texto do post-it 2</p>
+              <button onclick="fecharEFimRoxo(2)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-roxo3" class="modal-foto-roxo">
+          <div class="conteudo-modal-roxo">
+              <img src="../assets/imgs/andarHexas/postRoxo.png">
+              <button onclick="fecharEFimRoxo(3)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-roxo4" class="modal-foto-roxo">
+          <div class="conteudo-modal-roxo">
+              <img src="../assets/imgs/andarHexas/postRoxo.png">
+              <button onclick="fecharEFimRoxo(4)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-roxo5" class="modal-foto-roxo">
+          <div class="conteudo-modal-roxo">
+              <img src="../assets/imgs/andarHexas/postRoxo.png">
+              <button onclick="fecharEFimRoxo(5)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-roxo6" class="modal-foto-roxo">
+          <div class="conteudo-modal-roxo">
+              <img src="../assets/imgs/andarHexas/postRoxo.png">
+              <button onclick="fecharEFimRoxo(6)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-laranja1" class="modal-foto-laranja">
+          <div class="conteudo-modal-laranja">
+              <img src="../assets/imgs/andarHexas/postLaranja.png">
+              <button onclick="fecharEFimLaranja(1)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-laranja2" class="modal-foto-laranja">
+          <div class="conteudo-modal-laranja">
+              <img src="../assets/imgs/andarHexas/postLaranja.png">
+              <button onclick="fecharEFimLaranja(2)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-laranja3" class="modal-foto-laranja">
+          <div class="conteudo-modal-laranja">
+              <img src="../assets/imgs/andarHexas/postLaranja.png">
+              <button onclick="fecharEFimLaranja(3)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-laranja4" class="modal-foto-laranja">
+          <div class="conteudo-modal-laranja">
+              <img src="../assets/imgs/andarHexas/postLaranja.png">
+              <button onclick="fecharEFimLaranja(4)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-laranja5" class="modal-foto-laranja">
+          <div class="conteudo-modal-laranja">
+              <img src="../assets/imgs/andarHexas/postLaranja.png">
+              <button onclick="fecharEFimLaranja(5)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+      <div id="modal-foto-laranja6" class="modal-foto-laranja">
+          <div class="conteudo-modal-laranja">
+              <img src="../assets/imgs/andarHexas/postLaranja.png">
+              <button onclick="fecharEFimLaranja(6)">✦ guardar memória ✦</button>
+          </div>
+      </div>
+
+  </div>
 </body>
 </html>
+
+<script>
+
+  let interagiu = false;
+
+  function abrirFotografiaRoxo(id) {
+      interagiu = true;
+      document.getElementById(`modal-foto-roxo${id}`).classList.add("aberto");
+  }
+
+  function abrirFotografiaLaranja(id) {
+      interagiu = true;
+      document.getElementById(`modal-foto-laranja${id}`).classList.add("aberto");
+  }
+
+  function fecharEFimRoxo(id) {
+      document.getElementById(`modal-foto-roxo${id}`).classList.remove("aberto");
+      document.getElementById(`areaClicavelRoxo${id}`).style.display = "none";
+  }
+
+  function fecharEFimLaranja(id) {
+      document.getElementById(`modal-foto-laranja${id}`).classList.remove("aberto");
+      document.getElementById(`areaClicavelLaranja${id}`).style.display = "none";
+  }
+</script>
