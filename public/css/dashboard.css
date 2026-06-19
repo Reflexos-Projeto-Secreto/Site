@@ -9,7 +9,6 @@ html,
 body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 #transicao {
@@ -51,10 +50,6 @@ body {
 
 body {
   background-color: black;
-  background-image: url(../assets/imgs/dash/background.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 body::before {
@@ -66,6 +61,10 @@ body::before {
 }
 
 .header {
+  background-image: url(../assets/imgs/dash/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   background-size: 100% 100%;
   min-height: 620px;
   padding-bottom: 55px;
@@ -209,4 +208,22 @@ body::before {
   font-size: 15px;
   color: white;
   margin: 0;
+}
+
+.box-botao-elevador {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.box-botao-elevador button {
+    background-color: #292C17;
+    border: none;
+    border-radius: 10px;
+    color: #F0E0C6;
+    cursor: pointer;
+    font-size: 25px;
+    height: 50px;
+    width: 230px;
+    margin-top: 50px;
 }

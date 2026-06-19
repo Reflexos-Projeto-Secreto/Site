@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflexos | Elevador</title>
+    <link rel="stylesheet" type="text/css" href="../css/elevador.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="transicao" onload="abrindo()"></div>
+    <div class="blur"></div>
+    <div class="container" id="blur">
+      <div class="container-elevador">
+        <div class="chamando">
+          <div class="depois-gif">
+            <img src="../assets/imgs/elevador/elevador3.png" alt=""  style="display: none;" id="imgDpsGif">
+          </div>
+          <div class="imagem-com-gif">
+            <img src="../assets/imgs/elevador/elevador2.gif" alt=""  style="display: flex;" id="imgGif">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+
+  window.onload = function () {
+      const transicao = document.getElementById("transicao");
+
+      setTimeout(() => {
+          transicao.classList.add("fade-open");
+      }, 500);
+
+      setTimeout(() => {
+          chamar();
+      }, 700);
+  }
+
+  function fecharTela() {
+      const overlay = document.getElementById("transicao");
+
+      overlay.classList.remove("fade-open");
+      overlay.classList.add("fade-out");
+
+      setTimeout(() => {
+          window.location.href = "../pages/painel.html";
+      }, 900);
+  }
+
+  function chamar() {
+      const fundoBlur = document.getElementById("blur");
+      const imagemGif = document.getElementById("imgGif");
+
+      fundoBlur.classList.add("container-ativo");
+      imagemGif.style.display = "flex";
+
+      setTimeout(() => {
+          fecharTela();
+      }, 800);
+  }
+
+</script>

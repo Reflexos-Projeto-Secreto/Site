@@ -220,13 +220,33 @@
           <button onclick="window.location.reload()">Jogar novamente</button>
         </div>
       </div>
-    </div>
 
-    <div class="container-google">
-      <p>Google Calendar API Quickstart</p>
-      <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
-      <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
-      <pre id="content" style="white-space: pre-wrap;"></pre>
+      <div class="container-google">
+        <div class="container-iniciar" style="display: flex;">
+          <div class="box-imagem">
+            <img src="../assets/imgs/quiz/arcade.png" alt="">
+          </div>
+
+          <div class="box-texto">
+            <p>Google Calendar API Quickstart</p>
+            <p>Jogue opiniões impopulares e se arrisque a responder as perguntas.</p>
+          </div>
+
+          <input type="text" id="inputNomeJogador1" placeholder="Nome do Jogador 1" />
+          <input type="text" id="inputNomeJogador2" placeholder="Nome do Jogador 2" />
+          <button onclick="iniciarJogo()">Iniciar</button>
+        </div>
+
+        <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+        <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+        <pre id="content" style="white-space: pre-wrap;"></pre>
+      </div>
+
+      <div class="box-botao-elevador">
+        <div class="botao-elevador">
+          <button onclick="sair()">Chamar elevador</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -368,7 +388,7 @@
       overlay.classList.add('fade-out');
       overlay.classList.add('transicao-ativo');
       setTimeout(() => {
-        window.location.href = "jogo.html";
+        window.location.href = "../pages/jogo.html";
       }, 1500);
     }
 
@@ -862,6 +882,15 @@
       const data = await response.json();
       console.log("resposta do gemini:", data)
       document.getElementById("guia").innerText = data.text;
+    }
+
+    function sair() {
+        const overlay = document.getElementById('transicao');
+        overlay.classList.add('fade-out');
+        overlay.classList.add('transicao-ativo');
+        setTimeout(() => {
+            window.location.href = "elevadorGeral.html";
+        }, 1500);
     }
   </script>
 </body>
