@@ -20,7 +20,7 @@
       </div>
       <div class="box-config">
         <div class="geral-config">
-          <button onclick="elevador()" class="eleva-dor">chamar</button>
+          <button onclick="elevador()" class="eleva-dor"></button>
           <div class="container-imagem">
             <img src="" id="imgPerfil" onclick="mudarImagemPerfil()">
             <button onclick="alterBotao()" id="alterarBtn"></button>
@@ -146,5 +146,14 @@
         setTimeout(() => {
             transicao.classList.add("fade-open");
         }, 500);
+    }
+
+    function elevador() {
+        const overlay = document.getElementById('transicao');
+        overlay.classList.add('fade-out');
+        overlay.classList.add('transicao-ativo');
+        setTimeout(() => {
+            window.location.href = "elevadorGeral.html";
+        }, 1500);
     }
 </script>
