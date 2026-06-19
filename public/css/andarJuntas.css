@@ -406,3 +406,71 @@ img {
     top: 72px;
     left: 53px;
 }
+
+.informacoes-viagem {
+    min-height: 490px;
+    margin-top: 86px;
+    padding: 112px 50px 115px;
+}
+
+.informacoes-viagem .fundo-informacoes .pixel-atras,
+.informacoes-viagem .fundo-informacoes .pixel-frente {
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - 52px),
+        61% calc(100% - 52px),
+        61% 100%,
+        0 100%
+    );
+}
+
+.informacoes-viagem .titulo-informacoes {
+    top: 36px;
+    left: 48px;
+    width: 258px;
+    min-height: 58px;
+}
+
+.informacoes-viagem .titulo-informacoes-conteudo {
+    min-height: 58px;
+}
+
+.informacoes-viagem .titulo-informacoes h2 {
+    font-size: 32px;
+}
+
+.informacoes-viagem .box-informacoes {
+    grid-template-columns: 390px 390px;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.informacoes-viagem .card-informacao {
+    min-height: 262px;
+}
+
+.informacoes-viagem .card-informacao-conteudo {
+    padding: 43px 39px;
+}
+
+.informacoes-viagem .card-informacao p {
+    font-size: 16px;
+    line-height: 1.18;
+}
+
+.aviao-viagem {
+    position: absolute;
+    top: -70px;
+    right: -34px;
+    z-index: 4;
+    width: 350px;
+}
+
+.mala-viagem {
+    position: absolute;
+    left: -25px;
+    bottom: -35px;
+    z-index: 4;
+    width: 126px;
+}
