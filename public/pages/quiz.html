@@ -24,7 +24,7 @@
 
           <div class="box-texto">
             <h2>Quiz de Conhecimento</h2>
-            <p>O quanto você sabe da Júlia Araripe e da Débora Flores.</p>
+            <p id="descricaoQuizConhecimento"></p>
           </div>
 
           <button id="btnIniciarQuiz" onclick="iniciarConhecimento()">Iniciar Quiz</button>
@@ -148,8 +148,10 @@
             </div>
 
             <div id="botoesPersonalidade" class="flex-colunar padding-8">
-              <button onclick="checarRespostaPersonalidade()" id="btnProxPersonalidade">Avançar para próxima questão</button>
-              <button onclick="tentarNovamente()" id="btnTentarNovamentePersonalidade" disabled>Tentar novamente</button>
+              <button onclick="checarRespostaPersonalidade()" id="btnProxPersonalidade">Avançar para próxima
+                questão</button>
+              <button onclick="tentarNovamente()" id="btnTentarNovamentePersonalidade" disabled>Tentar
+                novamente</button>
               <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
             </div>
           </div>
@@ -343,439 +345,525 @@
   <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
   <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 
-<script>
+  <script>
 
-  window.onload = function () {
+    var idUsuario = sessionStorage.getItem("ID_USUARIO")
+
+    window.onload = function () {
       const transicao = document.getElementById("transicao");
 
       setTimeout(() => {
-          transicao.classList.add("fade-open");
+        transicao.classList.add("fade-open");
       }, 500);
-  }
 
-  function iniciarJogo() {
+      if (idUsuario == "1") {
+        document.getElementById("descricaoQuizConhecimento").innerText = "O quanto você sabe sobre a Júlia Araripe."
+      } else if (idUsuario == "2") {
+        document.getElementById("descricaoQuizConhecimento").innerText = "O quanto você sabe sobre a Débora Flores."
+      }
+    }
+
+    function iniciarJogo() {
       const overlay = document.getElementById('transicao');
       overlay.classList.add('fade-out');
       overlay.classList.add('transicao-ativo');
       setTimeout(() => {
-          window.location.href = "jogo.html";
+        window.location.href = "jogo.html";
       }, 1500);
-  }
-
-  var idUsuario = sessionStorage.getItem("ID_USUARIO")
-
-  var resultado = ""
-
-
-  const listaDeQuestoes = [
-    {
-      pergunta: "Qual mês tem 30 dias?",
-      alternativaA: "Janeiro",
-      alternativaB: "Dezembro",
-      alternativaC: "Junho",
-      alternativaD: "Agosto",
-      alternativaCorreta: "alternativaC"
-    },
-    {
-      pergunta: "Quantas horas tem em um dia?",
-      alternativaA: "30 horas",
-      alternativaB: "38 horas",
-      alternativaC: "48 horas",
-      alternativaD: "24 horas",
-      alternativaCorreta: "alternativaD"
-    },
-    {
-      pergunta: "Qual destes numeros é impar?",
-      alternativaA: "Dez",
-      alternativaB: "Doze",
-      alternativaC: "Oito",
-      alternativaD: "Onze",
-      alternativaCorreta: "alternativaD"
     }
-  ]
 
-  const listaDeQuestoesPersonalidade = [
-    {
-      pergunta: "Qual pais você sonha em conhecer?",
-      alternativaA: "Suiça",
-      alternativaB: "Japão",
-      alternativaC: "Alemanha",
-      alternativaD: "França"
-    },
-    {
-      pergunta: "Qual pais você sonha em conhecer?",
-      alternativaA: "Suiça",
-      alternativaB: "Japão",
-      alternativaC: "Alemanha",
-      alternativaD: "França"
-    },
-    {
-      pergunta: "Qual pais você sonha em conhecer?",
-      alternativaA: "Suiça",
-      alternativaB: "Japão",
-      alternativaC: "Alemanha",
-      alternativaD: "França"
-    }
-  ]
+    var resultado = ""
 
-  let numeroDaQuestaoAtual = 0
-  let pontuacaoFinal = 0
-  let certas = 0
-  let erradas = 0
-  let quantidadeDeQuestoes = listaDeQuestoes.length
-  let numeroDaQuestaoAtualPersonalidade = 0
-  let pontuacaoJulia = 0
-  let pontuacaoDebora = 0
-  let quantidadeDeQuestoesPersonalidade = listaDeQuestoesPersonalidade.length
-  let tempoAvancarConhecimento
-  let tempoAvancarPersonalidade
 
-  // quiz conhecimento
+    const listaDeQuestoesJulia = [
+      {
+        pergunta: "Com qual animal ela mais se identifica? ",
+        alternativaA: "Tigre",
+        alternativaB: "Leão",
+        alternativaC: "Furão",
+        alternativaD: "Águia",
+        alternativaCorreta: "alternativaB"
+      },
+      {
+        pergunta: "Qual desses cantores/bandas esta entre os favoritos dela",
+        alternativaA: "Linkin Park",
+        alternativaB: "Ariana Grande",
+        alternativaC: "Metallica",
+        alternativaD: "AC/DC",
+        alternativaCorreta: "alternativaA"
+      },
+      {
+        pergunta: "Qual desses é um hobby dela?",
+        alternativaA: "Jogos de tabuleiro",
+        alternativaB: "Cantar",
+        alternativaC: "Jogar",
+        alternativaD: "Montar quebra-cabeça",
+        alternativaCorreta: "alternativaD"
+      },
+      {
+        pergunta: "Qual dessas é a comida favorita dela? ",
+        alternativaA: "Hamburguer",
+        alternativaB: "Mexicana",
+        alternativaC: "Japonesa",
+        alternativaD: "Italiana",
+        alternativaCorreta: "alternativaC"
+      },
+      {
+        pergunta: "Qual desses filmes/series esta entre os favoritos dela",
+        alternativaA: "Hora de Aventura",
+        alternativaB: "Ainda Estou Aqui",
+        alternativaC: "Game of Thrones",
+        alternativaD: "The Office",
+        alternativaCorreta: "alternativaA"
+      }
+    ]
 
-  function voltarSelecaoQuiz() {
-    document.querySelector(".container-conhecimento .container-iniciar").style.display = "flex"
-    document.querySelector(".container-Personalidade .container-iniciar").style.display = "flex"
-    document.querySelector(".container-jogo .container-iniciar").style.display = "flex"
+    const listaDeQuestoesDebora = [
+      {
+        pergunta: "Com qual animal ela mais se identifica?",
+        alternativaA: "Polvo",
+        alternativaB: "Leão",
+        alternativaC: "Lobo",
+        alternativaD: "Gato",
+        alternativaCorreta: "alternativaA"
+      },
+      {
+        pergunta: "Qual desses cantores/bandas está entre os favoritos dela?",
+        alternativaA: "Justin Bieber",
+        alternativaB: "Taylor Swift",
+        alternativaC: "Justin Timberlake",
+        alternativaD: "Dualipa",
+        alternativaCorreta: "alternativaA"
+      },
+      {
+        pergunta: "Qual desses é um hobby dela?",
+        alternativaA: "Pintar/Desenhar",
+        alternativaB: "Jogos de tabuleiro",
+        alternativaC: "Cantar e tocar música",
+        alternativaD: "Cozinhar",
+        alternativaCorreta: "alternativaC"
+      },
+      {
+        pergunta: "Qual dessas é uma comida favorita dela?",
+        alternativaA: "Japonesa",
+        alternativaB: "Hambúrguer",
+        alternativaC: "Mexicana",
+        alternativaD: "Italiana",
+        alternativaCorreta: "alternativaB"
+      },
+      {
+        pergunta: "Qual desses filmes/séries está entre os favoritos dela?",
+        alternativaA: "The office",
+        alternativaB: "Grays Anatomy",
+        alternativaC: "O Rei do Show",
+        alternativaD: "Stranger Things",
+        alternativaCorreta: "alternativaC"
+      }
+    ]
 
-    document.querySelector(".container-conhecimento .container-andamento").style.display = "none"
-    document.querySelector(".container-Personalidade .container-andamento").style.display = "none"
-    document.querySelector(".container-jogo .container-andamento").style.display = "none"
-  }
+    const listaDeQuestoesPersonalidade = [
+      {
+        pergunta: "O que levaria para uma ilha deserta?",
+        alternativaA: "Violão",
+        alternativaB: "Quadros e pinceis",
+        alternativaC: "Livro",
+        alternativaD: "Quebra-Cabeça"
+      },
+      {
+        pergunta: "Pelo que gostaria de ser reconhecida?",
+        alternativaA: "Pela humildade, leveza e respeito ao próximo",
+        alternativaB: "Pela coerência entre o que acredita e o que faz",
+        alternativaC: "Pela capacidade de aprender e se posicionar com empatia",
+        alternativaD: "Pela autenticidade e fidelidade aos próprios valores"
+      },
+      {
+        pergunta: "Quais dessas profissões você escolheria se não escolhesse tecnologia?",
+        alternativaA: "Cantora ou dançarina",
+        alternativaB: "Estilista",
+        alternativaC: "Atriz",
+        alternativaD: "Chef de cozinha"
+      },
+      {
+        pergunta: "você se considera uma pessoa mais:",
+        alternativaA: "Tranquila",
+        alternativaB: "Agitada",
+        alternativaC: "Sonhadora",
+        alternativaD: "Questionadora"
+      },
+      {
+        pergunta: "Qual dessas situações parece mais divertida?",
+        alternativaA: "Cantar ou tocar música em uma apresentação",
+        alternativaB: "Montar looks e planejar produções para um evento",
+        alternativaC: "Passar horas conversando sobre a vida com alguém especial",
+        alternativaD: "Testar uma receita diferente e cozinhar para outras pessoas"
+      }
+    ]
 
-  function iniciarConhecimento() {
-    document.querySelector(".container-conhecimento .container-iniciar").style.display = "none"
-    document.querySelector(".container-Personalidade .container-iniciar").style.display = "none"
-    document.querySelector(".container-jogo .container-iniciar").style.display = "none"
-    document.querySelector(".container-conhecimento .container-andamento").style.display = "flex"
+    var listaDeQuestoes
+    var quantidadeDeQuestoes
 
-    document.getElementById("qtdQuestoesConhecimento").innerHTML = quantidadeDeQuestoes
-
-    preencherHTMLcomQuestaoAtual(0)
-
-    document.getElementById("btnProxConhecimento").disabled = false
-    document.getElementById("btnTentarNovamenteConhecimento").disabled = false
-  }
-
-  function iniciarPersonalidade() {
-    document.querySelector(".container-conhecimento .container-iniciar").style.display = "none"
-    document.querySelector(".container-Personalidade .container-iniciar").style.display = "none"
-    document.querySelector(".container-jogo .container-iniciar").style.display = "none"
-    document.querySelector(".container-Personalidade .container-andamento").style.display = "flex"
-
-    document.getElementById("qtdQuestoesPersonalidade").innerHTML = listaDeQuestoesPersonalidade.length
-
-    preencherHTMLPersonalidade(0)
-    document.getElementById("btnTentarNovamentePersonalidade").disabled = false
-  }
-
-  function preencherHTMLcomQuestaoAtual(index) {
-    habilitarAlternativas(true)
-    const questaoAtual = listaDeQuestoes[index]
-    numeroDaQuestaoAtual = index
-
-    document.getElementById("spanNumeroDaQuestaoAtualConhecimento").innerHTML = Number(index) + 1
-    document.getElementById("spanQuestaoExibidaConhecimento").innerHTML = questaoAtual.pergunta
-    document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA
-    document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB
-    document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC
-    document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD
-  }
-
-  function habilitarAlternativas(trueOrFalse) {
-    let desabilitar = !trueOrFalse
-
-    document.getElementById("primeiraOpcaoConhecimento").disabled = desabilitar
-    document.getElementById("segundaOpcaoConhecimento").disabled = desabilitar
-    document.getElementById("terceiraOpcaoConhecimento").disabled = desabilitar
-    document.getElementById("quartaOpcaoConhecimento").disabled = desabilitar
-  }
-
-  function avancar() {
-
-    desmarcarRadioButtons()
-    limparCoresBackgroundOpcoes()
-
-    if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
-      preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+    if (idUsuario == "1") {
+      listaDeQuestoes = listaDeQuestoesJulia
+      quantidadeDeQuestoes = listaDeQuestoesJulia.length
+    } else if (idUsuario == "2") {
+      listaDeQuestoes = listaDeQuestoesDebora
+      quantidadeDeQuestoes = listaDeQuestoesDebora.length
     } else {
-      finalizarConhecimento()
-    }
-  }
-
-  function checarResposta() {
-    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
-    const respostaQuestaoAtual = questaoAtual.alternativaCorreta
-    const options = document.getElementsByName("option")
-
-    let Check = false
-    options.forEach((option) => { if (option.checked) Check = true })
-
-    if (!Check) {
-      alert("Escolha uma opção!")
-      return
+      listaDeQuestoes = listaDeQuestoesJulia
+      quantidadeDeQuestoes = listaDeQuestoesJulia.length
     }
 
-    habilitarAlternativas(false)
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let certas = 0
+    let erradas = 0
+    let quantidadeDeQuestoesJulia = listaDeQuestoesJulia.length
+    let quantidadeDeQuestoesDebora = listaDeQuestoesDebora.length
+    let numeroDaQuestaoAtualPersonalidade = 0
+    let pontuacaoJulia = 0
+    let pontuacaoDebora = 0
+    let quantidadeDeQuestoesPersonalidade = listaDeQuestoesPersonalidade.length
+    let tempoAvancarConhecimento
+    let tempoAvancarPersonalidade
 
-    let alternativaCorreta = null
-    options.forEach((option) => {
-      if (option.value == respostaQuestaoAtual) {
-        alternativaCorreta = option.labels[0].id
-      }
-    })
+    // quiz conhecimento
 
-    options.forEach((option) => {
-      if (option.checked && option.value == respostaQuestaoAtual) {
-        document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-        pontuacaoFinal++
-        certas++
-        numeroDaQuestaoAtual++
-      } else if (option.checked && option.value !== respostaQuestaoAtual) {
-        document.getElementById(option.labels[0].id).classList.add("text-danger-with-bg")
-        document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-        erradas++
-        numeroDaQuestaoAtual++
-      }
-    })
+    function voltarSelecaoQuiz() {
+      document.querySelector(".container-conhecimento .container-iniciar").style.display = "flex"
+      document.querySelector(".container-Personalidade .container-iniciar").style.display = "flex"
+      document.querySelector(".container-jogo .container-iniciar").style.display = "flex"
 
-    tempoAvancarConhecimento = setTimeout(function () {
-      avancar()
-    }, 1000)
-  }
+      document.querySelector(".container-conhecimento .container-andamento").style.display = "none"
+      document.querySelector(".container-Personalidade .container-andamento").style.display = "none"
+      document.querySelector(".container-jogo .container-andamento").style.display = "none"
+    }
 
-  function tentarNovamente() {
-    clearTimeout(tempoAvancarConhecimento)
-    clearTimeout(tempoAvancarPersonalidade)
+    function iniciarConhecimento() {
+      document.querySelector(".container-conhecimento .container-iniciar").style.display = "none"
+      document.querySelector(".container-Personalidade .container-iniciar").style.display = "none"
+      document.querySelector(".container-jogo .container-iniciar").style.display = "none"
+      document.querySelector(".container-conhecimento .container-andamento").style.display = "flex"
 
-    if (document.querySelector(".container-conhecimento .container-andamento").style.display == "flex") {
-      numeroDaQuestaoAtual = 0
-      pontuacaoFinal = 0
-      certas = 0
-      erradas = 0
+      document.getElementById("qtdQuestoesConhecimento").innerHTML = quantidadeDeQuestoes
 
-      desmarcarRadioButtons()
-      limparCoresBackgroundOpcoes()
       preencherHTMLcomQuestaoAtual(0)
 
       document.getElementById("btnProxConhecimento").disabled = false
       document.getElementById("btnTentarNovamenteConhecimento").disabled = false
     }
 
-    if (document.querySelector(".container-Personalidade .container-andamento").style.display == "flex") {
-      numeroDaQuestaoAtualPersonalidade = 0
-      pontuacaoJulia = 0
-      pontuacaoDebora = 0
+    function iniciarPersonalidade() {
+      document.querySelector(".container-conhecimento .container-iniciar").style.display = "none"
+      document.querySelector(".container-Personalidade .container-iniciar").style.display = "none"
+      document.querySelector(".container-jogo .container-iniciar").style.display = "none"
+      document.querySelector(".container-Personalidade .container-andamento").style.display = "flex"
 
-      desmarcarRadioButtonsPersonalidade()
-      document.querySelectorAll("#opcoesPersonalidade label").forEach((label) => {
-        label.classList.remove("text-danger-with-bg")
-        label.classList.remove("text-success-with-bg")
-      })
+      document.getElementById("qtdQuestoesPersonalidade").innerHTML = listaDeQuestoesPersonalidade.length
+
       preencherHTMLPersonalidade(0)
-
-      document.getElementById("btnProxPersonalidade").disabled = false
       document.getElementById("btnTentarNovamentePersonalidade").disabled = false
     }
-  }
 
-  function limparCoresBackgroundOpcoes() {
-    const options = document.getElementsByName("option")
-    options.forEach((option) => {
-      document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-      document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
-    })
-  }
+    function preencherHTMLcomQuestaoAtual(index) {
+      habilitarAlternativas(true)
+      const questaoAtual = listaDeQuestoes[index]
+      numeroDaQuestaoAtual = index
 
-  function desmarcarRadioButtons() {
-    const options = document.getElementsByName("option")
-    for (let i = 0; i < options.length; i++) {
-      options[i].checked = false
-    }
-  }
-
-  function finalizarConhecimento() {
-    document.querySelector(".container-conhecimento .container-andamento").style.display = "none"
-    document.querySelector(".container-conhecimento .container-fim").style.display = "flex"
-
-    const porcentagem = pontuacaoFinal / quantidadeDeQuestoes
-
-    let titulo = ""
-    let explicacao = ""
-
-    if (porcentagem <= 0.3) {
-      titulo = "Parece que você não estudou..."
-      explicacao = "Tente novamente e estude mais!"
-    } else if (porcentagem < 0.9) {
-      titulo = "Pode melhorar na proxima!"
-      explicacao = "Você estão no caminho certo!"
-    } else {
-      titulo = "Uau, parabens!"
-      explicacao = "Você conhece muito bem!"
+      document.getElementById("spanNumeroDaQuestaoAtualConhecimento").innerHTML = Number(index) + 1
+      document.getElementById("spanQuestaoExibidaConhecimento").innerHTML = questaoAtual.pergunta
+      document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA
+      document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB
+      document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC
+      document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD
     }
 
-    document.getElementById("tituloResultadoConhecimento").innerHTML = titulo + " Você acertou " + Math.round(porcentagem * 100) + "%"
-    document.getElementById("explicaoResultadoConhecimento").innerHTML = explicacao
+    function habilitarAlternativas(trueOrFalse) {
+      let desabilitar = !trueOrFalse
 
-    fetch("/quiz/enviarResultadoConhecimento", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        fkUsuario: idUsuario,
-        pontuacaoFinal: pontuacaoFinal,
-        fkQuiz: 1
-      })
-    })
-  }
+      document.getElementById("primeiraOpcaoConhecimento").disabled = desabilitar
+      document.getElementById("segundaOpcaoConhecimento").disabled = desabilitar
+      document.getElementById("terceiraOpcaoConhecimento").disabled = desabilitar
+      document.getElementById("quartaOpcaoConhecimento").disabled = desabilitar
+    }
 
-  function refazerConhecimento() {
-    window.location.reload()
-  }
+    function avancar() {
 
-  // script do quiz de opnioes 
+      desmarcarRadioButtons()
+      limparCoresBackgroundOpcoes()
 
-
-
-  function preencherHTMLPersonalidade(index) {
-    const questaoAtual = listaDeQuestoesPersonalidade[index]
-    numeroDaQuestaoAtualPersonalidade = index
-
-    document.getElementById("spanNumeroDaQuestaoAtualPersonalidade").innerHTML = Number(index) + 1
-    document.getElementById("spanQuestaoExibidaPersonalidade").innerHTML = questaoAtual.pergunta
-    document.getElementById("labelOpcaoUmP").innerHTML = questaoAtual.alternativaA
-    document.getElementById("labelOpcaoDoisP").innerHTML = questaoAtual.alternativaB
-    document.getElementById("labelOpcaoTresP").innerHTML = questaoAtual.alternativaC
-    document.getElementById("labelOpcaoQuatroP").innerHTML = questaoAtual.alternativaD
-
-    habilitarAlternativasPersonalidade(true)
-  }
-
-  function habilitarAlternativasPersonalidade(trueOrFalse) {
-    let desabilitar = !trueOrFalse
-    document.getElementById("primeiraOpcaoPersonalidade").disabled = desabilitar
-    document.getElementById("segundaOpcaoPersonalidade").disabled = desabilitar
-    document.getElementById("terceiraOpcaoPersonalidade").disabled = desabilitar
-    document.getElementById("quartaOpcaoPersonalidade").disabled = desabilitar
-  }
-
-  function checarRespostaPersonalidade() {
-    const questaoAtual = listaDeQuestoesPersonalidade[numeroDaQuestaoAtualPersonalidade]
-    const options = document.querySelectorAll("#opcoesPersonalidade input[type='radio']")
-
-    let Check = false
-    let opcaoEscolhida = null
-    options.forEach((option) => {
-      if (option.checked) {
-        Check = true
-        opcaoEscolhida = option.value
+      if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+        preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+      } else {
+        finalizarConhecimento()
       }
-    })
-
-    if (!Check) {
-      alert("Escolha uma opção!")
-      return
     }
 
-    if (opcaoEscolhida == "alternativaA" || opcaoEscolhida == "alternativaC") {
-      pontuacaoJulia++
-    } else {
-      pontuacaoDebora++
-    }
+    function checarResposta() {
+      const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
+      const respostaQuestaoAtual = questaoAtual.alternativaCorreta
+      const options = document.getElementsByName("option")
 
-    habilitarAlternativasPersonalidade(false)
-    numeroDaQuestaoAtualPersonalidade++
+      let Check = false
+      options.forEach((option) => { if (option.checked) Check = true })
 
-    setTimeout(function () {
-      avancarPersonalidade()
-    }, 1000)
-  }
-
-  function avancarPersonalidade() {
-    desmarcarRadioButtonsPersonalidade()
-
-    if (numeroDaQuestaoAtualPersonalidade < quantidadeDeQuestoesPersonalidade) {
-      preencherHTMLPersonalidade(numeroDaQuestaoAtualPersonalidade)
-    } else {
-      finalizarPersonalidade()
-    }
-  }
-
-  function desmarcarRadioButtonsPersonalidade() {
-    const options = document.querySelectorAll("#opcoesPersonalidade input[type='radio']")
-    options.forEach((option) => { option.checked = false })
-  }
-
-  function finalizarPersonalidade() {
-    document.querySelector(".container-Personalidade .container-andamento").style.display = "none"
-    document.querySelector(".container-Personalidade .container-fim").style.display = "flex"
-
-    var email = sessionStorage.getItem("EMAIL_USUARIO")
-    var nome = sessionStorage.getItem("NOME_USUARIO")
-
-    if (pontuacaoJulia > pontuacaoDebora) {
-      document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você se parece mais com Julia!"
-      document.getElementById("explicaoResultadoPersonalidade").innerHTML = "Sua personalidade combina com a Julia!"
-      resultado = "julia"
-    } else if (pontuacaoDebora > pontuacaoJulia) {
-      document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você se parece mais com Debora!"
-      document.getElementById("explicaoResultadoPersonalidade").innerHTML = "Sua personalidade combina com a Debora!"
-      resultado = "debora"
-    } else {
-      document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você tem um pouco das duas!"
-      document.getElementById("explicaoResultadoPersonalidade").innerHTML = "Sua personalidade Ã© uma mistura das duas!"
-      resultado = "empate"
-    }
-
-    fetch("/quiz/enviarResultadoPersonalidade", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        fkUsuario: idUsuario,
-        resultado: resultado,
-        fkQuiz: 3
-      })
-    })
-
-    fetch("/quiz/enviarEmail", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        nome: nome,
-        resultado: resultado
-      })
-    }).then(function (resposta) {
-      if (resposta.ok) {
-        alert("Playlist enviada para seu email!")
+      if (!Check) {
+        alert("Escolha uma opção!")
+        return
       }
-    })
 
-    gerarGuia()
-  }
+      habilitarAlternativas(false)
 
-  // guia 
+      let alternativaCorreta = null
+      options.forEach((option) => {
+        if (option.value == respostaQuestaoAtual) {
+          alternativaCorreta = option.labels[0].id
+        }
+      })
 
-  async function gerarGuia() {
-    console.log("perfil enviado:", resultado)
-    const response = await fetch("/guia", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ perfil: resultado })
-    });
-    console.log("status da resposta:", response.status)
+      options.forEach((option) => {
+        if (option.checked && option.value == respostaQuestaoAtual) {
+          document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+          pontuacaoFinal++
+          certas++
+          numeroDaQuestaoAtual++
+        } else if (option.checked && option.value !== respostaQuestaoAtual) {
+          document.getElementById(option.labels[0].id).classList.add("text-danger-with-bg")
+          document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+          erradas++
+          numeroDaQuestaoAtual++
+        }
+      })
 
-    const data = await response.json();
-    console.log("resposta do gemini:", data)
-    document.getElementById("guia").innerText = data.text;
-  }
+      tempoAvancarConhecimento = setTimeout(function () {
+        avancar()
+      }, 1000)
+    }
 
-  window.onload = function () {
-      const transicao = document.getElementById("transicao");
+    function tentarNovamente() {
+      clearTimeout(tempoAvancarConhecimento)
+      clearTimeout(tempoAvancarPersonalidade)
 
-      setTimeout(() => {
-          transicao.classList.add("fade-open");
-      }, 500);
-  }
-</script>
+      if (document.querySelector(".container-conhecimento .container-andamento").style.display == "flex") {
+        numeroDaQuestaoAtual = 0
+        pontuacaoFinal = 0
+        certas = 0
+        erradas = 0
+
+        desmarcarRadioButtons()
+        limparCoresBackgroundOpcoes()
+        preencherHTMLcomQuestaoAtual(0)
+
+        document.getElementById("btnProxConhecimento").disabled = false
+        document.getElementById("btnTentarNovamenteConhecimento").disabled = false
+      }
+
+      if (document.querySelector(".container-Personalidade .container-andamento").style.display == "flex") {
+        numeroDaQuestaoAtualPersonalidade = 0
+        pontuacaoJulia = 0
+        pontuacaoDebora = 0
+
+        desmarcarRadioButtonsPersonalidade()
+        document.querySelectorAll("#opcoesPersonalidade label").forEach((label) => {
+          label.classList.remove("text-danger-with-bg")
+          label.classList.remove("text-success-with-bg")
+        })
+        preencherHTMLPersonalidade(0)
+
+        document.getElementById("btnProxPersonalidade").disabled = false
+        document.getElementById("btnTentarNovamentePersonalidade").disabled = false
+      }
+    }
+
+    function limparCoresBackgroundOpcoes() {
+      const options = document.getElementsByName("option")
+      options.forEach((option) => {
+        document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+        document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+      })
+    }
+
+    function desmarcarRadioButtons() {
+      const options = document.getElementsByName("option")
+      for (let i = 0; i < options.length; i++) {
+        options[i].checked = false
+      }
+    }
+
+    function finalizarConhecimento() {
+      document.querySelector(".container-conhecimento .container-andamento").style.display = "none"
+      document.querySelector(".container-conhecimento .container-fim").style.display = "flex"
+
+      const porcentagem = pontuacaoFinal / quantidadeDeQuestoes
+
+      let titulo = ""
+      let explicacao = ""
+
+      if (porcentagem <= 0.3) {
+        titulo = "Precisam sair mais!!"
+        explicacao = "Tente novamente!"
+      } else if (porcentagem < 0.9) {
+        titulo = "Conhece bem mas podemos melhorar!"
+        explicacao = "Você estão no caminho certo!"
+      } else {
+        titulo = "Uau, parabens voces conhecem tudo uma da outra!"
+        explicacao = "Parabens!"
+      }
+
+      document.getElementById("tituloResultadoConhecimento").innerHTML = titulo + " Você acertou " + Math.round(porcentagem * 100) + "%"
+      document.getElementById("explicaoResultadoConhecimento").innerHTML = explicacao
+
+      fetch("/quiz/enviarResultadoConhecimento", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fkUsuario: idUsuario,
+          pontuacaoFinal: pontuacaoFinal,
+          fkQuiz: 1
+        })
+      })
+    }
+
+    function refazerConhecimento() {
+      window.location.reload()
+    }
+
+    // script do quiz de opnioes 
+
+
+
+    function preencherHTMLPersonalidade(index) {
+      const questaoAtual = listaDeQuestoesPersonalidade[index]
+      numeroDaQuestaoAtualPersonalidade = index
+
+      document.getElementById("spanNumeroDaQuestaoAtualPersonalidade").innerHTML = Number(index) + 1
+      document.getElementById("spanQuestaoExibidaPersonalidade").innerHTML = questaoAtual.pergunta
+      document.getElementById("labelOpcaoUmP").innerHTML = questaoAtual.alternativaA
+      document.getElementById("labelOpcaoDoisP").innerHTML = questaoAtual.alternativaB
+      document.getElementById("labelOpcaoTresP").innerHTML = questaoAtual.alternativaC
+      document.getElementById("labelOpcaoQuatroP").innerHTML = questaoAtual.alternativaD
+
+      habilitarAlternativasPersonalidade(true)
+    }
+
+    function habilitarAlternativasPersonalidade(trueOrFalse) {
+      let desabilitar = !trueOrFalse
+      document.getElementById("primeiraOpcaoPersonalidade").disabled = desabilitar
+      document.getElementById("segundaOpcaoPersonalidade").disabled = desabilitar
+      document.getElementById("terceiraOpcaoPersonalidade").disabled = desabilitar
+      document.getElementById("quartaOpcaoPersonalidade").disabled = desabilitar
+    }
+
+    function checarRespostaPersonalidade() {
+      const questaoAtual = listaDeQuestoesPersonalidade[numeroDaQuestaoAtualPersonalidade]
+      const options = document.querySelectorAll("#opcoesPersonalidade input[type='radio']")
+
+      let Check = false
+      let opcaoEscolhida = null
+      options.forEach((option) => {
+        if (option.checked) {
+          Check = true
+          opcaoEscolhida = option.value
+        }
+      })
+
+      if (!Check) {
+        alert("Escolha uma opção!")
+        return
+      }
+
+      if (opcaoEscolhida == "alternativaB" || opcaoEscolhida == "alternativaD") {
+        pontuacaoJulia++
+      } else {
+        pontuacaoDebora++
+      }
+
+      habilitarAlternativasPersonalidade(false)
+      numeroDaQuestaoAtualPersonalidade++
+
+      setTimeout(function () {
+        avancarPersonalidade()
+      }, 1000)
+    }
+
+    function avancarPersonalidade() {
+      desmarcarRadioButtonsPersonalidade()
+
+      if (numeroDaQuestaoAtualPersonalidade < quantidadeDeQuestoesPersonalidade) {
+        preencherHTMLPersonalidade(numeroDaQuestaoAtualPersonalidade)
+      } else {
+        finalizarPersonalidade()
+      }
+    }
+
+    function desmarcarRadioButtonsPersonalidade() {
+      const options = document.querySelectorAll("#opcoesPersonalidade input[type='radio']")
+      options.forEach((option) => { option.checked = false })
+    }
+
+    function finalizarPersonalidade() {
+      document.querySelector(".container-Personalidade .container-andamento").style.display = "none"
+      document.querySelector(".container-Personalidade .container-fim").style.display = "flex"
+
+      var email = sessionStorage.getItem("EMAIL_USUARIO")
+      var nome = sessionStorage.getItem("NOME_USUARIO")
+
+      if (pontuacaoJulia > pontuacaoDebora) {
+        document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você se parece mais com Julia!"
+        document.getElementById("explicaoResultadoPersonalidade").innerHTML = "Sua personalidade combina com a Julia!"
+        resultado = "julia"
+      } else if (pontuacaoDebora > pontuacaoJulia) {
+        document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você se parece mais com Debora!"
+        document.getElementById("explicaoResultadoPersonalidade").innerHTML = "Sua personalidade combina com a Debora!"
+        resultado = "debora"
+      } else {
+        document.getElementById("tituloResultadoPersonalidade").innerHTML = "Você tem um pouco das duas!"
+        document.getElementById("explicaoResultadoPersonalidade").innerHTML = "Sua personalidade é uma mistura das duas!"
+        resultado = "empate"
+      }
+
+      fetch("/quiz/enviarResultadoPersonalidade", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fkUsuario: idUsuario,
+          resultado: resultado,
+          fkQuiz: 3
+        })
+      })
+
+      fetch("/quiz/enviarEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          nome: nome,
+          resultado: resultado
+        })
+      }).then(function (resposta) {
+        if (resposta.ok) {
+          alert("Playlist enviada para seu email!")
+        }
+      })
+
+      gerarGuia()
+    }
+
+    // guia 
+
+    async function gerarGuia() {
+      console.log("perfil enviado:", resultado)
+      const response = await fetch("/guia", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ perfil: resultado })
+      });
+      console.log("status da resposta:", response.status)
+
+      const data = await response.json();
+      console.log("resposta do gemini:", data)
+      document.getElementById("guia").innerText = data.text;
+    }
+  </script>
 </body>
-</html>
 
+</html>
