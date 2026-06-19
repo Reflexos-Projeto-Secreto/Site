@@ -294,6 +294,12 @@
           </div>
         </div>
       </section>
+
+      <div class="box-botao-elevador">
+        <div class="botao-elevador">
+          <button onclick="sair()">Chamar elevador</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
@@ -312,7 +318,17 @@
       overlay.classList.add('fade-out');
       overlay.classList.add('transicao-ativo');
       setTimeout(() => {
-          window.location.href = "config.html";
+          window.location.href = "../pages/config.html";
       }, 1500);
   }
+
+  function sair() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "../pages/elevadorGeral.html";
+      }, 1500);
+  }
+  
 </script>

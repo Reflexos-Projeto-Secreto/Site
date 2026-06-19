@@ -295,5 +295,24 @@ body {
 }
 
 .container-google {
-    display: none;
+    order: 4;
+}
+
+.box-botao-elevador {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    order: 5;
+}
+
+.box-botao-elevador button {
+    background-color: #C85D2B;
+    border: none;
+    border-radius: 10px;
+    color: #F0E0C6;
+    cursor: pointer;
+    font-size: 25px;
+    height: 50px;
+    width: 230px;
+    margin-bottom: 50px;
 }

@@ -717,3 +717,21 @@ img {
     z-index: 3;
     width: 102px;
 }
+
+.box-botao-elevador {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.box-botao-elevador button {
+    background-color: #272258;
+    border: none;
+    border-radius: 10px;
+    color: #d9d3ff;
+    cursor: pointer;
+    font-size: 25px;
+    height: 50px;
+    width: 230px;
+    margin-bottom: 50px;
+}
