@@ -1,234 +1,244 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reflexos | Andar Juntas</title>
-    <link rel="stylesheet" type="text/css" href="../css/andarJuntas.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="transicao"></div>
-    <div class="container">
-      <div class="navbar">
-        <div class="topo-titulo pixel-frame quadrado-roxo-escuro">
-          <div class="pixel-atras"></div>
-          <div class="pixel-frente"></div>
-          <div class="topo-titulo-conteudo pixel-conteudo">
-            <h1>Reflexos</h1>
-          </div>
-        </div>
 
-        <div class="topo-imagem pixel-frame quadrado-roxo-imagem">
-          <div class="pixel-atras"></div>
-          <div class="pixel-frente"></div>
-          <div class="topo-imagem-conteudo pixel-conteudo">
-            <img src="../assets/imgs/geral/usuario.png" alt="" onclick="usuario()" style="cursor: pointer;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reflexos | Andar Juntas</title>
+  <link rel="stylesheet" type="text/css" href="../css/andarJuntas.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="transicao"></div>
+  <div class="container">
+    <div class="navbar">
+      <div class="topo-titulo pixel-frame quadrado-roxo-escuro">
+        <div class="pixel-atras"></div>
+        <div class="pixel-frente"></div>
+        <div class="topo-titulo-conteudo pixel-conteudo">
+          <h1>Reflexos</h1>
+        </div>
+      </div>
+
+      <div class="topo-imagem pixel-frame quadrado-roxo-imagem">
+        <div class="pixel-atras"></div>
+        <div class="pixel-frente"></div>
+        <div class="topo-imagem-conteudo pixel-conteudo">
+          <img src="../assets/imgs/geral/usuario.png" alt="" onclick="usuario()" style="cursor: pointer;">
+        </div>
+      </div>
+    </div>
+    <div class="box-quadrados">
+      <div class="container-perfil perfil-julia pixel-frame quadrado-roxo-claro">
+        <div class="pixel-atras"></div>
+        <div class="pixel-frente"></div>
+        <div class="box-perfil pixel-conteudo">
+          <div class="imagem-perfil">
+            <img src="../assets/imgs/andarJuntas/peixes.png" alt="">
+          </div>
+
+          <div class="texto-perfil">
+            <div class="titulo-perfil pixel-frame quadrado-roxo-escuro">
+              <div class="pixel-atras"></div>
+              <div class="pixel-frente"></div>
+              <div class="titulo-perfil-conteudo pixel-conteudo">
+                <h2>Júlia Araripe</h2>
+              </div>
+            </div>
+
+            <div class="caixa-perfil pixel-frame quadrado-texto-roxo">
+              <div class="pixel-atras"></div>
+              <div class="pixel-frente"></div>
+              <div class="caixa-perfil-conteudo pixel-conteudo">
+                <p>Para a Júlia, a amizade com a Débora é construída pela soma de todos os momentos vividos desde que se
+                  conheceram na ETEC, em 2019. Entre viagens, conversas e reflexões compartilhadas, cada memória se
+                  tornou especial ao lado de alguém que ela admira profundamente. E quando pensa no futuro, faz questão
+                  de imaginar a Débora realizando todos os seus sonhos e, claro, ela junto, porque algumas amizades
+                  acabam se tornando parte daquilo que chamamos de casa.</p>
+              </div>
+            </div>
+
+            <button class="botao-detalhes botao-roxo" type="button" onclick="julia()">Ver Detalhes</button>
           </div>
         </div>
       </div>
-      <div class="box-quadrados">
-        <div class="container-perfil perfil-julia pixel-frame quadrado-roxo-claro">
+
+      <div class="container-perfil perfil-debora pixel-frame quadrado-laranja-claro">
+        <div class="pixel-atras"></div>
+        <div class="pixel-frente"></div>
+        <div class="box-perfil pixel-conteudo">
+          <div class="imagem-perfil">
+            <img src="../assets/imgs/andarJuntas/molhos.png" alt="">
+          </div>
+
+          <div class="texto-perfil">
+            <div class="titulo-perfil pixel-frame quadrado-laranja-escuro">
+              <div class="pixel-atras"></div>
+              <div class="pixel-frente"></div>
+              <div class="titulo-perfil-conteudo pixel-conteudo">
+                <h2>Débora Flores</h2>
+              </div>
+            </div>
+
+            <div class="caixa-perfil pixel-frame quadrado-texto-laranja">
+              <div class="pixel-atras"></div>
+              <div class="pixel-frente"></div>
+              <div class="caixa-perfil-conteudo pixel-conteudo">
+                <p>Para a Débora, a amizade com a Júlia foi construída naturalmente, crescendo com o tempo até se tornar
+                  uma presença constante em todas as áreas da vida. Mais do que grandes acontecimentos, ela valoriza os
+                  pequenos momentos, a energia diária, a escuta ativa e as conversas que tornam tudo mais leve. E talvez
+                  seja por isso que sua resposta para o melhor momento das duas seja tão simples e especial: "O melhor
+                  momento é sempre o próximo".</p>
+              </div>
+            </div>
+
+            <button class="botao-detalhes botao-laranja" type="button" onclick="debora()">Ver Detalhes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-informacoes informacoes-roxo">
+        <div class="fundo-informacoes pixel-frame quadrado-roxo-claro">
           <div class="pixel-atras"></div>
           <div class="pixel-frente"></div>
-          <div class="box-perfil pixel-conteudo">
-            <div class="imagem-perfil">
-              <img src="../assets/imgs/andarJuntas/peixes.png" alt="">
-            </div>
-  
-            <div class="texto-perfil">
-              <div class="titulo-perfil pixel-frame quadrado-roxo-escuro">
-                <div class="pixel-atras"></div>
-                <div class="pixel-frente"></div>
-                <div class="titulo-perfil-conteudo pixel-conteudo">
-                  <h2>Júlia Araripe</h2>
-                </div>
-              </div>
-  
-              <div class="caixa-perfil pixel-frame quadrado-texto-roxo">
-                <div class="pixel-atras"></div>
-                <div class="pixel-frente"></div>
-                <div class="caixa-perfil-conteudo pixel-conteudo">
-                  <p>Blueblueblue</p>
-                </div>
-              </div>
-  
-              <button class="botao-detalhes botao-roxo" type="button" onclick="julia()">Ver Detalhes</button>
-            </div>
-          </div>
         </div>
-  
-        <div class="container-perfil perfil-debora pixel-frame quadrado-laranja-claro">
+
+        <div class="titulo-informacoes pixel-frame quadrado-roxo-escuro">
           <div class="pixel-atras"></div>
           <div class="pixel-frente"></div>
-          <div class="box-perfil pixel-conteudo">
-            <div class="imagem-perfil">
-              <img src="../assets/imgs/andarJuntas/molhos.png" alt="">
-            </div>
-  
-            <div class="texto-perfil">
-              <div class="titulo-perfil pixel-frame quadrado-laranja-escuro">
-                <div class="pixel-atras"></div>
-                <div class="pixel-frente"></div>
-                <div class="titulo-perfil-conteudo pixel-conteudo">
-                  <h2>Débora Flores</h2>
-                </div>
-              </div>
-  
-              <div class="caixa-perfil pixel-frame quadrado-texto-laranja">
-                <div class="pixel-atras"></div>
-                <div class="pixel-frente"></div>
-                <div class="caixa-perfil-conteudo pixel-conteudo">
-                  <p>Blueblueblue</p>
-                </div>
-              </div>
-  
-              <button class="botao-detalhes botao-laranja" type="button" onclick="debora()">Ver Detalhes</button>
-            </div>
-          </div>
-        </div>
-  
-        <div class="container-informacoes informacoes-roxo">
-          <div class="fundo-informacoes pixel-frame quadrado-roxo-claro">
-            <div class="pixel-atras"></div>
-            <div class="pixel-frente"></div>
-          </div>
-  
-          <div class="titulo-informacoes pixel-frame quadrado-roxo-escuro">
-            <div class="pixel-atras"></div>
-            <div class="pixel-frente"></div>
-            <div class="titulo-informacoes-conteudo pixel-conteudo">
-              <h2>LOREM IPSUM</h2>
-            </div>
-          </div>
-  
-          <img class="estrela-laranja" src="../assets/imgs/andarJuntas/estrelaLaranja.png" alt="">
-  
-          <div class="box-informacoes pixel-conteudo">
-            <div class="card-informacao pixel-frame card-roxo">
-              <div class="pixel-atras"></div>
-              <div class="pixel-frente"></div>
-              <div class="card-informacao-conteudo pixel-conteudo">
-                <p>
-                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
-                  tipográfica e de impressos, e vem sendo utilizado desde o século
-                  XVI. Lorem Ipsum é simplesmente uma simulação de texto da
-                  indústria tipográfica.
-                </p>
-              </div>
-            </div>
-  
-            <div class="card-informacao pixel-frame card-roxo">
-              <div class="pixel-atras"></div>
-              <div class="pixel-frente"></div>
-              <div class="card-informacao-conteudo pixel-conteudo">
-                <p>
-                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
-                  tipográfica e de impressos, e vem sendo utilizado desde o século
-                  XVI. Lorem Ipsum é simplesmente uma simulação de texto da
-                  indústria tipográfica.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="container-informacoes informacoes-laranja">
-          <div class="fundo-informacoes pixel-frame quadrado-laranja-claro">
-            <div class="pixel-atras"></div>
-            <div class="pixel-frente"></div>
-          </div>
-  
-          <div class="titulo-informacoes titulo-central pixel-frame quadrado-laranja-escuro">
-            <div class="pixel-atras"></div>
-            <div class="pixel-frente"></div>
-            <div class="titulo-informacoes-conteudo pixel-conteudo">
-              <h2>LOREM IPSUM</h2>
-            </div>
-          </div>
-  
-          <img class="estrela-roxa" src="../assets/imgs/andarJuntas/estrelaRoxo.png" alt="">
-  
-          <div class="box-informacoes pixel-conteudo">
-            <div class="card-informacao pixel-frame card-laranja">
-              <div class="pixel-atras"></div>
-              <div class="pixel-frente"></div>
-              <div class="card-informacao-conteudo pixel-conteudo">
-                <p>
-                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
-                  tipográfica e de impressos, e vem sendo utilizado desde o século
-                  XVI. Lorem Ipsum é simplesmente uma simulação de texto.
-                </p>
-              </div>
-            </div>
-  
-            <div class="card-informacao pixel-frame card-laranja">
-              <div class="pixel-atras"></div>
-              <div class="pixel-frente"></div>
-              <div class="card-informacao-conteudo pixel-conteudo">
-                <p>
-                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
-                  tipográfica e de impressos, e vem sendo utilizado desde o século
-                  XVI. Lorem Ipsum é simplesmente uma simulação de texto.
-                </p>
-              </div>
-            </div>
+          <div class="titulo-informacoes-conteudo pixel-conteudo">
+            <h2>Desde 2019</h2>
           </div>
         </div>
 
-        <div class="container-informacoes informacoes-viagem">
-          <div class="fundo-informacoes pixel-frame quadrado-roxo-claro">
-            <div class="pixel-atras"></div>
-            <div class="pixel-frente"></div>
-          </div>
+        <img class="estrela-laranja" src="../assets/imgs/andarJuntas/estrelaLaranja.png" alt="">
 
-          <div class="titulo-informacoes pixel-frame quadrado-roxo-escuro">
+        <div class="box-informacoes pixel-conteudo">
+          <div class="card-informacao pixel-frame card-roxo">
             <div class="pixel-atras"></div>
             <div class="pixel-frente"></div>
-            <div class="titulo-informacoes-conteudo pixel-conteudo">
-              <h2>LOREM IPSUM</h2>
+            <div class="card-informacao-conteudo pixel-conteudo">
+              <p>
+                Tudo começou de forma simples. Em 2019, duas colegas de turma da ETEC se conheceram sem imaginar o
+                quanto suas vidas se cruzariam dali em diante. O que começou com a convivência do dia a dia foi, aos
+                poucos, se transformando em algo muito maior, acompanhando estudos, trabalho e todas as fases da vida.
+              </p>
             </div>
           </div>
 
-          <img class="aviao-viagem" src="../assets/imgs/andarJuntas/aviao.png" alt="">
-          <img class="mala-viagem" src="../assets/imgs/andarJuntas/mala.png" alt="">
-
-          <div class="box-informacoes pixel-conteudo">
-            <div class="card-informacao pixel-frame card-roxo">
-              <div class="pixel-atras"></div>
-              <div class="pixel-frente"></div>
-              <div class="card-informacao-conteudo pixel-conteudo">
-                <p>
-                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
-                  tipográfica e de impressos, e vem sendo utilizado desde o século
-                  XVI. Lorem Ipsum é simplesmente uma simulação de texto da
-                  indústria tipográfica. Lorem Ipsum é simplesmente uma simulação de texto
-                  .
-                </p>
-              </div>
+          <div class="card-informacao pixel-frame card-roxo">
+            <div class="pixel-atras"></div>
+            <div class="pixel-frente"></div>
+            <div class="card-informacao-conteudo pixel-conteudo">
+              <p>
+                Com o passar dos anos, a amizade cresceu naturalmente, sem pressa, até se tornar uma presença constante.
+                Hoje, é difícil imaginar uma história sem a outra, afinal, como a própria Júlia diz: "nunca mais nos
+                separamos, e espero que isso nunca aconteça".
+              </p>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="card-informacao pixel-frame card-roxo">
-              <div class="pixel-atras"></div>
-              <div class="pixel-frente"></div>
-              <div class="card-informacao-conteudo pixel-conteudo">
-                <p>
-                  Lorem Ipsum é simplesmente uma simulação de texto da indústria
-                  tipográfica e de impressos, e vem sendo utilizado desde o século
-                  XVI. Lorem Ipsum é simplesmente uma simulação de texto da
-                  indústria tipográfica. Lorem Ipsum é simplesmente uma simulação de texto
-                  .
-                </p>
-              </div>
+      <div class="container-informacoes informacoes-laranja">
+        <div class="fundo-informacoes pixel-frame quadrado-laranja-claro">
+          <div class="pixel-atras"></div>
+          <div class="pixel-frente"></div>
+        </div>
+
+        <div class="titulo-informacoes titulo-central pixel-frame quadrado-laranja-escuro">
+          <div class="pixel-atras"></div>
+          <div class="pixel-frente"></div>
+          <div class="titulo-informacoes-conteudo pixel-conteudo">
+            <h2>Memórias que Viraram Casa</h2>
+          </div>
+        </div>
+
+        <img class="estrela-roxa" src="../assets/imgs/andarJuntas/estrelaRoxo.png" alt="">
+
+        <div class="box-informacoes pixel-conteudo">
+          <div class="card-informacao pixel-frame card-laranja">
+            <div class="pixel-atras"></div>
+            <div class="pixel-frente"></div>
+            <div class="card-informacao-conteudo pixel-conteudo">
+              <p>
+                Se perguntadas sobre o melhor momento que viveram juntas, talvez nenhuma das duas consiga escolher
+                apenas um. Das viagens para o IT Forum e das aventuras na Bahia às conversas que se estendiam por horas,
+                cada lembrança carrega um significado especial. Até mesmo os dias comuns de trabalho se transformaram em
+                momentos que merecem ser guardados.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-informacao pixel-frame card-laranja">
+            <div class="pixel-atras"></div>
+            <div class="pixel-frente"></div>
+            <div class="card-informacao-conteudo pixel-conteudo">
+              <p>
+                E talvez seja justamente aí que mora a beleza dessa amizade. Para Júlia, todos os momentos têm valor.
+                Para Débora, "o melhor momento é sempre o próximo". Porque, mais do que grandes acontecimentos, elas
+                aprenderam a encontrar felicidade nas pequenas coisas e a transformar o cotidiano em memórias
+                inesquecíveis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-informacoes informacoes-viagem">
+        <div class="fundo-informacoes pixel-frame quadrado-roxo-claro">
+          <div class="pixel-atras"></div>
+          <div class="pixel-frente"></div>
+        </div>
+
+        <div class="titulo-informacoes pixel-frame quadrado-roxo-escuro">
+          <div class="pixel-atras"></div>
+          <div class="pixel-frente"></div>
+          <div class="titulo-informacoes-conteudo pixel-conteudo">
+            <h2>Um Futuro Compartilhado</h2>
+          </div>
+        </div>
+
+        <img class="aviao-viagem" src="../assets/imgs/andarJuntas/aviao.png" alt="">
+        <img class="mala-viagem" src="../assets/imgs/andarJuntas/mala.png" alt="">
+
+        <div class="box-informacoes pixel-conteudo">
+          <div class="card-informacao pixel-frame card-roxo">
+            <div class="pixel-atras"></div>
+            <div class="pixel-frente"></div>
+            <div class="card-informacao-conteudo pixel-conteudo">
+              <p>
+                Quando imagina Débora no futuro, Júlia não pensa em cargos, títulos ou conquistas materiais. Ela a vê
+                realizando todos os seus sonhos, vivendo com amor, felicidade e alegria. E, é claro, faz questão de
+                acrescentar: "eu junto, senão acabou eu". Para Júlia, o futuro ideal é aquele em que ambas continuam
+                compartilhando a vida e os momentos mais importantes.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-informacao pixel-frame card-roxo">
+            <div class="pixel-atras"></div>
+            <div class="pixel-frente"></div>
+            <div class="card-informacao-conteudo pixel-conteudo">
+              <p>
+                Já Débora imagina Júlia vivendo de forma plena, segura e leve em todas as áreas da vida. E talvez isso
+                diga muito sobre a amizade das duas. Em meio a todos os sonhos e caminhos que ainda estão por vir,
+                existe uma certeza silenciosa: independentemente de onde a vida as leve, continuarão celebrando
+                conquistas, compartilhando momentos e construindo novos capítulos lado a lado.
+                .
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-  </body>
+</body>
+
 </html>
 
 <script>
@@ -241,38 +251,38 @@
   };
 
   function julia() {
-      const overlay = document.getElementById('transicao');
-      overlay.classList.add('fade-out');
-      overlay.classList.add('transicao-ativo');
-      setTimeout(() => {
-          window.location.href = "andarJulia.html";
-      }, 1500);
+    const overlay = document.getElementById('transicao');
+    overlay.classList.add('fade-out');
+    overlay.classList.add('transicao-ativo');
+    setTimeout(() => {
+      window.location.href = "andarJulia.html";
+    }, 1500);
   }
 
   function debora() {
-      const overlay = document.getElementById('transicao');
-      overlay.classList.add('fade-out');
-      overlay.classList.add('transicao-ativo');
-      setTimeout(() => {
-          window.location.href = "andarDebora.html";
-      }, 1500);
+    const overlay = document.getElementById('transicao');
+    overlay.classList.add('fade-out');
+    overlay.classList.add('transicao-ativo');
+    setTimeout(() => {
+      window.location.href = "andarDebora.html";
+    }, 1500);
   }
 
   function usuario() {
-      const overlay = document.getElementById('transicao');
-      overlay.classList.add('fade-out');
-      overlay.classList.add('transicao-ativo');
-      setTimeout(() => {
-          window.location.href = "config.html";
-      }, 1500);
+    const overlay = document.getElementById('transicao');
+    overlay.classList.add('fade-out');
+    overlay.classList.add('transicao-ativo');
+    setTimeout(() => {
+      window.location.href = "config.html";
+    }, 1500);
   }
 
   function sair() {
-      const overlay = document.getElementById('transicao');
-      overlay.classList.add('fade-out');
-      overlay.classList.add('transicao-ativo');
-      setTimeout(() => {
-          window.location.href = "elevador.html";
-      }, 1500);
+    const overlay = document.getElementById('transicao');
+    overlay.classList.add('fade-out');
+    overlay.classList.add('transicao-ativo');
+    setTimeout(() => {
+      window.location.href = "elevador.html";
+    }, 1500);
   }
 </script>
