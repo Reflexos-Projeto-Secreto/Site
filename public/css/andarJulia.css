@@ -356,13 +356,13 @@ img {
 
 .card-lista,
 .card-texto {
-    min-height: 288px;
+    min-height: 478px;
     box-shadow: 13px 15px 17px 0px rgba(0, 0, 0, 0.25);
 }
 
 .card-lista-conteudo,
 .card-texto-conteudo {
-    padding: 38px 34px;
+    padding: 18px 34px;
 }
 
 .card-lista p,
@@ -397,8 +397,8 @@ img {
 
 .unicornio {
     position: absolute;
-    top: 25px;
-    right: 44px;
+    top: 5px;
+    right: 34px;
     width: 115px;
     z-index: 3;
 }
@@ -532,8 +532,8 @@ img {
 
 .caroco {
     position: absolute;
-    bottom: 43px;
-    left: 38px;
+    bottom: -13px;
+    left: -12px;
     z-index: 3;
     width: 155px;
 }
@@ -653,6 +653,7 @@ img {
     place-items: center;
     min-height: 58px;
     padding: 0 18px;
+        text-align: center;
 }
 
 .titulo-quinta-parte h2 {

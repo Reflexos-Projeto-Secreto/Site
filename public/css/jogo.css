@@ -9,7 +9,6 @@ html,
 body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -266,9 +265,9 @@ body {
 }
 
 .saindo {
-    bottom: 82px;
+    bottom: -187px;
     position: absolute;
-    right: 842px;
+    right: 642px;
 }
 
 .saindo button {

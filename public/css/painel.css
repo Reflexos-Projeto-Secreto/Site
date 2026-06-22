@@ -163,3 +163,15 @@ body {
 .caixa-login button:active {
     transform: translate(2px, 2px);
 }
+
+#hexas {
+    position: absolute;
+    top: 234px;
+    left: 903px;
+    text-decoration: none;
+    font-size: 25px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    color: #352b3d;
+}

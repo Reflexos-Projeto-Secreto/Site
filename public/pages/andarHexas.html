@@ -10,26 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
   </head>
 <body>
+  <div id="transicao"></div>
   <div class="container">
 
       <div id="areaClicavelRoxo1" class="objeto-interativo-roxo1" onclick="abrirFotografiaRoxo(1)"></div>
       <div id="areaClicavelRoxo2" class="objeto-interativo-roxo2" onclick="abrirFotografiaRoxo(2)"></div>
       <div id="areaClicavelRoxo3" class="objeto-interativo-roxo3" onclick="abrirFotografiaRoxo(3)"></div>
-      <div id="areaClicavelRoxo4" class="objeto-interativo-roxo4" onclick="abrirFotografiaRoxo(4)"></div>
-      <div id="areaClicavelRoxo5" class="objeto-interativo-roxo5" onclick="abrirFotografiaRoxo(5)"></div>
-      <div id="areaClicavelRoxo6" class="objeto-interativo-roxo6" onclick="abrirFotografiaRoxo(6)"></div>
 
       <div id="areaClicavelLaranja1" class="objeto-interativo-laranja1" onclick="abrirFotografiaLaranja(1)"></div>
       <div id="areaClicavelLaranja2" class="objeto-interativo-laranja2" onclick="abrirFotografiaLaranja(2)"></div>
       <div id="areaClicavelLaranja3" class="objeto-interativo-laranja3" onclick="abrirFotografiaLaranja(3)"></div>
-      <div id="areaClicavelLaranja4" class="objeto-interativo-laranja4" onclick="abrirFotografiaLaranja(4)"></div>
-      <div id="areaClicavelLaranja5" class="objeto-interativo-laranja5" onclick="abrirFotografiaLaranja(5)"></div>
-      <div id="areaClicavelLaranja6" class="objeto-interativo-laranja6" onclick="abrirFotografiaLaranja(6)"></div>
 
       <div id="modal-foto-roxo1" class="modal-foto-roxo">
           <div class="conteudo-modal-roxo">
               <img src="../assets/imgs/andarHexas/postRoxo.png">
-              <p>Texto do post-it 1</p>
+              <p>Júlia, gostaria de agradecer por todas as conversas após as aulas, que me deixavam mais leve mesmo estando esgotada com o projeto. Obrigada por todas as vezes em que me ajudou com meus pensamentos turbulentos (até demais) e por ouvir minhas lamentações com o olhar de alguém que já passou por isso. Obrigada pela confiança que me transmitia quando eu ia apresentar a sprint, por acreditar em mim quando eu mesma não acreditava e, por fim, muito obrigada por ser essa pessoa incrível em quem tenho orgulho de me inspirar. (Vamos jogar Card-Jitsu algum dia!)</p>
               <button onclick="fecharEFimRoxo(1)">✦ guardar memória ✦</button>
           </div>
       </div>
@@ -37,7 +32,7 @@
       <div id="modal-foto-roxo2" class="modal-foto-roxo">
           <div class="conteudo-modal-roxo">
               <img src="../assets/imgs/andarHexas/postRoxo.png">
-              <p>Texto do post-it 2</p>
+              <p>Queria agradecer por ter sido uma referência para mim dentro da sala de aula como profissional e, consequentemente, depois de te conhecer, como pessoa. Engraçado que no começo da faculdade você sempre foi o meu ponto de referência durante as apresentações… Você fala muito bem, Júlia Araripe!! Mas mais do que isso, acredito que você seja o tipo de pessoa que sabe muito bem equilibrar suas “personas”, por isso, algum dia, espero conseguir refletir em mim mesma aquilo que você representa para mim. Linkin Park é MUITO BOMMM!!</p>
               <button onclick="fecharEFimRoxo(2)">✦ guardar memória ✦</button>
           </div>
       </div>
@@ -45,34 +40,15 @@
       <div id="modal-foto-roxo3" class="modal-foto-roxo">
           <div class="conteudo-modal-roxo">
               <img src="../assets/imgs/andarHexas/postRoxo.png">
+              <p>Julia, sendo bem sincero, você eu to pensando, pensando e pensando, e nd vem em mente. Mas vamo la, e que você foi quem me deu uma certa confiança pra conseguir destravar um pouco, e mesmo não parecendo assim como a Debora me fez descobrir algumas coisas, voltadas a apresentação, sempre quando tinha duvidas relacionados a isso, ia falar com você pelo jeito que e sua didatica, e deu certo so vir mais tranquilo, desacelerar, obrigado então por me entender me apoiar</p>
               <button onclick="fecharEFimRoxo(3)">✦ guardar memória ✦</button>
-          </div>
-      </div>
-
-      <div id="modal-foto-roxo4" class="modal-foto-roxo">
-          <div class="conteudo-modal-roxo">
-              <img src="../assets/imgs/andarHexas/postRoxo.png">
-              <button onclick="fecharEFimRoxo(4)">✦ guardar memória ✦</button>
-          </div>
-      </div>
-
-      <div id="modal-foto-roxo5" class="modal-foto-roxo">
-          <div class="conteudo-modal-roxo">
-              <img src="../assets/imgs/andarHexas/postRoxo.png">
-              <button onclick="fecharEFimRoxo(5)">✦ guardar memória ✦</button>
-          </div>
-      </div>
-
-      <div id="modal-foto-roxo6" class="modal-foto-roxo">
-          <div class="conteudo-modal-roxo">
-              <img src="../assets/imgs/andarHexas/postRoxo.png">
-              <button onclick="fecharEFimRoxo(6)">✦ guardar memória ✦</button>
           </div>
       </div>
 
       <div id="modal-foto-laranja1" class="modal-foto-laranja">
           <div class="conteudo-modal-laranja">
               <img src="../assets/imgs/andarHexas/postLaranja.png">
+              <p>Débora, gostaria de agradecer por todo o carinho e paciência que teve comigo neste ano. Queria dizer que me inspiro muito em você, principalmente na confiança com que explica as coisas, sejam matérias ou conselhos socioemocionais. Obrigada por todas as reflexões que me deixavam pensando por dias e, principalmente, pelos momentos em que precisei colocá-las em prática. Muitas delas trouxeram calma para a minha mente turbulenta. Vejo o quanto evoluí como pessoa e o quanto ainda tenho a evoluir, e tenho certeza de que muito disso aconteceu graças ao seu olhar e aos seus conselhos. Por fim, obrigada por ser essa pessoa incrível em quem tenho tanto orgulho de me inspirar.</p>
               <button onclick="fecharEFimLaranja(1)">✦ guardar memória ✦</button>
           </div>
       </div>
@@ -80,6 +56,9 @@
       <div id="modal-foto-laranja2" class="modal-foto-laranja">
           <div class="conteudo-modal-laranja">
               <img src="../assets/imgs/andarHexas/postLaranja.png">
+              <p>Gostaria de agradecer, do fundo do coração, por todas as conversas que compartilhamos ao longo deste ano letivo. Olhando para trás, vejo com muita clareza que você foi uma das figuras mais marcantes no meu processo de autoconhecimento. Conversar, o que antes era difícil para mim, se tornou, consequentemente, algo que busco constantemente. De forma natural, creio que a Débora se tornou um ponto de confiança no meu caminho. Obrigada, de verdade. Em algum momento, quero conseguir transparecer a consciência que você tem, a leveza e o jeito único que consegue fazer com que as pessoas reflitam.
+
+Vou acabar o livro que você indicou para termos nossas conversas bem socioemocionais!!</p>
               <button onclick="fecharEFimLaranja(2)">✦ guardar memória ✦</button>
           </div>
       </div>
@@ -87,38 +66,30 @@
       <div id="modal-foto-laranja3" class="modal-foto-laranja">
           <div class="conteudo-modal-laranja">
               <img src="../assets/imgs/andarHexas/postLaranja.png">
+              <p>Debora, acho que não tivemos muitas conversas, como poderiamos ter dito, mas saiba que me sinto muito grato por você, mesmo não tendo muitas conversas, as poucas que tivemos me transformaram, depois do ultimo feedback, você falou de coisas que eu sabia, mas de formas que fez eu descobrir mais sobre mim, obrigado do fundo da minha alma que ta com a Vera</p>
               <button onclick="fecharEFimLaranja(3)">✦ guardar memória ✦</button>
           </div>
       </div>
-
-      <div id="modal-foto-laranja4" class="modal-foto-laranja">
-          <div class="conteudo-modal-laranja">
-              <img src="../assets/imgs/andarHexas/postLaranja.png">
-              <button onclick="fecharEFimLaranja(4)">✦ guardar memória ✦</button>
-          </div>
+    </div>
+    <div class="box-botao-elevador">
+      <div class="botao-elevador">
+        <button onclick="sair()">Chamar elevador</button>
       </div>
-
-      <div id="modal-foto-laranja5" class="modal-foto-laranja">
-          <div class="conteudo-modal-laranja">
-              <img src="../assets/imgs/andarHexas/postLaranja.png">
-              <button onclick="fecharEFimLaranja(5)">✦ guardar memória ✦</button>
-          </div>
-      </div>
-
-      <div id="modal-foto-laranja6" class="modal-foto-laranja">
-          <div class="conteudo-modal-laranja">
-              <img src="../assets/imgs/andarHexas/postLaranja.png">
-              <button onclick="fecharEFimLaranja(6)">✦ guardar memória ✦</button>
-          </div>
-      </div>
-
-  </div>
+    </div>
 </body>
 </html>
 
 <script>
 
   let interagiu = false;
+  
+  window.onload = function () {
+    const transicao = document.getElementById("transicao");
+
+    setTimeout(() => {
+      transicao.classList.add("fade-open");
+    }, 500);
+  }
 
   function abrirFotografiaRoxo(id) {
       interagiu = true;
@@ -139,4 +110,14 @@
       document.getElementById(`modal-foto-laranja${id}`).classList.remove("aberto");
       document.getElementById(`areaClicavelLaranja${id}`).style.display = "none";
   }
+
+  function sair() {
+      const overlay = document.getElementById('transicao');
+      overlay.classList.add('fade-out');
+      overlay.classList.add('transicao-ativo');
+      setTimeout(() => {
+          window.location.href = "../pages/elevadorGeral.html";
+      }, 1500);
+  }
+
 </script>

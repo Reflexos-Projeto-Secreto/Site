@@ -9,7 +9,6 @@ html,
 body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -315,4 +314,22 @@ body {
     height: 50px;
     width: 230px;
     margin-bottom: 50px;
+}
+
+.conteudo-google {
+    display: flex;
+}
+
+.box-botoes-google{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.box-botoes-google button{
+    background-color: #342f35;
+    color: #fff5ef;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
 }

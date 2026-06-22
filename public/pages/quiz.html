@@ -229,17 +229,13 @@
 
           <div class="box-texto">
             <p>Google Calendar API Quickstart</p>
-            <p>Jogue opiniões impopulares e se arrisque a responder as perguntas.</p>
+            <pre id="content" style="white-space: pre-wrap;"></pre>
           </div>
 
-          <input type="text" id="inputNomeJogador1" placeholder="Nome do Jogador 1" />
-          <input type="text" id="inputNomeJogador2" placeholder="Nome do Jogador 2" />
-          <button onclick="iniciarJogo()">Iniciar</button>
+          <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+          <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
         </div>
 
-        <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
-        <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
-        <pre id="content" style="white-space: pre-wrap;"></pre>
       </div>
 
       <div class="box-botao-elevador">

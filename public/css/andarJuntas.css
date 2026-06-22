@@ -335,6 +335,7 @@ img {
     width: 326px;
     min-height: 70px;
     transform: translateX(-50%);
+    text-align: center;
 }
 
 .titulo-informacoes-conteudo {
